@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/kitchen_controller.dart';
 import '../core/models.dart';
 import '../widgets/recipe_card.dart';
+import '../branding/brand_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.controller});
@@ -36,9 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(colors: [Color(0xFF8E3B2E), Color(0xFFD57A3D)], begin: Alignment.topRight, end: Alignment.bottomLeft),
+                gradient: const LinearGradient(colors: [Color(0xFF7B2C20), KitchenBrand.tomato, KitchenBrand.amber], begin: Alignment.topRight, end: Alignment.bottomLeft),
                 borderRadius: BorderRadius.circular(24)),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                const Row(children: [BrandLogo(size: 52), SizedBox(width: 10),
+                  Expanded(child: Text('وصفات من العالم • على ذوقك', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800))) ]),
+                const SizedBox(height: 12),
                 const Text('كل مطابخ العالم في مطبخك ✨',
                   style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 23)),
                 const SizedBox(height: 8),
@@ -53,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             TextField(onChanged: (v) => setState(() => query = v),
               decoration: const InputDecoration(prefixIcon: Icon(Icons.search), hintText: 'ابحث عن أكلة أو مكوّن...')),
             const SizedBox(height: 19),
-            const Text('المطابخ', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900)),
+            const BrandSectionTitle('المطابخ'),
             const SizedBox(height: 8),
             SizedBox(height: 52, child: ListView(scrollDirection: Axis.horizontal, children: [
               Padding(padding: const EdgeInsetsDirectional.only(end: 7),
@@ -72,8 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onSelected: (_) => setState(() => selectedCategory = c)))),
             ])),
             Row(children: [
-              Text('الوصفات (${filtered.length})', style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w900)),
-              const Spacer(),
+              Expanded(child: BrandSectionTitle('الوصفات (${filtered.length})')), 
               TextButton.icon(onPressed: () => setState(() => onlyFavorites = !onlyFavorites),
                 icon: Icon(onlyFavorites ? Icons.favorite : Icons.favorite_border, size: 18),
                 label: const Text('المفضلة')),

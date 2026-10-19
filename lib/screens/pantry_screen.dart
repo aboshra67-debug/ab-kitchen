@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/kitchen_controller.dart';
 import '../widgets/recipe_card.dart';
+import '../branding/brand_widgets.dart';
 
 class PantryScreen extends StatefulWidget {
   const PantryScreen({super.key, required this.controller});
@@ -19,9 +20,8 @@ class _PantryScreenState extends State<PantryScreen> {
       final options = all.where((i) => i.contains(search)).toList();
       final suggestions = c.suggestedFromPantry().where((r) => c.matchRatio(r) > 0).take(8).toList();
       return ListView(padding: const EdgeInsets.all(16), children: [
-        const Text('إيه الموجود عندك؟ 🧺', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
-        const SizedBox(height: 7),
-        const Text('اختار مكونات البيت ونقترح عليك وصفات تقدر تبدأ فيها فورًا.'),
+        const BrandIntro(title: 'إيه الموجود عندك؟ 🧺', icon: Icons.kitchen_outlined,
+          subtitle: 'اختار مكونات البيت ونقترح عليك وصفات تقدر تبدأ فيها فورًا.'),
         const SizedBox(height: 14),
         TextField(onChanged: (v) => setState(() => search = v),
           decoration: InputDecoration(prefixIcon: const Icon(Icons.search), hintText: 'دور على مكوّن...',
@@ -42,8 +42,7 @@ class _PantryScreenState extends State<PantryScreen> {
           ),
         ),
         const SizedBox(height: 24),
-        Text('أكلات مناسبة لمكوناتك (${suggestions.length})',
-          style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w900)),
+        BrandSectionTitle('أكلات مناسبة لمكوناتك (${suggestions.length})'),
         const SizedBox(height: 5),
         if (suggestions.isEmpty) const Card(child: Padding(padding: EdgeInsets.all(22),
           child: Text('حدد مكونات البيت أولًا لتظهر الوصفات المناسبة.'))),

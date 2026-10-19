@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/kitchen_controller.dart';
 import '../core/assistant_service.dart';
+import '../branding/brand_widgets.dart';
 
 class AssistantScreen extends StatefulWidget {
   const AssistantScreen({super.key, required this.controller});
@@ -37,9 +38,10 @@ class _AssistantScreenState extends State<AssistantScreen> {
     final colors = Theme.of(context).colorScheme;
     return Column(children: [
       Padding(padding: const EdgeInsets.fromLTRB(16, 8, 16, 8), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('مساعد الطبخ ✨', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
+        const BrandIntro(title: 'مساعد الطبخ ✨', icon: Icons.auto_awesome_outlined,
+          subtitle: 'اسأل عن الأكلات السريعة والبدائل والمقادير. مساعد محلي لا يحتاج إنترنت.'),
         const SizedBox(height: 6),
-        const Text('نسخة أولية محلية: اقتراحات وقواعد طبخ، وليست محادثة AI سحابية.', style: TextStyle(fontSize: 12)),
+        const Text('نسخة أولية بقواعد محلية، وليست محادثة ذكاء اصطناعي سحابية.', style: TextStyle(fontSize: 11)),
         const SizedBox(height: 10),
         SizedBox(height: 44, child: ListView(scrollDirection: Axis.horizontal, children: [
           ...['عندي مكونات في البيت', 'عايز أكلة سريعة', 'إيه بديل اللبن؟', 'نصائح سلامة الطعام']

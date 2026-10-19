@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/kitchen_controller.dart';
+import '../branding/brand_widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key, required this.controller});
@@ -10,8 +11,12 @@ class SettingsScreen extends StatelessWidget {
     appBar: AppBar(title: const Text('الإعدادات')),
     body: AnimatedBuilder(animation: controller, builder: (context, _) => ListView(
       padding: const EdgeInsets.all(16), children: [
-        const Text('AB Kitchen', style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900)),
-        const Text('مطبخ العالم • إصدار تجريبي 0.2.0'),
+        const BrandIntro(title: 'إعدادات AB Kitchen', icon: Icons.tune_outlined,
+          subtitle: 'مطبخ العالم • المظهر الموحّد الدافئ • إصدار تجريبي 0.3.0'),
+        const SizedBox(height: 12),
+        const Card(child: ListTile(leading: BrandLogo(size: 48),
+          title: Text('هوية AB Kitchen الدافئة'),
+          subtitle: Text('البرتقالي والأحمر • سيتم إضافة ثيمات اختيارية لاحقًا.'))),
         const SizedBox(height: 20),
         Card(child: SwitchListTile(
           title: const Text('الوضع الداكن'), subtitle: const Text('يمكن تغييره في أي وقت'),
@@ -25,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
             items: List.generate(12, (i) => DropdownMenuItem(value: i+1, child: Text('${i+1}'))),
             onChanged: (v) { if (v != null) controller.setDefaultServings(v); }))),
         const SizedBox(height: 20),
-        const Text('البيانات والخصوصية', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17)),
+        const BrandSectionTitle('البيانات والخصوصية'),
         const SizedBox(height: 6),
         const ListTile(leading: Icon(Icons.offline_bolt_outlined),
           title: Text('الوصفات متاحة بلا إنترنت'),

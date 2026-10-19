@@ -32,8 +32,13 @@ for expected in (
 ):
     assert (root / expected).is_file(), expected
 pubspec = (root / 'pubspec.yaml').read_text(encoding='utf-8')
-assert 'version: 0.2.0+2' in pubspec
-assert 'assets/data/recipes_ar.json' in pubspec
+assert 'version: 0.3.0+3' in pubspec
+assert 'assets/data/recipes_ar.json' in pubspec and 'assets/branding/ab_kitchen_logo.jpg' in pubspec
 assert 'shared_preferences:' in pubspec and 'flutter_tts:' in pubspec
+logo = root / 'assets/branding/ab_kitchen_logo.jpg'
+assert logo.is_file() and logo.stat().st_size > 10000
+assert (root / 'assets/branding/ab_kitchen_app_icon.png').is_file()
+assert 'flutter_launcher_icons:' in pubspec
+assert (root / 'lib/branding/brand_widgets.dart').is_file()
 print(f'PASS: {len(recipes)} recipes; 8 cuisines; {len(paths)} Dart files; local imports resolve; CI/test/build scripts present.')
 print('NOT TESTED: Dart parsing, Flutter static analysis, Flutter widget execution, Android/iOS binaries.')

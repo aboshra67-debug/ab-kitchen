@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/kitchen_controller.dart';
 import '../core/models.dart';
+import '../branding/brand_widgets.dart';
 
 class ShoppingScreen extends StatefulWidget {
   const ShoppingScreen({super.key, required this.controller});
@@ -45,9 +46,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
       final c = widget.controller;
       final checked = c.shopping.where((e) => e.checked).length;
       return ListView(padding: const EdgeInsets.all(16), children: [
-        const Text('قائمة المشتريات 🛒', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
-        const SizedBox(height: 7),
-        Text('لديك ${c.shopping.length} مكوّن • تم شراء $checked'),
+        BrandIntro(title: 'قائمة المشتريات 🛒', icon: Icons.shopping_basket_outlined,
+          subtitle: 'لديك ${c.shopping.length} مكوّن • تم شراء $checked'),
+        const SizedBox(height: 12),
+        if (c.shopping.isNotEmpty) LinearProgressIndicator(
+          value: checked / c.shopping.length, minHeight: 7, borderRadius: BorderRadius.circular(8)),
         const SizedBox(height: 14),
         FilledButton.icon(onPressed: _addItem, icon: const Icon(Icons.add), label: const Text('أضف مكوّنًا يدويًا')),
         const SizedBox(height: 9),

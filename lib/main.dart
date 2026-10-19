@@ -9,6 +9,7 @@ import 'screens/planner_screen.dart';
 import 'screens/shopping_screen.dart';
 import 'screens/assistant_screen.dart';
 import 'screens/settings_screen.dart';
+import 'branding/brand_widgets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,18 +34,30 @@ class ABKitchenApp extends StatelessWidget {
   final KitchenController controller;
 
   ThemeData _theme(Brightness mode) {
-    const seed = Color(0xFFC35A36);
-    final scheme = ColorScheme.fromSeed(seedColor: seed, brightness: mode);
+    final scheme = ColorScheme.fromSeed(seedColor: KitchenBrand.tomato, brightness: mode)
+      .copyWith(primary: mode == Brightness.light ? KitchenBrand.tomato : const Color(0xFFFFA778),
+        secondary: KitchenBrand.amber,
+        surface: mode == Brightness.light ? Colors.white : const Color(0xFF25211E),
+        onSurface: mode == Brightness.light ? KitchenBrand.cocoa : Colors.white);
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
       brightness: mode,
-      scaffoldBackgroundColor: mode == Brightness.light ? const Color(0xFFFFFAF4) : const Color(0xFF171513),
+      scaffoldBackgroundColor: mode == Brightness.light ? KitchenBrand.cream : const Color(0xFF171513),
       cardTheme: CardThemeData(
         elevation: 0, color: mode == Brightness.light ? Colors.white : const Color(0xFF25211E),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
-      appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, centerTitle: false, surfaceTintColor: Colors.transparent),
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent, centerTitle: false,
+        surfaceTintColor: Colors.transparent, titleSpacing: 16),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: mode == Brightness.light ? KitchenBrand.roseCream : const Color(0xFF28211F),
+        indicatorColor: mode == Brightness.light ? const Color(0xFFFFD4BA) : const Color(0xFF633A30),
+        labelTextStyle: WidgetStatePropertyAll(TextStyle(fontSize: 11,
+          fontWeight: FontWeight.w700, color: scheme.onSurface))),
+      filledButtonTheme: FilledButtonThemeData(style: FilledButton.styleFrom(
+        minimumSize: const Size(0, 46), shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15)))),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
         filled: true, fillColor: mode == Brightness.light ? Colors.white : const Color(0xFF282420),
@@ -90,9 +103,9 @@ class _KitchenShellState extends State<KitchenShell> {
     return Scaffold(
       appBar: AppBar(
         title: Row(mainAxisSize: MainAxisSize.min, children: [
-          const Text('🍳', style: TextStyle(fontSize: 28)), const SizedBox(width: 8),
+          const BrandLogo(size: 42), const SizedBox(width: 9),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('AB Kitchen', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 19)),
+            const Text('AB Kitchen', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 19, letterSpacing: -.4)),
             Text(names[tab], style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant)),
           ]),
         ]),

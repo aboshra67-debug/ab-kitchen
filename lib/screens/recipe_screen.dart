@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import '../core/models.dart';
 import '../core/kitchen_controller.dart';
+import '../branding/brand_widgets.dart';
 
 class RecipeScreen extends StatefulWidget {
   const RecipeScreen({super.key, required this.recipe, required this.controller});
@@ -32,9 +33,12 @@ class _RecipeScreenState extends State<RecipeScreen> {
       body: ListView(padding: const EdgeInsets.fromLTRB(16, 0, 16, 110), children: [
         Container(height: 180, alignment: Alignment.center,
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [color.primaryContainer, color.secondaryContainer]),
+            gradient: const LinearGradient(colors: [Color(0xFFFFE4C7), Color(0xFFFFF0E3)]),
             borderRadius: BorderRadius.circular(24)),
-          child: Text(r.emoji, style: const TextStyle(fontSize: 102))),
+          child: Stack(alignment: Alignment.center, children: [
+            Text(r.emoji, style: const TextStyle(fontSize: 102)),
+            const Positioned(top: 12, right: 12, child: BrandLogo(size: 37)),
+          ])),
         const SizedBox(height: 16),
         Text(r.name, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900)),
         const SizedBox(height: 5),
@@ -47,7 +51,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
         ]),
         const SizedBox(height: 18),
         Row(children: [
-          const Expanded(child: Text('المقادير', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w800))),
+          const Expanded(child: BrandSectionTitle('المقادير')),
           IconButton.filledTonal(onPressed: servings > 1 ? () => setState(() => servings--) : null,
             icon: const Icon(Icons.remove)),
           Padding(padding: const EdgeInsets.symmetric(horizontal: 10), child: Text('$servings أفراد', style: const TextStyle(fontWeight: FontWeight.w800))),
@@ -75,7 +79,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم تحديث قائمة المشتريات')));
           }),
         const SizedBox(height: 22),
-        const Text('خطوات التحضير', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w800)),
+        const BrandSectionTitle('خطوات التحضير'),
         const SizedBox(height: 12),
         ...r.steps.asMap().entries.map((e) => Card(child: Padding(
           padding: const EdgeInsets.all(14), child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -198,7 +202,12 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
           Text('الخطوة ${index + 1} من ${recipe.steps.length}',
             style: const TextStyle(fontWeight: FontWeight.w600)),
           const SizedBox(height: 24),
-          Center(child: Text(recipe.emoji, style: const TextStyle(fontSize: 78))),
+          Center(child: Container(
+            padding: const EdgeInsets.all(19),
+            decoration: BoxDecoration(gradient: const LinearGradient(
+              colors: [Color(0xFFFFE4C7), Color(0xFFFFF8F1)]),
+              borderRadius: BorderRadius.circular(30)),
+            child: Text(recipe.emoji, style: const TextStyle(fontSize: 78)))),
           const SizedBox(height: 22),
           Text(current.title, textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900)),

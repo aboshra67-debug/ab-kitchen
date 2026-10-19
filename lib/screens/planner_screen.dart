@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/kitchen_controller.dart';
 import '../core/models.dart';
+import '../branding/brand_widgets.dart';
 
 class PlannerScreen extends StatelessWidget {
   const PlannerScreen({super.key, required this.controller});
@@ -29,10 +30,9 @@ class PlannerScreen extends StatelessWidget {
   Widget build(BuildContext context) => AnimatedBuilder(animation: controller, builder: (context, _) {
     final occupied = controller.plannedMeals.length;
     return ListView(padding: const EdgeInsets.all(16), children: [
-      const Text('خطة الأكل الأسبوعية 📅', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
-      const SizedBox(height: 7),
-      Text('خطط ${weekDays.length * mealNames.length} وجبة للأسبوع. المختار: $occupied وجبات.'),
-      const SizedBox(height: 12),
+      BrandIntro(title: 'خطة الأكل الأسبوعية 📅', icon: Icons.calendar_month_outlined,
+        subtitle: 'خطط ${weekDays.length * mealNames.length} وجبة للأسبوع. المختار: $occupied وجبات.'),
+      const SizedBox(height: 16),
       OutlinedButton.icon(onPressed: occupied == 0 ? null : () {
         controller.addPlannedMealsToShopping();
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تمت إضافة مقادير الوجبات للمشتريات')));
@@ -40,7 +40,8 @@ class PlannerScreen extends StatelessWidget {
       const SizedBox(height: 8),
       ...List.generate(7, (day) => Card(margin: const EdgeInsets.only(bottom: 12), child: Padding(
         padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(weekDays[day], style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 17)),
+          Row(children: [const Icon(Icons.calendar_today_outlined, size: 17, color: KitchenBrand.tomato),
+            const SizedBox(width: 9), Text(weekDays[day], style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 17))]),
           const SizedBox(height: 7),
           ...List.generate(3, (meal) {
             final id = controller.plannedMeals['$day:$meal'];

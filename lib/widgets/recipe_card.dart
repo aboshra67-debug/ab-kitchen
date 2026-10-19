@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/models.dart';
 import '../core/kitchen_controller.dart';
 import '../screens/recipe_screen.dart';
+import '../branding/brand_widgets.dart';
 
 class RecipeCard extends StatelessWidget {
   const RecipeCard({super.key, required this.recipe, required this.controller, this.subtitle});
@@ -22,7 +23,9 @@ class RecipeCard extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: Row(children: [
             Container(width: 76, height: 78,
-              decoration: BoxDecoration(color: color.primaryContainer.withValues(alpha: .62), borderRadius: BorderRadius.circular(17)),
+              decoration: BoxDecoration(gradient: const LinearGradient(
+                colors: [Color(0xFFFFE2C9), Color(0xFFFFF5E8)]),
+                borderRadius: BorderRadius.circular(17)),
               alignment: Alignment.center, child: Text(recipe.emoji, style: const TextStyle(fontSize: 38))),
             const SizedBox(width: 12),
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -39,7 +42,7 @@ class RecipeCard extends StatelessWidget {
             IconButton(
               tooltip: controller.favorites.contains(recipe.id) ? 'إزالة من المفضلة' : 'إضافة للمفضلة',
               icon: Icon(controller.favorites.contains(recipe.id) ? Icons.favorite : Icons.favorite_border,
-                color: controller.favorites.contains(recipe.id) ? Colors.redAccent : color.onSurfaceVariant),
+                color: controller.favorites.contains(recipe.id) ? KitchenBrand.tomato : color.onSurfaceVariant),
               onPressed: () => controller.toggleFavorite(recipe.id)),
           ]),
         ),

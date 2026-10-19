@@ -72,3 +72,8 @@ flutter build ios --simulator --debug
 ## حالة التحقق والتسليم
 
 فُحصت قاعدة JSON وبنية الملفات وصحة ZIP؛ **لم يجر Flutter analyze أو Flutter test أو بناء APK/IPA** لأن البيئة لا تحتوي Flutter SDK أو Android SDK أو Xcode ولا يمكن تنزيلها من الشبكة هنا. لم يُرفع المشروع بعد إلى مستودع AB Kitchen مستقل. نتيجة GitHub Actions ليست معروفة قبل تشغيله.
+
+
+## V0.3 warm identity
+
+The approved red/orange AB Kitchen logo is bundled in `assets/branding/ab_kitchen_logo.jpg`. Screens share a reusable warm brand system; no recipe or storage changes. Remote-media permanent offline downloads and selectable color themes are planned later.

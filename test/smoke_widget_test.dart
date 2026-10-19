@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ab_kitchen/main.dart';
+import 'package:ab_kitchen/branding/brand_widgets.dart';
 import 'package:ab_kitchen/core/models.dart';
 import 'package:ab_kitchen/core/kitchen_controller.dart';
 
@@ -23,6 +24,7 @@ void main() {
     ], prefs);
     await tester.pumpWidget(ABKitchenApp(controller: controller));
     expect(find.text('رز بسيط'), findsOneWidget);
+    expect(find.byType(BrandLogo), findsWidgets); // Actual approved logo is bundled.
 
     await tester.tap(find.descendant(
       of: find.byType(NavigationBar), matching: find.byIcon(Icons.kitchen_outlined)));
@@ -43,5 +45,6 @@ void main() {
       of: find.byType(NavigationBar), matching: find.byIcon(Icons.auto_awesome_outlined)));
     await tester.pumpAndSettle();
     expect(find.text('مساعد الطبخ ✨'), findsOneWidget);
+    expect(find.byType(BrandIntro), findsOneWidget);
   });
 }
