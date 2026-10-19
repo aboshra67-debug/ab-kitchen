@@ -36,11 +36,11 @@ for item in json.loads(MANIFEST.read_text()):
         if expected=='Public Domain':
             okay=('PUBLIC' in published.upper() and 'DOMAIN' in published.upper())
         else:
-            okay=normalized(expected) in normalized(published)
+            okay=normalized(expected) in normalized(published) or (expected == 'CC0 1.0' and normalized(published) == 'CC0')
         if not okay:raise ValueError(f'license mismatch {published!r} vs {expected!r}')
         url=image.get('thumburl') or image['url']
         if not url.startswith('https://upload.wikimedia.org/'):
-            raise ValueError('thumbnail is not Wikimedia upload host')
+            raise ValueError(f'thumbnail is not Wikimedia upload host: {url!r}')
         r=S.get(url,timeout=35)
         r.raise_for_status()
         if len(r.content)>8_000_000:raise ValueError('photo is oversized')
