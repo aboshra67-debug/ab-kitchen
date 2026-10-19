@@ -25,7 +25,27 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final control = widget.controller;
     return AnimatedBuilder(animation: control, builder: (context, _) {
-      final categories = {'الكل', ...control.recipes.map((r) => r.category)}.toList();
+      // Offer relevant subcategories for the chosen kitchen rather than mixing
+      // Egyptian mahashi/tawagen into other cuisines' navigation.
+      const egyptianCategoryOrder = <String>[
+        'أطباق رئيسية', 'إفطار', 'أكلات شعبية', 'محاشي',
+        'طواجن وصواني', 'أسماك ومأكولات بحرية', 'شوربات',
+        'مقبلات وسلطات', 'مخبوزات ومعجنات', 'حلويات',
+        'كتالوج الحلويات',
+      ];
+      final categorySet = control.recipes
+          .where((r) => selectedCountry == 'all' || r.country == selectedCountry)
+          .map((r) => r.category).toSet();
+      final otherCategories = categorySet.where((category) =>
+          selectedCountry != 'eg' ||
+          !egyptianCategoryOrder.contains(category)).toList()..sort();
+      final categories = <String>[
+        'الكل',
+        if (selectedCountry == 'eg')
+          ...egyptianCategoryOrder.where(categorySet.contains),
+        ...otherCategories,
+      ];
+      final egyptianCount = control.recipes.where((r) => r.country == 'eg').length;
       final filtered = control.recipes.where((r) {
         final q = query.trim();
         return (selectedCountry == 'all' || r.country == selectedCountry) &&
@@ -60,6 +80,20 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 12),
             Card(child: ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+              leading: const CircleAvatar(child: Text('🇪🇬', style: TextStyle(fontSize: 22))),
+              title: const Text('المطبخ المصري',
+                style: TextStyle(fontWeight: FontWeight.w900)),
+              subtitle: Text('$egyptianCount وصفة • أكلات شعبية ومحاشي وطواجن وأسماك وحلويات'),
+              trailing: const Icon(Icons.arrow_back_ios_new, size: 16),
+              onTap: () => setState(() {
+                selectedCountry = 'eg'; selectedCategory = 'الكل';
+                onlyFavorites = false;
+                query = ''; searchController.clear();
+              }),
+            )),
+            const SizedBox(height: 6),
+            Card(child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               leading: const CircleAvatar(child: Icon(Icons.icecream_outlined)),
               title: const Text('كتالوج الحلويات المصرية',
                 style: TextStyle(fontWeight: FontWeight.w900)),
@@ -82,12 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 52, child: ListView(scrollDirection: Axis.horizontal, children: [
               Padding(padding: const EdgeInsetsDirectional.only(end: 7),
                 child: ChoiceChip(label: const Text('🌍 الكل'), selected: selectedCountry == 'all',
-                  onSelected: (_) => setState(() => selectedCountry = 'all'))),
+                  onSelected: (_) => setState(() { selectedCountry = 'all'; selectedCategory = 'الكل'; }))),
               ...countries.entries.map((c) => Padding(
                 padding: const EdgeInsetsDirectional.only(end: 7),
                 child: ChoiceChip(label: Text('${c.value.$2} ${c.value.$1}'),
                   selected: selectedCountry == c.key,
-                  onSelected: (_) => setState(() => selectedCountry = c.key)))),
+                  onSelected: (_) => setState(() { selectedCountry = c.key; selectedCategory = 'الكل'; })))),
             ])),
             const SizedBox(height: 10),
             SizedBox(height: 49, child: ListView(scrollDirection: Axis.horizontal, children: [
