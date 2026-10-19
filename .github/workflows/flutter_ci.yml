@@ -20,6 +20,11 @@ jobs:
           cache: true
       - name: Generate Android project (preserve existing Dart files)
         run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove only stale Flutter-generated MyApp example test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -q 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
       - name: Fetch Flutter dependencies
         run: flutter pub get
       - name: Static analysis
@@ -48,6 +53,11 @@ jobs:
           cache: true
       - name: Generate iOS project (preserve existing Dart files)
         run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=ios .
+      - name: Remove only stale Flutter-generated MyApp example test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -q 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
       - name: Fetch Flutter dependencies
         run: flutter pub get
       - name: Static analysis
