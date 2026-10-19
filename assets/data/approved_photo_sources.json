@@ -1,0 +1,86 @@
+[
+  {
+    "recipe_id": "eg_macaroni_beshamel",
+    "filename": "Macarona bechamel.jpg",
+    "author": "Zebi2424",
+    "license": "CC0 1.0"
+  },
+  {
+    "recipe_id": "eg_hawawshi",
+    "filename": "Hawawshi Main 1 Mohamed Moheyeldin.jpg",
+    "author": "Mohamed Moheyeldin",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_mombar",
+    "filename": "Egyptian food (mombar).jpg",
+    "author": "Ahmed Elsayed45",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_kofta_rice",
+    "filename": "Egyptian kofta.jpg",
+    "author": "Mkevy",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_tahini_salad",
+    "filename": "EgFoodTahina.jpg",
+    "author": "Roland Unger",
+    "license": "CC BY-SA 3.0"
+  },
+  {
+    "recipe_id": "eg_baba_ghanoush",
+    "filename": "Egyptian baba ghanoush.jpg",
+    "author": "Stu Spivack",
+    "license": "CC BY-SA 2.0"
+  },
+  {
+    "recipe_id": "eg_salata_baladi",
+    "filename": "Egyptian Green Salad.JPG",
+    "author": "Dina Said",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_cabbage_mahshi",
+    "filename": "Mahshi koromb.jpg",
+    "author": "Lockesdonkey",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_fatta_meat",
+    "filename": "Egyptian cuisine - Fattah.png",
+    "author": "The Eloquent Peasant",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_kishk_egyptian",
+    "filename": "Kishk.JPG",
+    "author": "Cairocamels B. Simpson",
+    "license": "CC BY 3.0"
+  },
+  {
+    "recipe_id": "eg_egg_omelet_veg",
+    "filename": "Egga (عجة البيض ) (cropped).jpg",
+    "author": "Dr.Kerollos (crop by Opencooper)",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_shakshuka_egypt",
+    "filename": "EgFoodShakshuka.jpg",
+    "author": "Roland Unger",
+    "license": "CC BY-SA 3.0"
+  },
+  {
+    "recipe_id": "eg_baladi_bread",
+    "filename": "Baladi bread.JPG",
+    "author": "Cairocamels B. Simpson",
+    "license": "Public Domain"
+  },
+  {
+    "recipe_id": "eg_lentil_soup",
+    "filename": "EgFoodLentilSoup.jpg",
+    "author": "Roland Unger",
+    "license": "CC BY-SA 3.0"
+  }
+]

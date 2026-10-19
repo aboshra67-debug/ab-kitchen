@@ -1,0 +1,27 @@
+name: AB Kitchen approved food photographs from Commons
+on:
+  push:
+    paths:
+      - 'tools/download_approved_photos.py'
+      - 'assets/data/approved_photo_sources.json'
+      - '.github/workflows/download_approved_photos.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install requests Pillow
+      - name: Download exact-match, license-verified photography
+        run: python tools/download_approved_photos.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ABKitchen-Approved-Egyptian-Photos
+          path: downloaded_approved_photos/
+          if-no-files-found: error
