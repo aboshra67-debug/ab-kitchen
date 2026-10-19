@@ -33,7 +33,7 @@ for item in json.loads(MANIFEST.read_text()):
         published=plain(meta.get('LicenseShortName',{}).get('value',''))
         expected=item['license']
         normalized=lambda x:re.sub(r'[^A-Z0-9]','',x.upper())
-        if expected.upper().startsWith('CC0'):
+        if expected.upper().startswith('CC0'):
             okay=published.upper().startswith('CC0')
         elif expected=='Public Domain':
             okay=('PUBLIC' in published.upper() and 'DOMAIN' in published.upper())
