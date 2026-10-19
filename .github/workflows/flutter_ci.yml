@@ -1,0 +1,64 @@
+name: AB Kitchen Flutter CI - Android and iOS
+
+on:
+  push:
+    paths:
+      - 'lib/**'
+      - 'assets/**'
+      - 'pubspec.yaml'
+      - 'analysis_options.yaml'
+      - 'test/**'
+      - '.github/workflows/flutter_ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    name: Analyze, test and build Android debug APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate Android platform shell
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze Dart
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+      - name: Build debug APK
+        run: flutter build apk --debug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-Android-DEBUG
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 14
+          if-no-files-found: error
+
+  ios:
+    name: Analyze, test and build iOS simulator
+    runs-on: macos-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate iOS platform shell
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=ios .
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze Dart
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+      - name: Build iOS simulator
+        run: flutter build ios --simulator --debug
