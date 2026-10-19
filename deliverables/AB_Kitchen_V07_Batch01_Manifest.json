@@ -1,0 +1,273 @@
+{
+  "project": "AB Kitchen",
+  "base_version": "V0.7",
+  "batch": "01",
+  "source": "Adobe Firefly generative images - photorealistic, not camera photographs",
+  "recipe_ids": [
+    "tr_lentil",
+    "tr_kofte",
+    "it_pasta",
+    "it_pizza",
+    "it_risotto",
+    "in_biryani",
+    "in_dal",
+    "in_chana",
+    "ma_tajine",
+    "ma_harira",
+    "ma_couscous",
+    "lb_tabbouleh",
+    "lb_hummus",
+    "lb_fattoush",
+    "eg_fatta_meat",
+    "eg_moussaka",
+    "eg_kebab_halla",
+    "eg_kofta_oven",
+    "eg_dawood_basha",
+    "eg_molokhia_rabbit"
+  ],
+  "location": "assets/photos_batch01/",
+  "format": "JPEG",
+  "note": "Independent images, matched by exact recipe id, no app files modified.",
+  "photos": [
+    {
+      "recipe_id": "tr_lentil",
+      "name_ar": "شوربة العدس التركية",
+      "country": "tr",
+      "description_ar": "شوربة عدس أحمر ناعمة بالجزر والكمون.",
+      "filename": "tr_lentil.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "1367c7bd28ecf172b91d18b97a6ada75e732d1c77508f731594b0525e0482a77"
+    },
+    {
+      "recipe_id": "tr_kofte",
+      "name_ar": "الكفتة التركية",
+      "country": "tr",
+      "description_ar": "أقراص لحم مشوية مع البقدونس والبصل.",
+      "filename": "tr_kofte.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "b0faf0b22709b571e3c81fe845608d01059a7eede9e0bd7ca44fea4d95c352ee"
+    },
+    {
+      "recipe_id": "it_pasta",
+      "name_ar": "مكرونة بصلصة الطماطم",
+      "country": "it",
+      "description_ar": "باستا إيطالية بسيطة بالطماطم والريحان.",
+      "filename": "it_pasta.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "5cd57ac81c3d4a2f149cee38dd6c9af82a7e1104929669ff8fe235510b41e465"
+    },
+    {
+      "recipe_id": "it_pizza",
+      "name_ar": "بيتزا مارجريتا",
+      "country": "it",
+      "description_ar": "بيتزا منزلية بالطماطم والموزاريلا.",
+      "filename": "it_pizza.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "898a22d91ea92815a67d6a533cfa8f9afefc717dd3bdfb7d1ce98459babfc137"
+    },
+    {
+      "recipe_id": "it_risotto",
+      "name_ar": "ريزوتو المشروم",
+      "country": "it",
+      "description_ar": "أرز إيطالي كريمي بالفطر.",
+      "filename": "it_risotto.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "122d50f3acdcffec3e229ab8e05373745537f5318040157894af8ef9e1def24c"
+    },
+    {
+      "recipe_id": "in_biryani",
+      "name_ar": "برياني الدجاج",
+      "country": "in",
+      "description_ar": "أرز بسمتي متبّل مع الدجاج والزعفران.",
+      "filename": "in_biryani.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "a3bbce4ea7a893fc3bdac882386955638bc7fa6a029d19d6f8808aa781cd8ee2"
+    },
+    {
+      "recipe_id": "in_dal",
+      "name_ar": "دال العدس الهندي",
+      "country": "in",
+      "description_ar": "عدس أصفر هندي متبّل بالكركم والكمون.",
+      "filename": "in_dal.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "95ff59082cc27356570827b028f884f6457f8c8ccb3b7be9742b57ff4b420076"
+    },
+    {
+      "recipe_id": "in_chana",
+      "name_ar": "تشانا ماسالا",
+      "country": "in",
+      "description_ar": "حمص هندي بصلصة الطماطم والتوابل.",
+      "filename": "in_chana.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "e709e56ee306055396ef9903ad8b8b8c77eb1138638b5c028448140f9d494cce"
+    },
+    {
+      "recipe_id": "ma_tajine",
+      "name_ar": "طاجين الدجاج المغربي",
+      "country": "ma",
+      "description_ar": "دجاج بالزيتون والليمون المصير.",
+      "filename": "ma_tajine.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "c4c3e254bff5a9ecd6c9cc43b88b2e61f66690506d566d946e985264bead1641"
+    },
+    {
+      "recipe_id": "ma_harira",
+      "name_ar": "الحريرة المغربية",
+      "country": "ma",
+      "description_ar": "شوربة مغربية بالعدس والحمص والطماطم.",
+      "filename": "ma_harira.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "60d31ba431f836b49b3046875064b240d1aace0d2f5831d356438e2106d16c7d"
+    },
+    {
+      "recipe_id": "ma_couscous",
+      "name_ar": "الكسكس بالخضار",
+      "country": "ma",
+      "description_ar": "كسكس مغربي بالخضار والحمص والمرق.",
+      "filename": "ma_couscous.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "f33d6255a055a9d839f7e04c96a5262944c84f2e8ab1dde3018f58893db698e8"
+    },
+    {
+      "recipe_id": "lb_tabbouleh",
+      "name_ar": "التبولة اللبنانية",
+      "country": "lb",
+      "description_ar": "سلطة بقدونس طازج بالبرغل والليمون.",
+      "filename": "lb_tabbouleh.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "71b52b15f7159c2186cd9e40eb3b6f7cf9582decbb75f4d6156547adacb643ce"
+    },
+    {
+      "recipe_id": "lb_hummus",
+      "name_ar": "حمص بالطحينة",
+      "country": "lb",
+      "description_ar": "حمص كريمي بالطحينة والليمون.",
+      "filename": "lb_hummus.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "d4b4ca147b57912d07cd32cec84b1430f65c44399641e6ad109bf027b8f160d2"
+    },
+    {
+      "recipe_id": "lb_fattoush",
+      "name_ar": "الفتوش اللبناني",
+      "country": "lb",
+      "description_ar": "سلطة خضار منعشة بالخبز المحمص والسماق.",
+      "filename": "lb_fattoush.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "e5c01bbf049e26ab50370583151a6bf9bd370501f35b90f6f88baccd1dd4a586"
+    },
+    {
+      "recipe_id": "eg_fatta_meat",
+      "name_ar": "فتة اللحمة المصرية",
+      "country": "eg",
+      "description_ar": "فتة اللحمة المصرية على الطريقة المصرية المنزلية.",
+      "filename": "eg_fatta_meat.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "ef35671b35238c8b3bca018460b493a3f3c0e1e4fdbe8b943bf18a5ecb6b81a7"
+    },
+    {
+      "recipe_id": "eg_moussaka",
+      "name_ar": "مسقعة بالباذنجان",
+      "country": "eg",
+      "description_ar": "مسقعة بالباذنجان على الطريقة المصرية المنزلية.",
+      "filename": "eg_moussaka.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "8cb4c5d4b485bcbc81579faffc7ce4fc0b7bc98a1bde99aa38c355ca71b96697"
+    },
+    {
+      "recipe_id": "eg_kebab_halla",
+      "name_ar": "كباب حلة",
+      "country": "eg",
+      "description_ar": "كباب حلة على الطريقة المصرية المنزلية.",
+      "filename": "eg_kebab_halla.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "bc181be1664d36c9db5be19a41ad455d9256899577ba6ff3829e40cd9c365c87"
+    },
+    {
+      "recipe_id": "eg_kofta_oven",
+      "name_ar": "كفتة صينية بالفرن",
+      "country": "eg",
+      "description_ar": "كفتة صينية بالفرن على الطريقة المصرية المنزلية.",
+      "filename": "eg_kofta_oven.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "ca59bec7e553e5b057bf299c5398fc7a4501aeaf676a9a9d4983fe8ab0bcc76e"
+    },
+    {
+      "recipe_id": "eg_dawood_basha",
+      "name_ar": "كفتة داود باشا",
+      "country": "eg",
+      "description_ar": "كفتة داود باشا على الطريقة المصرية المنزلية.",
+      "filename": "eg_dawood_basha.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "a8967f13ff007b39629733996b301755dd3fcd195ea0e4fefd89131d5ffb2fe6"
+    },
+    {
+      "recipe_id": "eg_molokhia_rabbit",
+      "name_ar": "ملوخية بالأرانب",
+      "country": "eg",
+      "description_ar": "ملوخية بالأرانب على الطريقة المصرية المنزلية.",
+      "filename": "eg_molokhia_rabbit.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "a53a324fce7591cfd05d9c8e32b9e9916ba0ed5cd3e4240183d2c66d0f6b1a2a"
+    }
+  ]
+}
