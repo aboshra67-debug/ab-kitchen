@@ -1,0 +1,77 @@
+name: Import AB Kitchen source ZIP and build
+
+on:
+  push:
+    paths:
+      - 'source_import/AB_Kitchen_Flutter_V0_2_SAFE_SOURCE.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and extract source without overwriting existing project
+        shell: python
+        run: |
+          from pathlib import Path
+          import zipfile
+          source = Path('source_import/AB_Kitchen_Flutter_V0_2_SAFE_SOURCE.zip')
+          assert source.is_file(), 'Upload source ZIP to source_import/ first'
+          allowed = ('.dart', '.yaml', '.yml', '.json', '.md', '.py', '.sh', '.html', '.png')
+          with zipfile.ZipFile(source) as z:
+              names = z.namelist()
+              assert z.testzip() is None, 'Source ZIP is corrupt'
+              assert any(name.endswith('/pubspec.yaml') for name in names)
+              existing = []
+              for member in z.infolist():
+                  if member.is_dir(): continue
+                  parts = Path(member.filename).parts
+                  assert len(parts) > 1 and parts[0] == 'AB_Kitchen_V0_2', member.filename
+                  relative = Path(*parts[1:])
+                  assert relative.suffix in allowed and '..' not in relative.parts and not relative.is_absolute()
+                  assert member.file_size < 2_000_000
+                  dest = Path('.') / relative
+                  if dest.exists():
+                      if dest.read_bytes() != z.read(member):
+                          existing.append(str(relative))
+                      continue
+                  dest.parent.mkdir(parents=True, exist_ok=True)
+                  dest.write_bytes(z.read(member))
+              assert not existing, 'Existing files differ; safe import stops: ' + ', '.join(existing)
+          print(f'Extracted source; preserved pre-existing project files; scanned {len(names)} ZIP entries')
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate Android platform shell
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Static analysis
+        run: flutter analyze
+      - name: Test Flutter application
+        run: flutter test
+      - name: Build Android debug APK
+        run: flutter build apk --debug
+      - name: Upload APK only after tests succeed
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V0.2-Android-DEBUG
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
+      - name: Commit validated source (never commit generated Android build)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lib assets test tools pubspec.yaml analysis_options.yaml
+          git add README.md V0_2_SAFE_PATCH.md VALIDATION_REPORT.md CI_BUILD_INSTRUCTIONS.md 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: import verified AB Kitchen V0.2 source"
+            git push
+          fi
