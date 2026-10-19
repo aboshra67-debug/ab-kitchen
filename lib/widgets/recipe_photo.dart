@@ -15,6 +15,9 @@ class RecipePhoto extends StatelessWidget {
 
   static const picturedRecipes = <String>{
     'eg_koshari','eg_molokhia','eg_mahshi','eg_ful','eg_besbousa',
+    'eg_macaroni_beshamel','eg_hawawshi','eg_mombar','eg_kofta_rice',
+    'eg_tahini_salad','eg_salata_baladi','eg_cabbage_mahshi',
+    'eg_kishk_egyptian','eg_baladi_bread','eg_lentil_soup',
     'sa_kabsa','sa_jareesh','sa_saleeg','sa_mutabbaq','sa_luqaimat',
     'sy_fatteh','sy_kibbeh','sy_muhammara','sy_shishbarak',
     'sy_hariseh','tr_menemen',

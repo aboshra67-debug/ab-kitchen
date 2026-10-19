@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'photo_credits_screen.dart';
 import '../core/kitchen_controller.dart';
 import '../branding/brand_widgets.dart';
 
@@ -12,7 +13,7 @@ class SettingsScreen extends StatelessWidget {
     body: AnimatedBuilder(animation: controller, builder: (context, _) => ListView(
       padding: const EdgeInsets.all(16), children: [
         const BrandIntro(title: 'إعدادات AB Kitchen', icon: Icons.tune_outlined,
-          subtitle: 'مطبخ العالم • المظهر الموحّد الدافئ • إصدار تجريبي 0.4.0'),
+          subtitle: 'مطبخ العالم • المظهر الموحّد الدافئ • إصدار تجريبي 0.7.0'),
         const SizedBox(height: 12),
         const Card(child: ListTile(leading: BrandLogo(size: 48),
           title: Text('هوية AB Kitchen الدافئة'),
@@ -30,6 +31,13 @@ class SettingsScreen extends StatelessWidget {
             items: List.generate(12, (i) => DropdownMenuItem(value: i+1, child: Text('${i+1}'))),
             onChanged: (v) { if (v != null) controller.setDefaultServings(v); }))),
         const SizedBox(height: 20),
+        Card(child: ListTile(
+          leading: const Icon(Icons.photo_library_outlined),
+          title: const Text('مصادر صور الأكلات وحقوق الاستخدام'),
+          subtitle: const Text('صور فوتوغرافية محفوظة داخل التطبيق • مصدر كل صورة وترخيصها'),
+          onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
+            builder: (_) => const PhotoCreditsScreen())),
+        )),
         const BrandSectionTitle('البيانات والخصوصية'),
         const SizedBox(height: 6),
         const ListTile(leading: Icon(Icons.offline_bolt_outlined),
