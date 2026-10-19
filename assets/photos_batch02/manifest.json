@@ -1,0 +1,148 @@
+{
+  "project": "AB Kitchen",
+  "base_version": "V0.7",
+  "batch": "02",
+  "images": "AI generated realistic food visuals",
+  "photos": [
+    {
+      "id": "eg_tarro_chard",
+      "name": "قلقاس بالسلق",
+      "country": "eg",
+      "filename": "eg_tarro_chard.jpg",
+      "ordinal": 21
+    },
+    {
+      "id": "eg_spinach_chickpeas",
+      "name": "سبانخ بالحمص",
+      "country": "eg",
+      "filename": "eg_spinach_chickpeas.jpg",
+      "ordinal": 22
+    },
+    {
+      "id": "eg_peas_carrots",
+      "name": "بسلة بالجزر واللحمة",
+      "country": "eg",
+      "filename": "eg_peas_carrots.jpg",
+      "ordinal": 23
+    },
+    {
+      "id": "eg_fasolia_green",
+      "name": "فاصوليا خضراء بالصلصة",
+      "country": "eg",
+      "filename": "eg_fasolia_green.jpg",
+      "ordinal": 24
+    },
+    {
+      "id": "eg_okra_meat",
+      "name": "بامية باللحمة",
+      "country": "eg",
+      "filename": "eg_okra_meat.jpg",
+      "ordinal": 25
+    },
+    {
+      "id": "eg_loubia_white",
+      "name": "لوبيا بيضاء بالصلصة",
+      "country": "eg",
+      "filename": "eg_loubia_white.jpg",
+      "ordinal": 26
+    },
+    {
+      "id": "eg_lentil_rice",
+      "name": "رز بالعدس الأصفر",
+      "country": "eg",
+      "filename": "eg_lentil_rice.jpg",
+      "ordinal": 27
+    },
+    {
+      "id": "eg_chicken_roasted_onion",
+      "name": "فراخ محمرة بالبصل",
+      "country": "eg",
+      "filename": "eg_chicken_roasted_onion.jpg",
+      "ordinal": 28
+    },
+    {
+      "id": "eg_chicken_cream_mushroom",
+      "name": "فراخ بالبصل والكريمة",
+      "country": "eg",
+      "filename": "eg_chicken_cream_mushroom.jpg",
+      "ordinal": 29
+    },
+    {
+      "id": "eg_molokhia_plain",
+      "name": "ملوخية سادة بالتقلية",
+      "country": "eg",
+      "filename": "eg_molokhia_plain.jpg",
+      "ordinal": 30
+    },
+    {
+      "id": "eg_eggplant_minced",
+      "name": "باذنجان باللحمة المفرومة",
+      "country": "eg",
+      "filename": "eg_eggplant_minced.jpg",
+      "ordinal": 31
+    },
+    {
+      "id": "eg_fatta_chicken",
+      "name": "فتة فراخ بالثوم",
+      "country": "eg",
+      "filename": "eg_fatta_chicken.jpg",
+      "ordinal": 32
+    },
+    {
+      "id": "eg_taameya",
+      "name": "طعمية مصرية",
+      "country": "eg",
+      "filename": "eg_taameya.jpg",
+      "ordinal": 33
+    },
+    {
+      "id": "eg_shakshuka_egypt",
+      "name": "شكشوكة مصرية",
+      "country": "eg",
+      "filename": "eg_shakshuka_egypt.jpg",
+      "ordinal": 34
+    },
+    {
+      "id": "eg_egg_pastrami",
+      "name": "بيض بالبسطرمة",
+      "country": "eg",
+      "filename": "eg_egg_pastrami.jpg",
+      "ordinal": 35
+    },
+    {
+      "id": "eg_eggs_potatoes",
+      "name": "عجة البطاطس والبيض",
+      "country": "eg",
+      "filename": "eg_eggs_potatoes.jpg",
+      "ordinal": 36
+    },
+    {
+      "id": "eg_egg_omelet_veg",
+      "name": "عجة مصرية بالخضرة",
+      "country": "eg",
+      "filename": "eg_egg_omelet_veg.jpg",
+      "ordinal": 37
+    },
+    {
+      "id": "eg_cheese_tomato",
+      "name": "جبنة قريش بالطماطم",
+      "country": "eg",
+      "filename": "eg_cheese_tomato.jpg",
+      "ordinal": 38
+    },
+    {
+      "id": "eg_old_cheese_salad",
+      "name": "مش بلدي بالطماطم",
+      "country": "eg",
+      "filename": "eg_old_cheese_salad.jpg",
+      "ordinal": 39
+    },
+    {
+      "id": "eg_fried_eggplant_breakfast",
+      "name": "باذنجان مقلي بالدقة",
+      "country": "eg",
+      "filename": "eg_fried_eggplant_breakfast.jpg",
+      "ordinal": 40
+    }
+  ]
+}
