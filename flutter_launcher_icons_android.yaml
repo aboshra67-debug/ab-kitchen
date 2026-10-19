@@ -1,0 +1,4 @@
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: assets/branding/ab_kitchen_app_icon.png
