@@ -18,7 +18,7 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install requests Pillow
       - name: Research image source and license candidates
-        run: python tools/commons_image_pipeline.py --limit 24 --output photo_research
+        run: python tools/commons_image_pipeline.py --limit 0 --output photo_research
       - uses: actions/upload-artifact@v4
         with:
           name: ABKitchen-Commons-License-Audit
