@@ -27,8 +27,10 @@ class PhotoCreditsScreen extends StatelessWidget {
               onTap: () async {
                 final text = '${credit['filename']}\nPhotographer: ${credit['author']}\nLicense: ${credit['license']}\nSource: ${credit['source_file_page']}\nModified: resize/re-encode to WebP';
                 await Clipboard.setData(ClipboardData(text: text));
-                if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('تم نسخ اسم المصور والترخيص ورابط الصورة')));
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('تم نسخ اسم المصور والترخيص ورابط الصورة')));
+                }
               },
             )),
         ]);
