@@ -1,0 +1,26 @@
+name: AB Kitchen licensed-food-image research
+on:
+  push:
+    paths:
+      - 'tools/commons_image_pipeline.py'
+      - '.github/workflows/commons_images.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install requests Pillow
+      - name: Research image source and license candidates
+        run: python tools/commons_image_pipeline.py --limit 12 --output photo_research
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ABKitchen-Commons-License-Audit
+          path: photo_research
+          if-no-files-found: error
