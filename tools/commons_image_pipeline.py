@@ -124,21 +124,29 @@ def clean(s):
 def retrieve(rid, query, timeout=20):
     ses = requests.Session(); ses.headers['User-Agent']='ABKitchenRecipes/0.7 (photo-license-research; https://github.com/aboshra67-debug/ab-kitchen)'
     api='https://commons.wikimedia.org/w/api.php'
-    for attempt in range(3):
-        try:
-            params=dict(action='query',generator='search',gsrsearch=query,gsrnamespace=6,gsrlimit=12,prop='imageinfo',iiprop='url|size|extmetadata',iiurlwidth=640,format='json',formatversion=2)
-            resp=ses.get(api,params=params,timeout=timeout)
-            if resp.status_code in (429,502,503,504): time.sleep(attempt+1); continue
-            resp.raise_for_status(); body=resp.json(); break
-        except Exception as e:
-            if attempt == 2:return dict(id=rid,query=query,error=str(e),candidates=[])
-            time.sleep(attempt+1)
-    else:return dict(id=rid,query=query,error='retries exhausted',candidates=[])
-    pages=body.get('query',{}).get('pages',[])
-    results=[]
     terms=[z for z in re.findall(r'[a-z]{3,}',query.lower()) if z not in STOP]
+    # Move from overly restrictive long AND queries to distinct dish-name title search.
+    anchor=terms[0] if terms else next((z for z in re.findall(r'[a-z]{3,}',query.lower()) if z not in ('egyptian','egypt')), 'food')
+    variants=[query, 'intitle:'+anchor, anchor]
+    pages=[]; seen=set(); errors=[]
+    for variant in variants:
+        try:
+            params=dict(action='query',generator='search',gsrsearch=variant,gsrnamespace=6,gsrlimit=12,prop='imageinfo',iiprop='url|size|extmetadata',iiurlwidth=640,format='json',formatversion=2)
+            resp=ses.get(api,params=params,timeout=timeout)
+            if resp.status_code in (429,502,503,504): time.sleep(.8); continue
+            resp.raise_for_status()
+            for page in resp.json().get('query',{}).get('pages',[]):
+                if page.get('title') not in seen:
+                    pages.append(page);seen.add(page.get('title'))
+            if len(pages)>=8:break
+        except Exception as e:
+            errors.append(str(e))
+    if not pages and errors:return dict(id=rid,query=query,error=' | '.join(errors)[:250],candidates=[])
+    results=[]
     for p in pages:
         title=p.get('title','').removeprefix('File:'); info=(p.get('imageinfo') or [{}])[0]
+        if not title.lower().endswith(('.jpg','.jpeg','.png','.webp')):continue
+        if any(junk in title.lower() for junk in ('catalog','archive','weekly','journal','book','magazine','food chart','encyclop','map of')):continue
         meta=info.get('extmetadata',{})
         lic=clean(meta.get('LicenseShortName',{}).get('value',''))
         usage=clean(meta.get('UsageTerms',{}).get('value',''))
@@ -148,7 +156,7 @@ def retrieve(rid, query, timeout=20):
         name=re.sub(r'\.[^.]+$','',title).lower()
         title_terms=set(re.findall(r'[a-z]{3,}',name))
         matched=[t for t in terms if t in name]
-        score = len(matched)*3 + (4 if len(terms)>0 and len(matched)==len(terms) else 0)
+        score = len(matched)*4 + (4 if len(terms)>0 and len(matched)==len(terms) else 0) + (2 if anchor in name else 0)
         # accept filenames containing distinctive words, not generic 'Egyptian', 'food' etc
         results.append({
             'title':title,'file_page':'https://commons.wikimedia.org/wiki/File:'+quote(title.replace(' ','_')),
@@ -172,6 +180,25 @@ def main():
     failures=[x for x in results if x.get('error')]
     stats={'queried':len(results),'high_scored':confirmed,'zero_candidates':sum(not x['candidates'] for x in results),'failed':len(failures)}
     (out/'summary.json').write_text(json.dumps(stats,ensure_ascii=False,indent=2),encoding='utf-8')
+    chosen=[x for x in results if x['candidates'] and x['candidates'][0]['score']>=6]
+    cards=[]
+    ses=requests.Session(); ses.headers['User-Agent']='ABKitchenRecipes/0.7 (photo-license-research; https://github.com/aboshra67-debug/ab-kitchen)'
+    for item in chosen:
+        try:
+            r=ses.get(item['candidates'][0]['thumbnail'],timeout=15)
+            r.raise_for_status()
+            im=Image.open(io.BytesIO(r.content));im.thumbnail((300,200))
+            card=Image.new('RGB',(320,255),'#f7f3ec');card.paste(im,((320-im.width)//2,0))
+            pen=ImageDraw.Draw(card)
+            pen.text((10,205),item['id'][:38],fill='#1a1919')
+            pen.text((10,224),item['candidates'][0]['title'][:39],fill='#454545')
+            cards.append(card)
+        except Exception as e:print('thumbnail-failure',item['id'],str(e)[:100])
+    if cards:
+        cols=3;rows=(len(cards)+cols-1)//cols
+        sheet=Image.new('RGB',(cols*320,rows*255),'#fff')
+        for i,card in enumerate(cards):sheet.paste(card,((i%cols)*320,(i//cols)*255))
+        sheet.save(out/'review_contact_sheet.jpg',quality=85)
     print(json.dumps(stats))
     for r in results:
         print(r['id'],':',r['candidates'][0]['title'] if r['candidates'] else 'NONE',r['candidates'][0]['score'] if r['candidates'] else '',r.get('error',''))
