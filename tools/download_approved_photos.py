@@ -39,7 +39,7 @@ for item in json.loads(MANIFEST.read_text()):
             okay=normalized(expected) in normalized(published) or (expected == 'CC0 1.0' and normalized(published) == 'CC0')
         if not okay:raise ValueError(f'license mismatch {published!r} vs {expected!r}')
         url=image.get('thumburl') or image['url']
-        if not url.startswith('https://upload.wikimedia.org/'):
+        if not (url.startswith('https://upload.wikimedia.org/') or url.startswith('https://thumb.wikimedia.org/')):
             raise ValueError(f'thumbnail is not Wikimedia upload host: {url!r}')
         r=S.get(url,timeout=35)
         r.raise_for_status()
