@@ -24,19 +24,23 @@ void main() {
     await tester.pumpWidget(ABKitchenApp(controller: controller));
     expect(find.text('رز بسيط'), findsOneWidget);
 
-    await tester.tap(find.byIcon(Icons.kitchen_outlined));
+    await tester.tap(find.descendant(
+      of: find.byType(NavigationBar), matching: find.byIcon(Icons.kitchen_outlined)));
     await tester.pumpAndSettle();
     expect(find.text('إيه الموجود عندك؟ 🧺'), findsOneWidget);
 
-    await tester.tap(find.byIcon(Icons.calendar_month_outlined));
+    await tester.tap(find.descendant(
+      of: find.byType(NavigationBar), matching: find.byIcon(Icons.calendar_month_outlined)));
     await tester.pumpAndSettle();
     expect(find.text('خطة الأكل الأسبوعية 📅'), findsOneWidget);
 
-    await tester.tap(find.byIcon(Icons.shopping_basket_outlined));
+    await tester.tap(find.descendant(
+      of: find.byType(NavigationBar), matching: find.byIcon(Icons.shopping_basket_outlined)));
     await tester.pumpAndSettle();
     expect(find.text('قائمة المشتريات 🛒'), findsOneWidget);
 
-    await tester.tap(find.byIcon(Icons.auto_awesome_outlined));
+    await tester.tap(find.descendant(
+      of: find.byType(NavigationBar), matching: find.byIcon(Icons.auto_awesome_outlined)));
     await tester.pumpAndSettle();
     expect(find.text('مساعد الطبخ ✨'), findsOneWidget);
   });

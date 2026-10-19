@@ -27,15 +27,20 @@ class _PantryScreenState extends State<PantryScreen> {
           decoration: InputDecoration(prefixIcon: const Icon(Icons.search), hintText: 'دور على مكوّن...',
           suffixText: '${c.pantry.length} موجود')),
         const SizedBox(height: 12),
-        Container(constraints: const BoxConstraints(maxHeight: 290),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(18), color: Theme.of(context).cardColor),
-          child: options.isEmpty
+        Material(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(18),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 290),
+            child: options.isEmpty
             ? const Center(child: Padding(padding: EdgeInsets.all(22), child: Text('المكوّن مش موجود في فهرس الوصفات الحالية.')))
             : ListView.builder(shrinkWrap: true, itemCount: options.length, itemBuilder: (_, i) {
                 final name = options[i];
                 return CheckboxListTile(dense: true, value: c.pantry.contains(name),
                   title: Text(name), onChanged: (_) => c.togglePantry(name));
-              })),
+              }),
+          ),
+        ),
         const SizedBox(height: 24),
         Text('أكلات مناسبة لمكوناتك (${suggestions.length})',
           style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w900)),
