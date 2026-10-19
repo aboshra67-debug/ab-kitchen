@@ -38,10 +38,12 @@ class RecipePhoto extends StatelessWidget {
         child: path == null
           ? ColoredBox(color: palette.primaryContainer.withValues(alpha: .45),
               child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Text(recipe.emoji, style: const TextStyle(fontSize: 48)),
-                const SizedBox(height: 2),
-                Text('صورة الوصفة قريبًا', style: TextStyle(fontSize: 11,
-                  color: palette.onSurfaceVariant)),
+                Text(recipe.emoji, style: TextStyle(fontSize: height < 135 ? 32 : 48)),
+                if (height >= 135) ...[
+                  const SizedBox(height: 2),
+                  Text('صورة الوصفة قريبًا', style: TextStyle(fontSize: 11,
+                    color: palette.onSurfaceVariant)),
+                ],
               ]))
           : Image.asset(path, fit: BoxFit.cover, filterQuality: FilterQuality.medium,
               semanticLabel: 'صورة توضيحية واقعية المظهر لطبق ${recipe.name}',
