@@ -32,7 +32,11 @@ for expected in (
 ):
     assert (root / expected).is_file(), expected
 pubspec = (root / 'pubspec.yaml').read_text(encoding='utf-8')
-assert 'version: 0.3.0+3' in pubspec
+assert 'version: 0.4.0+4' in pubspec
+assert 'assets/photos/' in pubspec
+for photo in (root/'assets/photos').glob('*.webp'):
+    assert photo.stat().st_size > 3000, str(photo)
+assert len(list((root/'assets/photos').glob('*.webp'))) == 17
 assert 'assets/data/recipes_ar.json' in pubspec and 'assets/branding/ab_kitchen_logo.jpg' in pubspec
 assert 'shared_preferences:' in pubspec and 'flutter_tts:' in pubspec
 logo = root / 'assets/branding/ab_kitchen_logo.jpg'

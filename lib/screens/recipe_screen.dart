@@ -4,6 +4,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import '../core/models.dart';
 import '../core/kitchen_controller.dart';
 import '../branding/brand_widgets.dart';
+import '../widgets/recipe_photo.dart';
 
 class RecipeScreen extends StatefulWidget {
   const RecipeScreen({super.key, required this.recipe, required this.controller});
@@ -31,14 +32,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
           onPressed: () => c.toggleFavorite(r.id))),
       ]),
       body: ListView(padding: const EdgeInsets.fromLTRB(16, 0, 16, 110), children: [
-        Container(height: 180, alignment: Alignment.center,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [Color(0xFFFFE4C7), Color(0xFFFFF0E3)]),
-            borderRadius: BorderRadius.circular(24)),
-          child: Stack(alignment: Alignment.center, children: [
-            Text(r.emoji, style: const TextStyle(fontSize: 102)),
-            const Positioned(top: 12, right: 12, child: BrandLogo(size: 37)),
-          ])),
+        RecipePhoto(recipe: r, hero: true, height: 222, borderRadius: 24),
         const SizedBox(height: 16),
         Text(r.name, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900)),
         const SizedBox(height: 5),
@@ -50,35 +44,38 @@ class _RecipeScreenState extends State<RecipeScreen> {
           Chip(label: Text('${countries[r.country]?.$2 ?? ''} ${countries[r.country]?.$1 ?? ''}')),
         ]),
         const SizedBox(height: 18),
-        Row(children: [
-          const Expanded(child: BrandSectionTitle('المقادير')),
-          IconButton.filledTonal(onPressed: servings > 1 ? () => setState(() => servings--) : null,
-            icon: const Icon(Icons.remove)),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 10), child: Text('$servings أفراد', style: const TextStyle(fontWeight: FontWeight.w800))),
-          IconButton.filledTonal(onPressed: servings < 12 ? () => setState(() => servings++) : null,
-            icon: const Icon(Icons.add)),
-        ]),
+        const BrandSectionTitle('المقادير'),
+        Card(color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: .35),
+          child: Padding(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Row(children: [
+              const Expanded(child: Text('عدد الأفراد', style: TextStyle(fontWeight: FontWeight.w800))),
+              IconButton.filledTonal(tooltip: 'تقليل الأفراد',
+                onPressed: servings > 1 ? () => setState(() => servings--) : null,
+                icon: const Icon(Icons.remove)),
+              Padding(padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Text('$servings أفراد', style: const TextStyle(fontWeight: FontWeight.w800))),
+              IconButton.filledTonal(tooltip: 'زيادة الأفراد',
+                onPressed: servings < 12 ? () => setState(() => servings++) : null,
+                icon: const Icon(Icons.add)),
+            ]))),
         const SizedBox(height: 7),
         ...r.ingredients.asMap().entries.map((entry) {
           final i = entry.value;
-          return CheckboxListTile(
-            contentPadding: EdgeInsets.zero, dense: true,
+          return Card(margin: const EdgeInsets.only(bottom: 6), child: CheckboxListTile(
+            contentPadding: const EdgeInsetsDirectional.only(start: 9, end: 13),
+            dense: true,
             value: ready.contains(entry.key),
-            title: Text(i.name, style: TextStyle(decoration: ready.contains(entry.key) ? TextDecoration.lineThrough : null)),
-            secondary: Text('${Ingredient.amount(i.forServings(servings, r.servings))} ${i.unit}',
-              style: const TextStyle(fontWeight: FontWeight.w800)),
+            title: Text(i.name, style: TextStyle(fontWeight: FontWeight.w600,
+              decoration: ready.contains(entry.key) ? TextDecoration.lineThrough : null)),
+            secondary: Container(padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+              decoration: BoxDecoration(color: color.primaryContainer.withValues(alpha: .55),
+                borderRadius: BorderRadius.circular(15)),
+              child: Text('${Ingredient.amount(i.forServings(servings, r.servings))} ${i.unit}',
+                style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12))),
             onChanged: (v) => setState(() { v == true ? ready.add(entry.key) : ready.remove(entry.key); }),
-          );
+          ));
         }),
-        const SizedBox(height: 12),
-        OutlinedButton.icon(
-          icon: const Icon(Icons.add_shopping_cart),
-          label: const Text('أضف المكونات غير الموجودة لقائمة المشتريات'),
-          onPressed: () {
-            c.addMissingRecipeToShopping(r, servings, ready);
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم تحديث قائمة المشتريات')));
-          }),
-        const SizedBox(height: 22),
+        const SizedBox(height: 16),
         const BrandSectionTitle('خطوات التحضير'),
         const SizedBox(height: 12),
         ...r.steps.asMap().entries.map((e) => Card(child: Padding(
@@ -93,17 +90,36 @@ class _RecipeScreenState extends State<RecipeScreen> {
           ]))),
         ),
       ]),
-      bottomNavigationBar: SafeArea(minimum: const EdgeInsets.all(15), child: FilledButton.icon(
-        icon: const Icon(Icons.play_arrow), label: const Text('ابدأ الطبخ خطوة بخطوة'),
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => CookingScreen(recipe: r))),
-      )),
+      bottomNavigationBar: SafeArea(minimum: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+        child: Row(children: [
+          Expanded(flex: 3, child: FilledButton.icon(
+            icon: const Icon(Icons.play_arrow_rounded),
+            label: Text(c.cookingProgress.containsKey(r.id) ? 'كمّل الطبخ' : 'ابدأ الطبخ'),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(
+              builder: (_) => CookingScreen(recipe: r, controller: c))).then((_) {
+                if (mounted) setState(() {});
+              }),
+          )),
+          const SizedBox(width: 8),
+          Expanded(flex: 2, child: OutlinedButton.icon(
+            icon: const Icon(Icons.shopping_basket_outlined, size: 19),
+            label: const Text('المشتريات', style: TextStyle(fontSize: 13)),
+            onPressed: () {
+              c.addMissingRecipeToShopping(r, servings, ready);
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('أُضيفت المكونات الناقصة للمشتريات')));
+            },
+          )),
+        ]),
+      ),
     );
   }
 }
 
 class CookingScreen extends StatefulWidget {
-  const CookingScreen({super.key, required this.recipe});
+  const CookingScreen({super.key, required this.recipe, required this.controller});
   final Recipe recipe;
+  final KitchenController controller;
   @override
   State<CookingScreen> createState() => _CookingScreenState();
 }
@@ -118,6 +134,7 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
   @override
   void initState() {
     super.initState();
+    index = widget.controller.getCookingStep(widget.recipe);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -182,83 +199,111 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
       secondsLeft = 0;
       deadline = null;
     });
+    widget.controller.setCookingStep(widget.recipe, index);
   }
 
   @override
   Widget build(BuildContext context) {
     final recipe = widget.recipe;
     final current = recipe.steps[index];
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(title: Text('نطبخ ${recipe.name}')),
+      appBar: AppBar(title: const Text('ابدأ الطبخ'), actions: [
+        IconButton(tooltip: 'حفظ والعودة', icon: const Icon(Icons.bookmark_border),
+          onPressed: () => Navigator.pop(context)),
+      ]),
       body: SafeArea(child: ListView(
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+        padding: const EdgeInsets.fromLTRB(16, 2, 16, 24),
         children: [
-          LinearProgressIndicator(
-            value: (index + 1) / recipe.steps.length,
-            minHeight: 9,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          const SizedBox(height: 14),
-          Text('الخطوة ${index + 1} من ${recipe.steps.length}',
-            style: const TextStyle(fontWeight: FontWeight.w600)),
-          const SizedBox(height: 24),
-          Center(child: Container(
-            padding: const EdgeInsets.all(19),
-            decoration: BoxDecoration(gradient: const LinearGradient(
-              colors: [Color(0xFFFFE4C7), Color(0xFFFFF8F1)]),
-              borderRadius: BorderRadius.circular(30)),
-            child: Text(recipe.emoji, style: const TextStyle(fontSize: 78)))),
-          const SizedBox(height: 22),
-          Text(current.title, textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900)),
+          Card(child: Padding(padding: const EdgeInsets.all(9), child: Row(children: [
+            Expanded(flex: 2, child: RecipePhoto(recipe: recipe, height: 116, borderRadius: 16)),
+            const SizedBox(width: 12),
+            Expanded(flex: 3, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(recipe.name, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 17)),
+              const SizedBox(height: 8),
+              Text('${recipe.minutes} دقيقة • ${recipe.difficulty}',
+                style: TextStyle(color: colors.onSurfaceVariant, fontSize: 13)),
+            ])),
+          ]))),
           const SizedBox(height: 12),
-          Text(current.body, textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 17, height: 1.7)),
-          const SizedBox(height: 20),
-          Center(child: OutlinedButton.icon(
-            onPressed: speakStep,
-            icon: const Icon(Icons.volume_up_outlined),
-            label: const Text('اسمع شرح الخطوة 🔊'),
-          )),
-          if (current.minutes > 0) ...[
-            const SizedBox(height: 20),
-            Text(secondsLeft > 0
-              ? '${(secondsLeft ~/ 60).toString().padLeft(2, '0')}:${(secondsLeft % 60).toString().padLeft(2, '0')}'
-              : 'الوقت المقترح: ${current.minutes} دقيقة',
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            OutlinedButton.icon(onPressed: startTimer,
-              icon: const Icon(Icons.timer_outlined),
-              label: const Text('تشغيل / إعادة المؤقت')),
-          ],
+          Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Text('الخطوة ${index+1} من ${recipe.steps.length}',
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+              const SizedBox(height: 12),
+              LinearProgressIndicator(value: (index+1)/recipe.steps.length, minHeight: 8,
+                borderRadius: BorderRadius.circular(8)),
+              const SizedBox(height: 12),
+              SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [
+                for (var i=0;i<recipe.steps.length;i++) Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3), child: CircleAvatar(
+                    radius: 15,
+                    backgroundColor: i==index ? colors.primary : colors.primaryContainer,
+                    child: Text('${i+1}', style: TextStyle(fontSize: 12,
+                      color: i==index ? colors.onPrimary : colors.onPrimaryContainer)),
+                  ),
+                ),
+              ])),
+            ]))),
+          const SizedBox(height: 12),
+          Card(child: Padding(padding: const EdgeInsets.all(17), child: Column(children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              OutlinedButton.icon(onPressed: speakStep,
+                icon: const Icon(Icons.volume_up_outlined, size: 19),
+                label: const Text('اسمع الخطوة')),
+              if (current.minutes > 0) Text(secondsLeft > 0
+                ? '${(secondsLeft ~/ 60).toString().padLeft(2,'0')}:${(secondsLeft%60).toString().padLeft(2,'0')}'
+                : '${current.minutes} دقيقة',
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 19, color: colors.primary)),
+            ]),
+            const SizedBox(height: 14),
+            Text(current.title, textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 21)),
+            const SizedBox(height: 10),
+            Text(current.body, textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16, height: 1.75)),
+            if (current.minutes > 0) ...[
+              const SizedBox(height: 15),
+              OutlinedButton.icon(onPressed: startTimer,
+                icon: const Icon(Icons.timer_outlined),
+                label: Text(secondsLeft > 0 ? 'إعادة المؤقت' : 'تشغيل مؤقت الخطوة')),
+            ],
+          ]))),
+          const SizedBox(height: 12),
+          Text('التقدّم محفوظ تلقائيًا على الجهاز ويمكنك إكمال الوصفة لاحقًا.',
+            textAlign: TextAlign.center, style: TextStyle(
+              color: colors.onSurfaceVariant, fontSize: 12)),
         ],
       )),
       bottomNavigationBar: SafeArea(
-        minimum: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-        child: Row(children: [
-          Expanded(child: OutlinedButton(
-            onPressed: index > 0 ? () => move(index - 1) : null,
-            child: const Text('السابق'))),
-          const SizedBox(width: 12),
-          Expanded(child: FilledButton(
-            onPressed: () {
-              if (index != recipe.steps.length - 1) {
-                move(index + 1);
-                return;
-              }
-              countdown?.cancel();
-              deadline = null;
-              unawaited(tts.stop());
-              showDialog<void>(context: context, builder: (ctx) => AlertDialog(
-                title: const Text('بالهنا والشفا! 🎉'),
-                content: const Text('خلصت خطوات الوصفة. تقدر تعيدها أو ترجع للوصفة.'),
-                actions: [TextButton(
-                  onPressed: () { Navigator.pop(ctx); Navigator.pop(context); },
-                  child: const Text('إنهاء'))],
-              ));
-            },
-            child: Text(index == recipe.steps.length - 1 ? 'خلصت ✅' : 'التالي'))),
+        minimum: const EdgeInsets.fromLTRB(14, 7, 14, 14),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Row(children: [
+            Expanded(child: OutlinedButton.icon(
+              onPressed: index > 0 ? () => move(index-1) : null,
+              icon: const Icon(Icons.arrow_forward_ios, size: 15),
+              label: const Text('السابق'))),
+            const SizedBox(width: 10),
+            Expanded(child: FilledButton.icon(
+              icon: const Icon(Icons.arrow_back_ios, size: 15),
+              onPressed: () {
+                if (index < recipe.steps.length-1) { move(index+1); return; }
+                countdown?.cancel(); deadline=null; unawaited(tts.stop());
+                widget.controller.finishCooking(recipe.id);
+                showDialog<void>(context: context, builder: (ctx) => AlertDialog(
+                  title: const Text('بالهنا والشفا! 🎉'),
+                  content: const Text('اكتملت خطوات الوصفة بنجاح.'),
+                  actions: [TextButton(onPressed: () {
+                    Navigator.pop(ctx); Navigator.pop(context);
+                  }, child: const Text('إنهاء'))],
+                ));
+              },
+              label: Text(index == recipe.steps.length-1 ? 'خلصت' : 'التالي'))),
+          ]),
+          const SizedBox(height: 6),
+          TextButton.icon(onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.bookmark_outline),
+            label: const Text('حفظ ومتابعة لاحقًا')),
         ]),
       ),
     );

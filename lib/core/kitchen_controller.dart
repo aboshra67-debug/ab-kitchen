@@ -12,6 +12,7 @@ class KitchenController extends ChangeNotifier {
   final Set<String> pantry = {};
   final List<ShopItem> shopping = [];
   final Map<String, String> plannedMeals = {};
+  final Map<String, int> cookingProgress = {};
   bool darkMode = false;
   int defaultServings = 4;
 
@@ -27,6 +28,8 @@ class KitchenController extends ChangeNotifier {
             .map((e) => ShopItem.fromJson(e as Map<String, dynamic>)));
         c.plannedMeals.addAll((state['plannedMeals'] as Map<String, dynamic>? ?? {})
             .map((key, value) => MapEntry(key, value as String)));
+        c.cookingProgress.addAll((state['cookingProgress'] as Map<String, dynamic>? ?? {})
+            .map((key, value) => MapEntry(key, (value as num).toInt())));
         c.darkMode = state['darkMode'] as bool? ?? false;
         c.defaultServings = ((state['defaultServings'] as num?)?.toInt() ?? 4).clamp(1, 12).toInt();
       } catch (_) {
@@ -52,11 +55,21 @@ class KitchenController extends ChangeNotifier {
       'pantry': pantry.toList(),
       'shopping': shopping.map((e) => e.toJson()).toList(),
       'plannedMeals': plannedMeals,
+      'cookingProgress': cookingProgress,
       'darkMode': darkMode,
       'defaultServings': defaultServings,
     };
     _prefs.setString(_stateKey, jsonEncode(state));
   }
+
+  int getCookingStep(Recipe recipe) =>
+      (cookingProgress[recipe.id] ?? 0).clamp(0, recipe.steps.length - 1).toInt();
+  void setCookingStep(Recipe recipe, int index) {
+    if (recipe.steps.isEmpty) return;
+    cookingProgress[recipe.id] = index.clamp(0, recipe.steps.length - 1).toInt();
+    _save();
+  }
+  void finishCooking(String recipeId) { cookingProgress.remove(recipeId); _save(); }
 
   void toggleFavorite(String id) { favorites.contains(id) ? favorites.remove(id) : favorites.add(id); _save(); }
   void togglePantry(String name) { pantry.contains(name) ? pantry.remove(name) : pantry.add(name); _save(); }
@@ -143,7 +156,7 @@ class KitchenController extends ChangeNotifier {
     return all;
   }
   void clearUserData() {
-    favorites.clear(); pantry.clear(); shopping.clear(); plannedMeals.clear();
+    favorites.clear(); pantry.clear(); shopping.clear(); plannedMeals.clear(); cookingProgress.clear();
     darkMode = false; defaultServings = 4;
     _canSave = true; _save();
   }

@@ -3,6 +3,7 @@ import '../core/kitchen_controller.dart';
 import '../core/models.dart';
 import '../widgets/recipe_card.dart';
 import '../branding/brand_widgets.dart';
+import '../widgets/recipe_photo.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.controller});
@@ -35,16 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(colors: [Color(0xFF7B2C20), KitchenBrand.tomato, KitchenBrand.amber], begin: Alignment.topRight, end: Alignment.bottomLeft),
                 borderRadius: BorderRadius.circular(24)),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Row(children: [BrandLogo(size: 52), SizedBox(width: 10),
-                  Expanded(child: Text('وصفات من العالم • على ذوقك', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800))) ]),
-                const SizedBox(height: 12),
+                const Text('وصفات من العالم • على ذوقك', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 12)),
+                const SizedBox(height: 5),
                 const Text('كل مطابخ العالم في مطبخك ✨',
-                  style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 23)),
+                  style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 21)),
                 const SizedBox(height: 8),
                 Text('اكتشف ${control.recipes.length} وصفة من ${countries.length} مطابخ، واطبخ خطوة بخطوة.',
                   style: const TextStyle(color: Colors.white, fontSize: 14)),

@@ -38,7 +38,7 @@ jobs:
       - name: Publish debug APK after ALL checks pass
         uses: actions/upload-artifact@v4
         with:
-          name: AB-Kitchen-V0.3-WARM-Android-DEBUG
+          name: AB-Kitchen-V0.4-PHOTOS-Android-DEBUG
           path: build/app/outputs/flutter-apk/app-debug.apk
           if-no-files-found: error
           retention-days: 14

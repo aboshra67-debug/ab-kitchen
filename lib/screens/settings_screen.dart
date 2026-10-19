@@ -12,7 +12,7 @@ class SettingsScreen extends StatelessWidget {
     body: AnimatedBuilder(animation: controller, builder: (context, _) => ListView(
       padding: const EdgeInsets.all(16), children: [
         const BrandIntro(title: 'إعدادات AB Kitchen', icon: Icons.tune_outlined,
-          subtitle: 'مطبخ العالم • المظهر الموحّد الدافئ • إصدار تجريبي 0.3.0'),
+          subtitle: 'مطبخ العالم • المظهر الموحّد الدافئ • إصدار تجريبي 0.4.0'),
         const SizedBox(height: 12),
         const Card(child: ListTile(leading: BrandLogo(size: 48),
           title: Text('هوية AB Kitchen الدافئة'),
@@ -53,7 +53,7 @@ class SettingsScreen extends StatelessWidget {
             if (confirmed == true) controller.clearUserData();
           }),
         const SizedBox(height: 12),
-        Text('نسخة تطوير أولية • الصور الفوتوغرافية والوصفات الموسّعة والمساعد السحابي والنسخ الاحتياطي والمزامنة ليست ضمن هذه النسخة.',
+        Text('نسخة تطوير أولية • يوجد الآن صور طعام واقعية المظهر ضمن ملفات التطبيق لعدد من الوصفات؛ باقي الوصفات ومساعد الذكاء الاصطناعي السحابي والتنبيهات الذكية قيد التطوير.',
           style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12)),
       ])),
   );

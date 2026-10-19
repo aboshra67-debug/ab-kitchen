@@ -85,6 +85,32 @@ void main() {
     expect(controller.shopping, isEmpty);
   });
 
+  test('Cooking progress saves safely and resumes after reopening', () async {
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    final recipe = Recipe.fromJson({
+      'id':'eg_koshari','name':'الكشري المصري','country':'eg',
+      'category':'أطباق رئيسية','emoji':'🍚','description':'اختبار',
+      'minutes':40,'difficulty':'سهل','servings':4,
+      'ingredients':[{'name':'أرز','quantity':250,'unit':'جرام'}],
+      'steps':[
+        {'title':'واحد','body':'اغسل الأرز','minutes':1},
+        {'title':'اتنين','body':'اطهه','minutes':5},
+        {'title':'تلاتة','body':'قدّم','minutes':0},
+      ],'tags':[],
+    });
+    final control = KitchenController.open([recipe], prefs);
+    expect(control.getCookingStep(recipe), 0);
+    control.setCookingStep(recipe, 2);
+    await Future<void>.delayed(const Duration(milliseconds: 100));
+    final restored = KitchenController.open([recipe], prefs);
+    expect(restored.getCookingStep(recipe), 2);
+    restored.setCookingStep(recipe, 200);
+    expect(restored.getCookingStep(recipe), 2);
+    restored.finishCooking(recipe.id);
+    expect(restored.getCookingStep(recipe), 0);
+  });
+
   test('Planner only accepts known recipes and valid days', () async {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
