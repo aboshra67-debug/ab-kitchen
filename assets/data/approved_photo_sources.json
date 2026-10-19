@@ -82,5 +82,47 @@
     "filename": "EgFoodLentilSoup.jpg",
     "author": "Roland Unger",
     "license": "CC BY-SA 3.0"
+  },
+  {
+    "recipe_id": "eg_stuffed_tomatoes",
+    "filename": "EgyptianMahshyStuffedAubergineTomatoWithRice PhotoByWaelNawara.jpg",
+    "author": "Wael Nawara",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_calamari_fried",
+    "filename": "Deep-fried Calamari Rings.jpg",
+    "author": "Ceeseven",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_pickled_turnip",
+    "filename": "Pickled Turnips (6138972397).jpg",
+    "author": "Leslie Seaton",
+    "license": "CC BY 2.0"
+  },
+  {
+    "recipe_id": "eg_kahk_eid",
+    "filename": "Eid kahk in Egypt.jpg",
+    "author": "Hbegzee",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_mahalabiya",
+    "filename": "Mahalabia.JPG",
+    "author": "Miansari66",
+    "license": "CC0"
+  },
+  {
+    "recipe_id": "eg_chicken_cream_mushroom",
+    "filename": "Creamy mushroom chicken served with herb rice.jpg",
+    "author": "Arkapriya Das",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "recipe_id": "eg_atayef_nuts",
+    "filename": "Qatayef.jpg",
+    "author": "Mervat Salman",
+    "license": "CC BY-SA 4.0"
   }
 ]
