@@ -23,7 +23,7 @@ void main() {
       }),
     ], prefs);
     await tester.pumpWidget(ABKitchenApp(controller: controller));
-    expect(find.text('رز بسيط'), findsOneWidget);
+    expect(find.text('كل مطابخ العالم في مطبخك ✨'), findsOneWidget);
     expect(find.byType(BrandLogo), findsWidgets); // Actual approved logo is bundled.
 
     await tester.tap(find.descendant(
