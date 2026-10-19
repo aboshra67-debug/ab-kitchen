@@ -22,7 +22,11 @@ jobs:
           import zipfile
           source = Path('source_import/AB_Kitchen_Flutter_V0_2_SAFE_SOURCE.zip')
           assert source.is_file(), 'Upload source ZIP to source_import/ first'
+          import hashlib
+          expected_sha = '3cc7359b2d3ff0931cb3cb5dc783e39a092584892b350e5a7268271a99c84e8c'
+          assert hashlib.sha256(source.read_bytes()).hexdigest() == expected_sha, 'Wrong ZIP / unsafe source hash'
           allowed = ('.dart', '.yaml', '.yml', '.json', '.md', '.py', '.sh', '.html', '.png')
+          protected = {'README.md', '.github/workflows/flutter_ci.yml'}
           with zipfile.ZipFile(source) as z:
               names = z.namelist()
               assert z.testzip() is None, 'Source ZIP is corrupt'
@@ -37,6 +41,8 @@ jobs:
                   assert member.file_size < 2_000_000
                   dest = Path('.') / relative
                   if dest.exists():
+                      if str(relative) in protected:
+                          continue
                       if dest.read_bytes() != z.read(member):
                           existing.append(str(relative))
                       continue
