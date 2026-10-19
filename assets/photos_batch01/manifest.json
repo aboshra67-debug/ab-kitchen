@@ -1,0 +1,31 @@
+{
+  "project": "AB Kitchen",
+  "base_version": "V0.7",
+  "batch": "01",
+  "source": "Adobe Firefly generative images - photorealistic, not camera photographs",
+  "recipe_ids": [
+    "tr_lentil",
+    "tr_kofte",
+    "it_pasta",
+    "it_pizza",
+    "it_risotto",
+    "in_biryani",
+    "in_dal",
+    "in_chana",
+    "ma_tajine",
+    "ma_harira",
+    "ma_couscous",
+    "lb_tabbouleh",
+    "lb_hummus",
+    "lb_fattoush",
+    "eg_fatta_meat",
+    "eg_moussaka",
+    "eg_kebab_halla",
+    "eg_kofta_oven",
+    "eg_dawood_basha",
+    "eg_molokhia_rabbit"
+  ],
+  "location": "assets/photos_batch01/",
+  "format": "JPEG",
+  "note": "Independent images, matched by exact recipe id, no app files modified."
+}
