@@ -77,3 +77,12 @@ flutter build ios --simulator --debug
 ## V0.3 warm identity
 
 The approved red/orange AB Kitchen logo is bundled in `assets/branding/ab_kitchen_logo.jpg`. Screens share a reusable warm brand system; no recipe or storage changes. Remote-media permanent offline downloads and selectable color themes are planned later.
+
+
+## V0.5 Egyptian-inspired dessert catalogue (safe add-on)
+- 14 **base dessert families** in `assets/data/recipes_ar.json`; existing 30 recipes untouched.
+- 9 shared optional toppings in `lib/core/dessert_toppings.dart`; variants are **not** separate recipes.
+- Selected toppings persist alongside pre-existing preferences (same v1 key). The shopping list and cooking instructions include selected additions and scale with serving count.
+- The app offers original, AI-generated, realistic-looking **illustrative photos** for each base dessert and works offline; no restaurant photography or trademark is used inside the assets.
+- Dessert names are domestic interpretations *inspired by publicly described menu concepts*, not an affiliated product or a claimed confidential recipe. Some experimental menu names have speculative home reconstructions clearly labeled as such.
+- Tests: `flutter analyze`, `flutter test`, Android debug build, unsigned iOS simulator build in GitHub Actions. This repository does not contain an iOS-signing certificate.

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import '../core/models.dart';
 import '../core/kitchen_controller.dart';
+import '../core/dessert_toppings.dart';
 import '../branding/brand_widgets.dart';
 import '../widgets/recipe_photo.dart';
 
@@ -17,13 +18,19 @@ class RecipeScreen extends StatefulWidget {
 class _RecipeScreenState extends State<RecipeScreen> {
   late int servings;
   final Set<int> ready = {};
+  final Set<String> selectedToppings = {};
   @override
-  void initState() { super.initState(); servings = widget.controller.defaultServings; }
+  void initState() {
+    super.initState();
+    servings = widget.controller.defaultServings;
+    selectedToppings.addAll(widget.controller.toppingsFor(widget.recipe));
+  }
   @override
   Widget build(BuildContext context) {
     final r = widget.recipe;
     final c = widget.controller;
     final color = Theme.of(context).colorScheme;
+    final ingredients = DessertToppings.ingredientsFor(r, selectedToppings);
     return Scaffold(
       appBar: AppBar(title: Text(r.name), actions: [
         AnimatedBuilder(animation: c, builder: (_, __) => IconButton(
@@ -43,6 +50,35 @@ class _RecipeScreenState extends State<RecipeScreen> {
           Chip(avatar: const Icon(Icons.equalizer, size: 18), label: Text(r.difficulty)),
           Chip(label: Text('${countries[r.country]?.$2 ?? ''} ${countries[r.country]?.$1 ?? ''}')),
         ]),
+        if (r.isDessertCatalogue) ...[
+          const SizedBox(height: 12),
+          Card(color: color.secondaryContainer.withValues(alpha: .4), child: const Padding(
+            padding: EdgeInsets.all(13), child: Text(
+              'وصفة منزلية مستوحاة من نوع الحلوى، وليست وصفة أصلية أو كتالوجًا رسميًا للمحل.',
+              style: TextStyle(fontSize: 12)))),
+          const SizedBox(height: 12),
+          const BrandSectionTitle('اختار النكهة والإضافات'),
+          const SizedBox(height: 6),
+          Text('الوصفة الأساسية واحدة. اختر أكثر من إضافة، والمقادير والخطوات تتغيّر تلقائيًا.',
+            style: TextStyle(fontSize: 12, color: color.onSurfaceVariant)),
+          const SizedBox(height: 9),
+          Wrap(spacing: 7, runSpacing: 4, children: [
+            for (final id in r.toppingIds)
+              if (DessertToppings.byId.containsKey(id))
+                FilterChip(
+                  key: ValueKey('extra_$id'),
+                  label: Text(DessertToppings.byId[id]!.name),
+                  selected: selectedToppings.contains(id),
+                  onSelected: (selected) {
+                    setState(() {
+                      if (selected) { selectedToppings.add(id); }
+                      else { selectedToppings.remove(id); }
+                      ready.clear();
+                    });
+                    c.setDessertToppings(r, selectedToppings);
+                  }),
+          ]),
+        ],
         const SizedBox(height: 18),
         const BrandSectionTitle('المقادير'),
         Card(color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: .35),
@@ -59,7 +95,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 icon: const Icon(Icons.add)),
             ]))),
         const SizedBox(height: 7),
-        ...r.ingredients.asMap().entries.map((entry) {
+        ...ingredients.asMap().entries.map((entry) {
           final i = entry.value;
           return Card(margin: const EdgeInsets.only(bottom: 6), child: CheckboxListTile(
             contentPadding: const EdgeInsetsDirectional.only(start: 9, end: 13),
@@ -78,7 +114,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
         const SizedBox(height: 16),
         const BrandSectionTitle('خطوات التحضير'),
         const SizedBox(height: 12),
-        ...r.steps.asMap().entries.map((e) => Card(child: Padding(
+        ...DessertToppings.stepsFor(r, selectedToppings).asMap().entries.map((e) => Card(child: Padding(
           padding: const EdgeInsets.all(14), child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             CircleAvatar(radius: 17, child: Text('${e.key+1}')),
             const SizedBox(width: 12), Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -96,7 +132,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             icon: const Icon(Icons.play_arrow_rounded),
             label: Text(c.cookingProgress.containsKey(r.id) ? 'كمّل الطبخ' : 'ابدأ الطبخ'),
             onPressed: () => Navigator.push(context, MaterialPageRoute(
-              builder: (_) => CookingScreen(recipe: r, controller: c))).then((_) {
+              builder: (_) => CookingScreen(recipe: r, controller: c, steps: DessertToppings.stepsFor(r, selectedToppings)))).then((_) {
                 if (mounted) setState(() {});
               }),
           )),
@@ -105,7 +141,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             icon: const Icon(Icons.shopping_basket_outlined, size: 19),
             label: const Text('المشتريات', style: TextStyle(fontSize: 13)),
             onPressed: () {
-              c.addMissingRecipeToShopping(r, servings, ready);
+              c.addMissingRecipeToShopping(r, servings, ready, ingredients: ingredients);
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('أُضيفت المكونات الناقصة للمشتريات')));
             },
@@ -117,9 +153,10 @@ class _RecipeScreenState extends State<RecipeScreen> {
 }
 
 class CookingScreen extends StatefulWidget {
-  const CookingScreen({super.key, required this.recipe, required this.controller});
+  const CookingScreen({super.key, required this.recipe, required this.controller, this.steps});
   final Recipe recipe;
   final KitchenController controller;
+  final List<CookingStep>? steps;
   @override
   State<CookingScreen> createState() => _CookingScreenState();
 }
@@ -130,11 +167,12 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
   DateTime? deadline;
   Timer? countdown;
   final FlutterTts tts = FlutterTts();
+  List<CookingStep> get activeSteps => widget.steps ?? widget.recipe.steps;
 
   @override
   void initState() {
     super.initState();
-    index = widget.controller.getCookingStep(widget.recipe);
+    index = widget.controller.getCookingStep(widget.recipe, totalSteps: activeSteps.length);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -144,7 +182,7 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
   }
 
   Future<void> speakStep() async {
-    final current = widget.recipe.steps[index];
+    final current = activeSteps[index];
     try {
       await tts.stop();
       if (!mounted) return;
@@ -181,7 +219,7 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
 
   void startTimer() {
     countdown?.cancel();
-    final seconds = widget.recipe.steps[index].minutes * 60;
+    final seconds = activeSteps[index].minutes * 60;
     setState(() {
       secondsLeft = seconds;
       deadline = seconds > 0 ? DateTime.now().add(Duration(seconds: seconds)) : null;
@@ -195,17 +233,17 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
     countdown?.cancel();
     unawaited(tts.stop());
     setState(() {
-      index = next.clamp(0, widget.recipe.steps.length - 1).toInt();
+      index = next.clamp(0, activeSteps.length - 1).toInt();
       secondsLeft = 0;
       deadline = null;
     });
-    widget.controller.setCookingStep(widget.recipe, index);
+    widget.controller.setCookingStep(widget.recipe, index, totalSteps: activeSteps.length);
   }
 
   @override
   Widget build(BuildContext context) {
     final recipe = widget.recipe;
-    final current = recipe.steps[index];
+    final current = activeSteps[index];
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(title: const Text('ابدأ الطبخ'), actions: [
@@ -228,14 +266,14 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
           const SizedBox(height: 12),
           Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              Text('الخطوة ${index+1} من ${recipe.steps.length}',
+              Text('الخطوة ${index+1} من ${activeSteps.length}',
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
               const SizedBox(height: 12),
-              LinearProgressIndicator(value: (index+1)/recipe.steps.length, minHeight: 8,
+              LinearProgressIndicator(value: (index+1)/activeSteps.length, minHeight: 8,
                 borderRadius: BorderRadius.circular(8)),
               const SizedBox(height: 12),
               SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [
-                for (var i=0;i<recipe.steps.length;i++) Padding(
+                for (var i=0;i<activeSteps.length;i++) Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 3), child: CircleAvatar(
                     radius: 15,
                     backgroundColor: i==index ? colors.primary : colors.primaryContainer,
@@ -287,7 +325,7 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
             Expanded(child: FilledButton.icon(
               icon: const Icon(Icons.arrow_back_ios, size: 15),
               onPressed: () {
-                if (index < recipe.steps.length-1) { move(index+1); return; }
+                if (index < activeSteps.length-1) { move(index+1); return; }
                 countdown?.cancel(); deadline=null; unawaited(tts.stop());
                 widget.controller.finishCooking(recipe.id);
                 showDialog<void>(context: context, builder: (ctx) => AlertDialog(
@@ -298,7 +336,7 @@ class _CookingScreenState extends State<CookingScreen> with WidgetsBindingObserv
                   }, child: const Text('إنهاء'))],
                 ));
               },
-              label: Text(index == recipe.steps.length-1 ? 'خلصت' : 'التالي'))),
+              label: Text(index == activeSteps.length-1 ? 'خلصت' : 'التالي'))),
           ]),
           const SizedBox(height: 6),
           TextButton.icon(onPressed: () => Navigator.pop(context),

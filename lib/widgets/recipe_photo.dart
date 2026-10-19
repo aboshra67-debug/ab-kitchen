@@ -18,6 +18,11 @@ class RecipePhoto extends StatelessWidget {
     'sa_kabsa','sa_jareesh','sa_saleeg','sa_mutabbaq','sa_luqaimat',
     'sy_fatteh','sy_kibbeh','sy_muhammara','sy_shishbarak',
     'sy_hariseh','tr_menemen',
+    'eg_dessert_rice_pudding','eg_dessert_qashtuta','eg_dessert_sweet_koshari',
+    'eg_dessert_om_ali','eg_dessert_belila','eg_dessert_cassata',
+    'eg_dessert_salankateeh','eg_dessert_loaa','eg_dessert_bamboza',
+    'eg_dessert_cake','eg_dessert_crepe','eg_dessert_creme_brulee',
+    'eg_dessert_sah_adah_ambo','eg_dessert_motakandera',
   };
 
   static String? assetFor(String id, {bool hero = false}) {

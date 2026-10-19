@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models.dart';
+import 'dessert_toppings.dart';
 
 class KitchenController extends ChangeNotifier {
   KitchenController(this.recipes, this._prefs);
@@ -13,6 +14,7 @@ class KitchenController extends ChangeNotifier {
   final List<ShopItem> shopping = [];
   final Map<String, String> plannedMeals = {};
   final Map<String, int> cookingProgress = {};
+  final Map<String, List<String>> dessertSelections = {};
   bool darkMode = false;
   int defaultServings = 4;
 
@@ -30,6 +32,13 @@ class KitchenController extends ChangeNotifier {
             .map((key, value) => MapEntry(key, value as String)));
         c.cookingProgress.addAll((state['cookingProgress'] as Map<String, dynamic>? ?? {})
             .map((key, value) => MapEntry(key, (value as num).toInt())));
+        final rawSelections = state['dessertSelections'] as Map<String, dynamic>? ?? {};
+        for (final entry in rawSelections.entries) {
+          final recipe = c.find(entry.key);
+          if (recipe == null || !recipe.isDessertCatalogue || entry.value is! List) continue;
+          c.dessertSelections[recipe.id] = DessertToppings.validChoices(
+            recipe, (entry.value as List).whereType<String>());
+        }
         c.darkMode = state['darkMode'] as bool? ?? false;
         c.defaultServings = ((state['defaultServings'] as num?)?.toInt() ?? 4).clamp(1, 12).toInt();
       } catch (_) {
@@ -56,17 +65,30 @@ class KitchenController extends ChangeNotifier {
       'shopping': shopping.map((e) => e.toJson()).toList(),
       'plannedMeals': plannedMeals,
       'cookingProgress': cookingProgress,
+      'dessertSelections': dessertSelections,
       'darkMode': darkMode,
       'defaultServings': defaultServings,
     };
     _prefs.setString(_stateKey, jsonEncode(state));
   }
 
-  int getCookingStep(Recipe recipe) =>
-      (cookingProgress[recipe.id] ?? 0).clamp(0, recipe.steps.length - 1).toInt();
-  void setCookingStep(Recipe recipe, int index) {
-    if (recipe.steps.isEmpty) return;
-    cookingProgress[recipe.id] = index.clamp(0, recipe.steps.length - 1).toInt();
+  List<String> toppingsFor(Recipe recipe) => List.unmodifiable(
+    DessertToppings.validChoices(recipe, dessertSelections[recipe.id] ?? const []));
+  List<Ingredient> ingredientsFor(Recipe recipe) =>
+    DessertToppings.ingredientsFor(recipe, toppingsFor(recipe));
+  void setDessertToppings(Recipe recipe, Iterable<String> ids) {
+    if (!recipe.isDessertCatalogue) return;
+    dessertSelections[recipe.id] = DessertToppings.validChoices(recipe, ids);
+    cookingProgress.remove(recipe.id); // Finishing steps depend on current choices.
+    _save();
+  }
+
+  int getCookingStep(Recipe recipe, {int? totalSteps}) =>
+      (cookingProgress[recipe.id] ?? 0).clamp(0, (totalSteps ?? recipe.steps.length) - 1).toInt();
+  void setCookingStep(Recipe recipe, int index, {int? totalSteps}) {
+    final length = totalSteps ?? recipe.steps.length;
+    if (length <= 0) return;
+    cookingProgress[recipe.id] = index.clamp(0, length - 1).toInt();
     _save();
   }
   void finishCooking(String recipeId) { cookingProgress.remove(recipeId); _save(); }
@@ -92,10 +114,11 @@ class KitchenController extends ChangeNotifier {
   }
   /// Adds the missing recipe ingredients in a single state transition.
   /// A marked ingredient is already prepared and must not be purchased again.
-  void addMissingRecipeToShopping(Recipe recipe, int servings, Set<int> readyIndices) {
+  void addMissingRecipeToShopping(Recipe recipe, int servings, Set<int> readyIndices, {List<Ingredient>? ingredients}) {
     if (servings < 1 || servings > 12) return;
-    for (var index = 0; index < recipe.ingredients.length; index++) {
-      final ingredient = recipe.ingredients[index];
+    final list = ingredients ?? ingredientsFor(recipe);
+    for (var index = 0; index < list.length; index++) {
+      final ingredient = list[index];
       if (readyIndices.contains(index) || pantry.contains(ingredient.name)) continue;
       final quantity = ingredient.forServings(servings, recipe.servings);
       final incoming = ShopItem(name: ingredient.name, quantity: quantity, unit: ingredient.unit);
@@ -112,7 +135,7 @@ class KitchenController extends ChangeNotifier {
 
   void addRecipeToShopping(Recipe recipe, int servings, {bool onlyMissing = false}) {
     // Batch change avoids saving after every ingredient.
-    for (final i in recipe.ingredients) {
+    for (final i in ingredientsFor(recipe)) {
       if (onlyMissing && pantry.contains(i.name)) continue;
       final newItem = ShopItem(name: i.name, quantity: i.forServings(servings, recipe.servings), unit: i.unit);
       final index = shopping.indexWhere((x) => x.key == newItem.key);
@@ -125,7 +148,7 @@ class KitchenController extends ChangeNotifier {
     for (final id in plannedMeals.values) {
       final r = find(id);
       if (r == null) continue;
-      for (final i in r.ingredients) {
+      for (final i in ingredientsFor(r)) {
         final next = ShopItem(name: i.name, quantity: i.forServings(defaultServings, r.servings), unit: i.unit);
         final idx = shopping.indexWhere((x) => x.key == next.key);
         if (idx >= 0) { shopping[idx].quantity += next.quantity; shopping[idx].checked = false; }
@@ -156,7 +179,7 @@ class KitchenController extends ChangeNotifier {
     return all;
   }
   void clearUserData() {
-    favorites.clear(); pantry.clear(); shopping.clear(); plannedMeals.clear(); cookingProgress.clear();
+    favorites.clear(); pantry.clear(); shopping.clear(); plannedMeals.clear(); cookingProgress.clear(); dessertSelections.clear();
     darkMode = false; defaultServings = 4;
     _canSave = true; _save();
   }

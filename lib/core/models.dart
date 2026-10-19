@@ -50,6 +50,8 @@ class Recipe {
     required this.ingredients,
     required this.steps,
     required this.tags,
+    this.collection = '',
+    this.toppingIds = const [],
   });
   final String id;
   final String name;
@@ -63,6 +65,9 @@ class Recipe {
   final List<Ingredient> ingredients;
   final List<CookingStep> steps;
   final List<String> tags;
+  final String collection;
+  final List<String> toppingIds;
+  bool get isDessertCatalogue => collection == 'blaban_inspired';
 
   factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
         id: json['id'] as String,
@@ -81,6 +86,8 @@ class Recipe {
             .map((e) => CookingStep.fromJson(e as Map<String, dynamic>))
             .toList(growable: false),
         tags: (json['tags'] as List<dynamic>? ?? []).cast<String>(),
+        collection: json['collection'] as String? ?? '',
+        toppingIds: (json['topping_ids'] as List<dynamic>? ?? []).cast<String>(),
       );
 }
 

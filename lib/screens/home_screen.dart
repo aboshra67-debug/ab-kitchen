@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/kitchen_controller.dart';
 import '../core/models.dart';
+import '../core/dessert_toppings.dart';
 import '../widgets/recipe_card.dart';
 import '../branding/brand_widgets.dart';
 
@@ -15,7 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedCountry = 'all';
   String selectedCategory = 'الكل';
   bool onlyFavorites = false;
+  final TextEditingController searchController = TextEditingController();
   String query = '';
+  @override
+  void dispose() { searchController.dispose(); super.dispose(); }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
           (selectedCategory == 'الكل' || r.category == selectedCategory) &&
           (!onlyFavorites || control.favorites.contains(r.id)) &&
           (q.isEmpty || r.name.contains(q) || r.description.contains(q) ||
-          r.ingredients.any((i) => i.name.contains(q)) || r.tags.any((t) => t.contains(q)));
+          r.ingredients.any((i) => i.name.contains(q)) || r.tags.any((t) => t.contains(q)) ||
+          r.toppingIds.any((id) => DessertToppings.byId[id]?.name.contains(q) ?? false));
       }).toList();
       return CustomScrollView(slivers: [
         SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.fromLTRB(16, 10, 16, 8), child:
@@ -52,8 +57,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(width: 7), Text('مقادير قابلة للتعديل • وصفات بدون إنترنت', style: TextStyle(color: Colors.white, fontSize: 12))]),
               ]),
             ),
-            const SizedBox(height: 15),
-            TextField(onChanged: (v) => setState(() => query = v),
+            const SizedBox(height: 12),
+            Card(child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+              leading: const CircleAvatar(child: Icon(Icons.icecream_outlined)),
+              title: const Text('كتالوج الحلويات المصرية',
+                style: TextStyle(fontWeight: FontWeight.w900)),
+              subtitle: const Text('14 صنف أساسي وإضافات اختياريّة — وصفات منزلية مستوحاة'),
+              trailing: const Icon(Icons.arrow_back_ios_new, size: 16),
+              onTap: () => setState(() {
+                selectedCountry = 'eg';
+                selectedCategory = 'كتالوج الحلويات';
+                onlyFavorites = false;
+                query = '';
+                searchController.clear();
+              }),
+            )),
+            const SizedBox(height: 12),
+            TextField(controller: searchController, onChanged: (v) => setState(() => query = v),
               decoration: const InputDecoration(prefixIcon: Icon(Icons.search), hintText: 'ابحث عن أكلة أو مكوّن...')),
             const SizedBox(height: 19),
             const BrandSectionTitle('المطابخ'),
