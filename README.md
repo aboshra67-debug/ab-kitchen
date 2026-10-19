@@ -1,19 +1,74 @@
 # AB Kitchen — مطبخ العالم
 
-Flutter app for Android and iOS, Arabic RTL. Initial V0.2 includes 30 sample recipes across eight cuisines, serving-size adjustment, guided cooking steps with device TTS, shopping basket, pantry suggestions, weekly planner and local assistant.
+نسخة أولية **V0.2.0** حقيقية من تطبيق Flutter واحد يعمل على Android وiOS، بعرض عربي RTL.
 
-## Import current V0.2 source
-The original V0.2 project ZIP is distributed in the ChatGPT conversation. To import it without manually copying ~25 files:
-1. Open [source_import](./source_import) in GitHub.
-2. Choose **Add file > Upload files** and upload `AB_Kitchen_Flutter_V0_2_SAFE_SOURCE.zip` without renaming it.
-3. Commit directly to `main`.
-4. Visit [Actions](../../actions). The **Import AB Kitchen source ZIP and build** workflow verifies the exact package SHA-256, safely extracts Dart/data files, runs Flutter static analysis and tests and builds an Android debug APK.
-5. Download the `AB-Kitchen-V0.2-Android-DEBUG` artifact only if the workflow succeeds. iOS simulator check is in the separate Flutter CI workflow.
+## الوظائف المنفذة
 
-The importer protects existing repository files and refuses a mismatched source ZIP. A Flutter debug APK is **not a production signed release**.
+- استعراض 30 وصفة أولية أصلية الصياغة من 8 مطابخ (مصر، السعودية، سوريا، تركيا، إيطاليا، الهند، المغرب، لبنان).
+- البحث حسب اسم الأكلة أو مكوّناتها، والتصفية حسب الدولة ونوع الأكلة والمفضلة.
+- تفاصيل الوصفات، ضبط عدد الأشخاص، قائمة مقادير قابلة للتأشير، خطوات طبخ ومؤقت لكل خطوة، وقراءة عربية صوتية للخطوات عبر المحرك الصوتي الموجود على الجهاز (حسب توفره).
+- «مطبخي»: مكونات الثلاجة المتوفرة واقتراح وصفات وفق نسبة المكونات المتطابقة.
+- قائمة مشتريات بتجميع الكميات المتطابقة، وإضافة العناصر يدويًا وشطب المشتريات.
+- جدول أسبوعي للإفطار والغداء والعشاء، وإضافة مقادير خطة الأسبوع لقائمة المشتريات.
+- مساعد طبخ **محلي قائم على قواعد واضحة** لاقتراح وصفات ونصائح عامة وبدائل أولية. ليس متصلاً بخدمة ذكاء اصطناعي ولا يدعي ذلك.
+- مفضلة، وضع داكن، عدد أفراد افتراضي، حفظ محلي للبيانات مع تأكيد قبل المسح.
+- قاعدة وصفات JSON منفصلة قابلة للتوسعة، ووظائف منطق الأعمال في `KitchenController`.
 
-## Offline behavior
-V0.2 recipes and their text data are bundled locally and available without network access. It does **not** yet download/cache remote audio, photos or video. Permanent media caching requires a future dedicated module and device testing.
+## حدود الإصدار
 
-## Current status
-This repository contains import/build workflows but **the source archive has not been imported yet**. No APK build success or iOS build has been verified. No signing keys or secrets are stored in this repository.
+- 30 وصفة نموذجية؛ ليس بعد مكتبة كاملة لجميع أكلات العالم. المقادير تحتاج تحريرًا ومراجعة طهوية متخصصة قبل طرح قاعدة واسعة.
+- الوصفات تستخدم رموزًا تعبيرية بدل صور تصوير احترافية محمية الحقوق.
+- لا يوجد تسجيل حساب ولا مزامنة سحابية ولا إشعارات نظام ولا نصائح تغذية طبية ولا ملفات صوتية مسجلة أو ذكاء اصطناعي متصل. ميزة قراءة الخطوات تستخدم TTS الخاص بالجهاز.
+- لا يوجد دعم إنجليزي حتى الآن، رغم جاهزية بنية المحتوى للإضافة.
+- لا توجد مفاتيح توقيع أو أسرار داخل المشروع.
+
+## تحديث V0.2
+
+- تحديث مؤقت الطبخ ليعتمد على توقيت الانتهاء الفعلي، مع إعادة حسابه بعد الرجوع للتطبيق.
+- تسريع إضافة مكوّنات الوصفة إلى المشتريات بحفظ مجمّع مرة واحدة.
+- منع إدخال كميات لا نهائية وغير صحيحة وإضافة اختبارات وظائف وموديولات رئيسية.
+- شاشة خطوات قابلة للتمرير على الأجهزة الصغيرة.
+- يحتوي الملف `V0_2_SAFE_PATCH.md` على كشف الملفات المعدلة، و`CI_BUILD_INSTRUCTIONS.md` على خطوات البناء دون الادعاء أنه تم.
+
+## التثبيت المحلي
+
+المتطلبات: Flutter stable، Android Studio/SDK لبناء Android؛ Mac وXcode لبناء iOS.
+
+```bash
+flutter create --project-name ab_kitchen --org com.absoftware --platforms=android,ios .
+flutter pub get
+flutter analyze
+flutter test
+flutter run
+flutter build apk --debug
+# على macOS وXcode:
+flutter build ios --simulator --debug
+```
+
+> إضافة ملفات Android/iOS عبر `flutter create` أمر مقصود لإتاحة أحدث قوالب Flutter الرسمية دون نسخ قوالب قديمة أو ملفات تعريفات توقيع إلى السورس. سير عمل GitHub Actions ينفّذ هذا تلقائيًا قبل البناء.
+
+## إصدار متجر حقيقي
+
+- Android: يحتاج تثبيت package name نهائي، ملف keystore خاص بالمستخدم محفوظ خارج المستودع، AAB بتوقيع إنتاجي، محتوى وحقوق صور وسياسة خصوصية واختبار أجهزة.
+- iOS: يحتاج macOS + Xcode وحساب Apple Developer وتوقيع شهادة ونظام provisioning، ثم أرشفة وتوزيع TestFlight/App Store.
+- ملف `app-debug.apk` من CI **للتجربة فقط** وليس APK إنتاجيًا موقعًا بمفتاح خاص ثابت.
+
+## الأمان
+
+- لا يوجد أي طلب شبكي أو جمع بيانات في الإصدار الحالي.
+- المساعد الحالي لا يرسل مدخلات المستخدم لأي خدمة خارجية.
+- إذا تلف JSON التخزين المحلي، لا يتم استبداله تلقائيًا أثناء الاستخدام؛ يظهر تحذير للمستخدم.
+- لا تضع API keys في تطبيق الموبايل مستقبلًا؛ يتم ربط مقدم AI عبر Backend آمن.
+
+## ملفات مهمة
+
+- `lib/main.dart`: تهيئة التطبيق وواجهات التنقل والثيم.
+- `lib/core/kitchen_controller.dart`: الحالة والبيانات المحلية.
+- `lib/core/assistant_service.dart`: واجهة مساعد قابلة للاستبدال.
+- `assets/data/recipes_ar.json`: بيانات الوصفات (يمكن تدقيقها دون تعديل كود).
+- `test/recipe_test.dart`: اختبارات تحقق أولية.
+- `.github/workflows/flutter_ci.yml`: اختبار وبناء Android/iOS غير موقعين للإنتاج.
+
+## حالة التحقق والتسليم
+
+فُحصت قاعدة JSON وبنية الملفات وصحة ZIP؛ **لم يجر Flutter analyze أو Flutter test أو بناء APK/IPA** لأن البيئة لا تحتوي Flutter SDK أو Android SDK أو Xcode ولا يمكن تنزيلها من الشبكة هنا. لم يُرفع المشروع بعد إلى مستودع AB Kitchen مستقل. نتيجة GitHub Actions ليست معروفة قبل تشغيله.
