@@ -89,7 +89,7 @@ for idx, (rid, src, recipe, dims, sha) in enumerate(PHOTOS, 1):
         ix, iy = box_x+(box_w-iw)/2,box_y+(box_h-ih)/2
         c.setFillColor(colors.HexColor("#F4EBE5"))
         c.roundRect(box_x-3,box_y-3,box_w+6,box_h+6,14,stroke=0,fill=1)
-        c.drawImage(ImageReader(img),ix,iy,width=iw,height=ih,mask="auto")
+        c.drawImage(str(src),ix,iy,width=iw,height=ih,mask="auto")
     right(c, recipe.get("description","")[:110], W-45, 174, 12)
     c.setStrokeColor(colors.HexColor("#E4D2CA"))
     c.line(42, 140, W-42, 140)
@@ -100,6 +100,7 @@ for idx, (rid, src, recipe, dims, sha) in enumerate(PHOTOS, 1):
     c.drawString(42, 76, "File: %s.jpg" % rid)
     c.showPage()
 c.save()
+assert pdf_path.stat().st_size < 40_000_000, "PDF too large for direct GitHub delivery"
 
 readme = (
     "AB Kitchen V0.7 - First 20 missing recipe visuals\n"
