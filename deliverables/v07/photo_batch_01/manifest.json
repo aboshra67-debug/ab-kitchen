@@ -1,0 +1,191 @@
+{
+  "project": "AB Kitchen",
+  "baseline": "V0.7",
+  "batch": 1,
+  "total": 20,
+  "photo_format": "jpg",
+  "generated_with": "Adobe Firefly",
+  "source_branch": "main",
+  "recipes": [
+    {
+      "ordinal": 1,
+      "recipe_id": "tr_lentil",
+      "recipe_name_ar": "شوربة العدس التركية",
+      "filename": "photos/tr_lentil.jpg",
+      "git_blob_sha": "ba79b70bc7f18cbdc04217d0b4c24d6768a6eb6b",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 2,
+      "recipe_id": "tr_kofte",
+      "recipe_name_ar": "الكفتة التركية",
+      "filename": "photos/tr_kofte.jpg",
+      "git_blob_sha": "e53188d6a5c2f85854eff622745dd0fccb4feec7",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 3,
+      "recipe_id": "it_pasta",
+      "recipe_name_ar": "مكرونة بصلصة الطماطم",
+      "filename": "photos/it_pasta.jpg",
+      "git_blob_sha": "aa8cccbc8c4e4365963a6c56154f8979a6a385c3",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 4,
+      "recipe_id": "it_pizza",
+      "recipe_name_ar": "بيتزا مارجريتا",
+      "filename": "photos/it_pizza.jpg",
+      "git_blob_sha": "728b5f5ada1618362c87d9e9910463ed48fe8836",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 5,
+      "recipe_id": "it_risotto",
+      "recipe_name_ar": "ريزوتو المشروم",
+      "filename": "photos/it_risotto.jpg",
+      "git_blob_sha": "62643f4e8e7b98e960643b8f304e910d81e4ca2d",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 6,
+      "recipe_id": "in_biryani",
+      "recipe_name_ar": "برياني الدجاج",
+      "filename": "photos/in_biryani.jpg",
+      "git_blob_sha": "d98fdebcb2fc52571cfffea0f3764be76d8fb4e4",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 7,
+      "recipe_id": "in_dal",
+      "recipe_name_ar": "دال العدس الهندي",
+      "filename": "photos/in_dal.jpg",
+      "git_blob_sha": "83d022ce09286231d1cb67bd5cfac72fd1ac3319",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 8,
+      "recipe_id": "in_chana",
+      "recipe_name_ar": "تشانا ماسالا",
+      "filename": "photos/in_chana.jpg",
+      "git_blob_sha": "1a742fa4fdef63e219e81b819e91c656786db37b",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 9,
+      "recipe_id": "ma_tajine",
+      "recipe_name_ar": "طاجين الدجاج المغربي",
+      "filename": "photos/ma_tajine.jpg",
+      "git_blob_sha": "d9be4101c092bb243c02548a67891a97db982ca2",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 10,
+      "recipe_id": "ma_harira",
+      "recipe_name_ar": "الحريرة المغربية",
+      "filename": "photos/ma_harira.jpg",
+      "git_blob_sha": "d5a54e036d150009a54cbee9e09f8eb8d35341da",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 11,
+      "recipe_id": "ma_couscous",
+      "recipe_name_ar": "الكسكس بالخضار",
+      "filename": "photos/ma_couscous.jpg",
+      "git_blob_sha": "e73e6b2b1aa8643102abc179250bbb3b955fee2b",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 12,
+      "recipe_id": "lb_tabbouleh",
+      "recipe_name_ar": "التبولة اللبنانية",
+      "filename": "photos/lb_tabbouleh.jpg",
+      "git_blob_sha": "fccefa5081e712b6585d814eb2e17b22ae640577",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 13,
+      "recipe_id": "lb_hummus",
+      "recipe_name_ar": "حمص بالطحينة",
+      "filename": "photos/lb_hummus.jpg",
+      "git_blob_sha": "6d5979f293866d61dd6f469b682e53865ae5d655",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 14,
+      "recipe_id": "lb_fattoush",
+      "recipe_name_ar": "الفتوش اللبناني",
+      "filename": "photos/lb_fattoush.jpg",
+      "git_blob_sha": "fba5bb3a7aac1330721a4a3edd52aad5825bdd33",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 15,
+      "recipe_id": "eg_fatta_meat",
+      "recipe_name_ar": "فتة اللحمة المصرية",
+      "filename": "photos/eg_fatta_meat.jpg",
+      "git_blob_sha": "1c49d04365ec45e3b1860d0cfa81d18b76d81230",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 16,
+      "recipe_id": "eg_moussaka",
+      "recipe_name_ar": "مسقعة بالباذنجان",
+      "filename": "photos/eg_moussaka.jpg",
+      "git_blob_sha": "56d67238cec5629379cae7c6e6e79dff01b1685d",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 17,
+      "recipe_id": "eg_kebab_halla",
+      "recipe_name_ar": "كباب حلة",
+      "filename": "photos/eg_kebab_halla.jpg",
+      "git_blob_sha": "126a620ef9383686c705126e2a613148122df42f",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 18,
+      "recipe_id": "eg_kofta_oven",
+      "recipe_name_ar": "كفتة صينية بالفرن",
+      "filename": "photos/eg_kofta_oven.jpg",
+      "git_blob_sha": "8ddca0e3996684ce0752a5759b1eb4bb18240404",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 19,
+      "recipe_id": "eg_dawood_basha",
+      "recipe_name_ar": "كفتة داود باشا",
+      "filename": "photos/eg_dawood_basha.jpg",
+      "git_blob_sha": "77dccbe57b4e373f2c2fb89645e1598d2dc680de",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    },
+    {
+      "ordinal": 20,
+      "recipe_id": "eg_molokhia_rabbit",
+      "recipe_name_ar": "ملوخية بالأرانب",
+      "filename": "photos/eg_molokhia_rabbit.jpg",
+      "git_blob_sha": "39ad175c6762265d082a1a4d737f870b245df0e8",
+      "type": "AI-generated photorealistic food illustration",
+      "review_status": "visual-review"
+    }
+  ]
+}
