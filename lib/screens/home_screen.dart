@@ -3,7 +3,6 @@ import '../core/kitchen_controller.dart';
 import '../core/models.dart';
 import '../widgets/recipe_card.dart';
 import '../branding/brand_widgets.dart';
-import '../widgets/recipe_photo.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.controller});
