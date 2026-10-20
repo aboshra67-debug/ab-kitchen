@@ -1,0 +1,62 @@
+{
+  "project": "AB Kitchen V0.7",
+  "batch": "07 Part A",
+  "delivered_photos": 2,
+  "recipe_ids": [
+    "eg_baba_ghanoush",
+    "eg_kunafa_cream"
+  ],
+  "individual_images": [
+    {
+      "recipe_id": "eg_baba_ghanoush",
+      "name_ar": "بابا غنوج",
+      "filename": "eg_baba_ghanoush.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "ingredients_ar": [
+        "باذنجان رومي",
+        "طحينة",
+        "ثوم",
+        "ليمون",
+        "زيت زيتون",
+        "بقدونس"
+      ],
+      "sha256": "03f1ac65bd64b60172f409c83119fd975ff14c8358571488fb9ccd8703fb4db4",
+      "perceptual_hash": 7483627559746408350
+    },
+    {
+      "recipe_id": "eg_kunafa_cream",
+      "name_ar": "كنافة بالقشطة",
+      "filename": "eg_kunafa_cream.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "ingredients_ar": [
+        "كنافة",
+        "سمن",
+        "قشطة",
+        "سكر",
+        "ماء",
+        "ليمون"
+      ],
+      "sha256": "c6ecc36b086fc30e8de4f3800f30cf8e17811a602a0994811fac6591eb8b2263",
+      "perceptual_hash": 506390023864385407
+    }
+  ],
+  "files_checked": [
+    "valid JPEG",
+    "min dimensions",
+    "SHA-256 unique",
+    "perceptual distinct",
+    "PDF pages with images",
+    "ZIP CRC"
+  ],
+  "AI_generated": true,
+  "application_code_changed": false,
+  "manual_review": "Basic visual check by assistant; final acceptance by project owner pending",
+  "missing_recipe_images_on_GitHub_after_batch": 17,
+  "separate_previous_fino_image_not_yet_in_GitHub": true
+}
