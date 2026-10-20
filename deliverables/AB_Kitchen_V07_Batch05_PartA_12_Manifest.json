@@ -1,0 +1,241 @@
+{
+  "project": "AB Kitchen V0.7",
+  "batch": "05 Part A",
+  "photos": [
+    {
+      "recipe_id": "eg_fish_singari",
+      "name_ar": "سمك سنجاري",
+      "filename": "eg_fish_singari.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "3de1d92fc58b018013651fc68742b1be1719c264986e9ce98440c4cd6cc090cb",
+      "dhash": 2242007994695929471,
+      "ingredients_ar": [
+        "سمك بوري منظف ومفتوح",
+        "بصل",
+        "فلفل رومي",
+        "طماطم",
+        "ثوم",
+        "ليمون",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_tilapia_grilled",
+      "name_ar": "بلطي مشوي بالردة",
+      "filename": "eg_tilapia_grilled.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "7a065e6e6e1025c531c74ae7526200e39982d1934a6ca6225ebd3b479a3ca19f",
+      "dhash": 7048022634031510435,
+      "ingredients_ar": [
+        "سمك بلطي كامل منظف",
+        "ردة",
+        "ثوم",
+        "ليمون",
+        "كمون",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_tilapia_fried",
+      "name_ar": "بلطي مقلي",
+      "filename": "eg_tilapia_fried.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "dc88dfc3f3c880b691d3c88ed0b297626f8acf536f2cd26f8fda1e2c6e70609e",
+      "dhash": 8344791033083515279,
+      "ingredients_ar": [
+        "سمك بلطي منظف",
+        "دقيق",
+        "ثوم",
+        "ليمون",
+        "كمون",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_bouri_oven",
+      "name_ar": "بوري بالبطاطس في الفرن",
+      "filename": "eg_bouri_oven.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "305ca108b6c6bcd3ca947be553f5ed0e26286894f9e4655bd25f649135acbc61",
+      "dhash": 7181444156355734311,
+      "ingredients_ar": [
+        "سمك بوري منظف",
+        "بطاطس",
+        "بصل",
+        "طماطم",
+        "ثوم",
+        "ليمون",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_shrimp_alex",
+      "name_ar": "جمبري إسكندراني",
+      "filename": "eg_shrimp_alex.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "f4d99fca7ae8747943cf231cbd5bc530e9a69be242238b4607eca2eb1612ec74",
+      "dhash": 3549970136915830799,
+      "ingredients_ar": [
+        "جمبري مقشر",
+        "ثوم",
+        "فلفل أخضر",
+        "ليمون",
+        "زيت",
+        "كمون"
+      ]
+    },
+    {
+      "recipe_id": "eg_shrimp_red_sauce",
+      "name_ar": "جمبري بالصلصة",
+      "filename": "eg_shrimp_red_sauce.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "a0c745a07320dc62bd85752cf18174e3f9bed6828a19a2bc22950f89835dbe25",
+      "dhash": 4557136270742028427,
+      "ingredients_ar": [
+        "جمبري منظف",
+        "طماطم مبشورة",
+        "بصل",
+        "ثوم",
+        "فلفل حار",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_calamari_fried",
+      "name_ar": "كاليماري مقلي",
+      "filename": "eg_calamari_fried.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "16578329aecfcbf1bb03a89e05cca6059af624c899f395b06bdae870b2c4852b",
+      "dhash": 18425128910381920715,
+      "ingredients_ar": [
+        "كاليماري منظف",
+        "دقيق",
+        "نشا",
+        "ليمون",
+        "ثوم بودرة",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_calamari_tagine",
+      "name_ar": "طاجن سبيط بالصلصة",
+      "filename": "eg_calamari_tagine.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "8a4bbbb6107800c67bd1de6d6605b290c011ddd0de25cecb186c17b1672c2b0b",
+      "dhash": 9448838382252334623,
+      "ingredients_ar": [
+        "سبيط منظف",
+        "طماطم",
+        "بصل",
+        "ثوم",
+        "فلفل رومي",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_sardines_fried",
+      "name_ar": "سردين مقلي",
+      "filename": "eg_sardines_fried.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "37464f552e37571aee5fe6e4e5c9be96fab207b5b323c83af96b6dc7bf1cf896",
+      "dhash": 286991558085310671,
+      "ingredients_ar": [
+        "سردين منظف",
+        "دقيق",
+        "ثوم",
+        "ليمون",
+        "كمون",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_fish_tahini",
+      "name_ar": "سمك بالطحينة في الفرن",
+      "filename": "eg_fish_tahini.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "318044aac5a05acd4292b0305107998c11b24ed84910bce4b5f69f25765caf49",
+      "dhash": 4141168615808967872,
+      "ingredients_ar": [
+        "سمك فيليه",
+        "طحينة",
+        "بصل",
+        "ليمون",
+        "ثوم",
+        "ماء",
+        "زيت"
+      ]
+    },
+    {
+      "recipe_id": "eg_feteer_meshaltet",
+      "name_ar": "فطير مشلتت فلاحي",
+      "filename": "eg_feteer_meshaltet.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "925ce8e272d138e2351c61e4fd6e47e502b61915db1ad904762b2ffc032e2c60",
+      "dhash": 15237058302370570447,
+      "ingredients_ar": [
+        "دقيق",
+        "ماء",
+        "سمن بلدي",
+        "ملح"
+      ]
+    },
+    {
+      "recipe_id": "eg_flahy_qors",
+      "name_ar": "قرص فلاحي طرية",
+      "filename": "eg_flahy_qors.jpg",
+      "dimensions": [
+        1152,
+        896
+      ],
+      "sha256": "43b447c4117d4869f06ad81305499d6d993f29a35a1357c1040ac177a1146560",
+      "dhash": 14115344105853484543,
+      "ingredients_ar": [
+        "دقيق",
+        "لبن دافئ",
+        "سمن",
+        "خميرة فورية",
+        "سكر",
+        "ملح"
+      ]
+    }
+  ],
+  "sha256_exact_duplicates": 0,
+  "visually_similar_pairs_for_manual_review": [],
+  "pdf_pages": 12,
+  "original_app_code_modified": false,
+  "remaining_missing_after_part_a": 22,
+  "note": "Visual dish/ingredient correspondence manually checked on model previews; final end-user approval required."
+}
