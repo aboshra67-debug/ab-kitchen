@@ -1,0 +1,85 @@
+name: AB Kitchen V0.7.1 - ARM64 Review APK (all 131 pictures)
+on:
+  push:
+    branches:
+      - feature/v08-bundled-photo-integration-safe
+    paths:
+      - .github/workflows/ab_kitchen_v071_arm64_review_apk.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  android-arm64:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Prepare Android platform without changing source
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove only stale default MyApp generated test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -q 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
+      - name: Prepare dependencies and original brand icon
+        run: |
+          flutter pub get
+          dart run flutter_launcher_icons -f flutter_launcher_icons_android.yaml
+      - name: Static analysis
+        run: flutter analyze
+      - name: Full Flutter tests (including 131 offline image assets)
+        run: flutter test
+      - name: Build ARM64-only performance APK (TEST, not Google Play production)
+        run: flutter build apk --release --split-per-abi --target-platform android-arm64
+      - name: Verify APK images, integrity, and test-only signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          src="build/app/outputs/flutter-apk/app-arm64-v8a-release.apk"
+          test -s "$src"
+          mkdir -p deliverables
+          cp "$src" "deliverables/AB_Kitchen_V071_131_PHOTOS_ARM64_TEST_ONLY.apk"
+          python - <<'PY'
+          import zipfile,json,hashlib,pathlib
+          p=pathlib.Path("deliverables/AB_Kitchen_V071_131_PHOTOS_ARM64_TEST_ONLY.apk")
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              photos={str(f) for f in pathlib.Path("assets/photos").glob("*.webp")}
+              assert len(photos)==132, len(photos)
+              missing=[f for f in photos if f"assets/flutter_assets/{f}" not in z.namelist()]
+              assert not missing, "Unbundled photos: "+str(missing)
+          meta={"project":"AB Kitchen","version":"0.7.1+8",
+              "variant":"Android ARM64 only / release-optimized TEST build; not production signed",
+              "photo_assets_in_apk":132,"unique_recipes_pictured":131,
+              "package_name_expected":"com.absoftware.ab_kitchen",
+              "signing_warning":"Uses default Flutter-generated debug signing config unless separately configured; key is NOT original production key and in-place updates may be impossible.",
+              "apk_bytes":p.stat().st_size,"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),
+              "safe_source":"AB_Kitchen_V071_131_PHOTOS_SAFE_SOURCE.zip"}
+          pathlib.Path("deliverables/AB_Kitchen_V071_ARM64_APK_QA.json").write_text(json.dumps(meta,indent=2)+"\n")
+          print("ARM64 Verified, bytes",p.stat().st_size,meta["sha256"])
+          PY
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name apksigner -type f | sort -V | tail -1)
+          test -n "$APKSIGNER" && "$APKSIGNER" verify --verbose --print-certs deliverables/AB_Kitchen_V071_131_PHOTOS_ARM64_TEST_ONLY.apk
+          test "$(stat -c%s deliverables/AB_Kitchen_V071_131_PHOTOS_ARM64_TEST_ONLY.apk)" -lt 90000000
+      - name: Deliver signed-test Android APK directly
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V071-ARM64-131-Photos-APK
+          path: |
+            deliverables/AB_Kitchen_V071_131_PHOTOS_ARM64_TEST_ONLY.apk
+            deliverables/AB_Kitchen_V071_ARM64_APK_QA.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish lightweight APK to isolated branch for direct download
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add deliverables/AB_Kitchen_V071_131_PHOTOS_ARM64_TEST_ONLY.apk deliverables/AB_Kitchen_V071_ARM64_APK_QA.json
+          git commit -m "deliverables: signed-test ARM64 Android APK with 131 photo assets"
+          git push origin HEAD:feature/v08-bundled-photo-integration-safe
