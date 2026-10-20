@@ -1,0 +1,1226 @@
+{
+  "project": "AB Kitchen",
+  "version": "0.7.1+8",
+  "baseline_recipe_count": 148,
+  "original_bundled_recipe_photos": 40,
+  "new_bundled_photos": 91,
+  "total_pictured_recipes": 131,
+  "remaining_recipes_without_photos": 17,
+  "remaining_ids": [
+    "eg_asoura",
+    "eg_atayef_nuts",
+    "eg_balh_sham",
+    "eg_eggplant_pickled",
+    "eg_fino_bread",
+    "eg_ghorayeba",
+    "eg_kahk_eid",
+    "eg_mahalabiya",
+    "eg_meshabbak_domyat",
+    "eg_petit_four",
+    "eg_pickled_turnip",
+    "eg_sawabe_zainab",
+    "eg_semsemiya",
+    "eg_shakalama",
+    "eg_tomato_daqa",
+    "eg_yogurt_cucumber",
+    "eg_zalabia"
+  ],
+  "source_branch": "assets/v07-batch07-two-new-reviewed",
+  "main_was_not_modified_by_this_workflow": true,
+  "no_existing_images_replaced": true,
+  "no_user_data_or_recipes_modified": true,
+  "photo_type": "AI-generated photorealistic illustrations, not documentary photographs",
+  "semantic_image_review": "Source batch images previously reviewed in batches; not all 91 underwent an independent expert food photo audit",
+  "images": [
+    {
+      "recipe_id": "eg_dawood_basha",
+      "input": "assets/photos_batch01/eg_dawood_basha.jpg",
+      "original_jpeg_sha256": "a8967f13ff007b39629733996b301755dd3fcd195ea0e4fefd89131d5ffb2fe6",
+      "original_bytes": 417612,
+      "output": "assets/photos/eg_dawood_basha.webp",
+      "webp_sha256": "953500f96ccdb053abb477ee3bfae76b592c37dc88b844775c834b7f4a8c6f05",
+      "webp_bytes": 67832,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_fatta_meat",
+      "input": "assets/photos_batch01/eg_fatta_meat.jpg",
+      "original_jpeg_sha256": "ef35671b35238c8b3bca018460b493a3f3c0e1e4fdbe8b943bf18a5ecb6b81a7",
+      "original_bytes": 606210,
+      "output": "assets/photos/eg_fatta_meat.webp",
+      "webp_sha256": "50a4bac7d640666c51d0996e1f92cef67e241ca20a4e3ad26cf8d0036be505ff",
+      "webp_bytes": 126442,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_kebab_halla",
+      "input": "assets/photos_batch01/eg_kebab_halla.jpg",
+      "original_jpeg_sha256": "bc181be1664d36c9db5be19a41ad455d9256899577ba6ff3829e40cd9c365c87",
+      "original_bytes": 595891,
+      "output": "assets/photos/eg_kebab_halla.webp",
+      "webp_sha256": "8c67cc3aa6a9add648fa646c4b47746998f482b01353f1137897d4c113b2a0ce",
+      "webp_bytes": 93662,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_kofta_oven",
+      "input": "assets/photos_batch01/eg_kofta_oven.jpg",
+      "original_jpeg_sha256": "ca59bec7e553e5b057bf299c5398fc7a4501aeaf676a9a9d4983fe8ab0bcc76e",
+      "original_bytes": 459548,
+      "output": "assets/photos/eg_kofta_oven.webp",
+      "webp_sha256": "e6ebdd778fa595f0b3e1d2511fb6c73cdf1eb401338e309f11ac21b17d66eb80",
+      "webp_bytes": 86794,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_molokhia_rabbit",
+      "input": "assets/photos_batch01/eg_molokhia_rabbit.jpg",
+      "original_jpeg_sha256": "a53a324fce7591cfd05d9c8e32b9e9916ba0ed5cd3e4240183d2c66d0f6b1a2a",
+      "original_bytes": 520696,
+      "output": "assets/photos/eg_molokhia_rabbit.webp",
+      "webp_sha256": "9ae40fe8c66713b5526fe6dde2f6c59bf6e9093a3045d43163480b219afb0050",
+      "webp_bytes": 94406,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_moussaka",
+      "input": "assets/photos_batch01/eg_moussaka.jpg",
+      "original_jpeg_sha256": "8cb4c5d4b485bcbc81579faffc7ce4fc0b7bc98a1bde99aa38c355ca71b96697",
+      "original_bytes": 460523,
+      "output": "assets/photos/eg_moussaka.webp",
+      "webp_sha256": "9ac74ea01fe9be1d50fa6f0ac4de307538fe6681c79e433054759073504f191d",
+      "webp_bytes": 82844,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "in_biryani",
+      "input": "assets/photos_batch01/in_biryani.jpg",
+      "original_jpeg_sha256": "a3bbce4ea7a893fc3bdac882386955638bc7fa6a029d19d6f8808aa781cd8ee2",
+      "original_bytes": 428458,
+      "output": "assets/photos/in_biryani.webp",
+      "webp_sha256": "6b4edc3cfe701b3c720297a8a6ab90a8203dd3d98deff9984b75ea56392da6cc",
+      "webp_bytes": 73388,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "in_chana",
+      "input": "assets/photos_batch01/in_chana.jpg",
+      "original_jpeg_sha256": "e709e56ee306055396ef9903ad8b8b8c77eb1138638b5c028448140f9d494cce",
+      "original_bytes": 420685,
+      "output": "assets/photos/in_chana.webp",
+      "webp_sha256": "c534fa3355bfe65fe5957eafa188fd0e9e067b78a52585ef7cf99fc9f5997602",
+      "webp_bytes": 77440,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "in_dal",
+      "input": "assets/photos_batch01/in_dal.jpg",
+      "original_jpeg_sha256": "95ff59082cc27356570827b028f884f6457f8c8ccb3b7be9742b57ff4b420076",
+      "original_bytes": 356901,
+      "output": "assets/photos/in_dal.webp",
+      "webp_sha256": "518e9885a71565073daa9490fbedab7263a9aaba746073e438e120a5da746730",
+      "webp_bytes": 58700,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "it_pasta",
+      "input": "assets/photos_batch01/it_pasta.jpg",
+      "original_jpeg_sha256": "5cd57ac81c3d4a2f149cee38dd6c9af82a7e1104929669ff8fe235510b41e465",
+      "original_bytes": 236899,
+      "output": "assets/photos/it_pasta.webp",
+      "webp_sha256": "b8645cffe84b341fbe3b3f541327667dc71e9f45322bdbef640871939bd38502",
+      "webp_bytes": 27552,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "it_pizza",
+      "input": "assets/photos_batch01/it_pizza.jpg",
+      "original_jpeg_sha256": "898a22d91ea92815a67d6a533cfa8f9afefc717dd3bdfb7d1ce98459babfc137",
+      "original_bytes": 468426,
+      "output": "assets/photos/it_pizza.webp",
+      "webp_sha256": "34272e8bf56ca651613181f7609eda71c4f9b1b0c8fa81b893b51ce5fea98184",
+      "webp_bytes": 86464,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "it_risotto",
+      "input": "assets/photos_batch01/it_risotto.jpg",
+      "original_jpeg_sha256": "122d50f3acdcffec3e229ab8e05373745537f5318040157894af8ef9e1def24c",
+      "original_bytes": 305026,
+      "output": "assets/photos/it_risotto.webp",
+      "webp_sha256": "9436f0a082e674d245919778268b24774806ec89a1738eb33d37541aea8704ee",
+      "webp_bytes": 51128,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "lb_fattoush",
+      "input": "assets/photos_batch01/lb_fattoush.jpg",
+      "original_jpeg_sha256": "e5c01bbf049e26ab50370583151a6bf9bd370501f35b90f6f88baccd1dd4a586",
+      "original_bytes": 497319,
+      "output": "assets/photos/lb_fattoush.webp",
+      "webp_sha256": "efc9fc0e8ac62b7844d696a14dffeb35d00988e5cf3cabbb65dcfbd0fe4be6e5",
+      "webp_bytes": 90314,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "lb_hummus",
+      "input": "assets/photos_batch01/lb_hummus.jpg",
+      "original_jpeg_sha256": "d4b4ca147b57912d07cd32cec84b1430f65c44399641e6ad109bf027b8f160d2",
+      "original_bytes": 435148,
+      "output": "assets/photos/lb_hummus.webp",
+      "webp_sha256": "6a7b2425dceb5ef184087247efa869d129570024eae2ca8689d65ee7390e50bb",
+      "webp_bytes": 77166,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "lb_tabbouleh",
+      "input": "assets/photos_batch01/lb_tabbouleh.jpg",
+      "original_jpeg_sha256": "71b52b15f7159c2186cd9e40eb3b6f7cf9582decbb75f4d6156547adacb643ce",
+      "original_bytes": 494175,
+      "output": "assets/photos/lb_tabbouleh.webp",
+      "webp_sha256": "5a471a0af9fde4b3979e4d976a5dc773e89b0e335bc21441b0f2ab1367f66332",
+      "webp_bytes": 95094,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "ma_couscous",
+      "input": "assets/photos_batch01/ma_couscous.jpg",
+      "original_jpeg_sha256": "f33d6255a055a9d839f7e04c96a5262944c84f2e8ab1dde3018f58893db698e8",
+      "original_bytes": 477907,
+      "output": "assets/photos/ma_couscous.webp",
+      "webp_sha256": "f7ab9fc8d563eaada237a4416a81543a0c6c069e2a85e40ad34e7c203d268992",
+      "webp_bytes": 82690,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "ma_harira",
+      "input": "assets/photos_batch01/ma_harira.jpg",
+      "original_jpeg_sha256": "60d31ba431f836b49b3046875064b240d1aace0d2f5831d356438e2106d16c7d",
+      "original_bytes": 432308,
+      "output": "assets/photos/ma_harira.webp",
+      "webp_sha256": "cdf62222e414412dc0a04c372a9cea10ea1aed2eab97db64754a881bb3d9118a",
+      "webp_bytes": 79686,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "ma_tajine",
+      "input": "assets/photos_batch01/ma_tajine.jpg",
+      "original_jpeg_sha256": "c4c3e254bff5a9ecd6c9cc43b88b2e61f66690506d566d946e985264bead1641",
+      "original_bytes": 406154,
+      "output": "assets/photos/ma_tajine.webp",
+      "webp_sha256": "e25b5998cd43dfd773ed19e2d9d2cccc501f059757c06561adfb8c11ad982ec1",
+      "webp_bytes": 75016,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "tr_kofte",
+      "input": "assets/photos_batch01/tr_kofte.jpg",
+      "original_jpeg_sha256": "b0faf0b22709b571e3c81fe845608d01059a7eede9e0bd7ca44fea4d95c352ee",
+      "original_bytes": 534353,
+      "output": "assets/photos/tr_kofte.webp",
+      "webp_sha256": "0ce23699cabfacb699ea7361bac7821a8e80381831a900cfc7f51debaa453778",
+      "webp_bytes": 92744,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "tr_lentil",
+      "input": "assets/photos_batch01/tr_lentil.jpg",
+      "original_jpeg_sha256": "1367c7bd28ecf172b91d18b97a6ada75e732d1c77508f731594b0525e0482a77",
+      "original_bytes": 452559,
+      "output": "assets/photos/tr_lentil.webp",
+      "webp_sha256": "b8a8b6e8d813d6f903a3544055b30ca973e23761a6c8baf759b9e064d4cbdcf5",
+      "webp_bytes": 79924,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_cheese_tomato",
+      "input": "assets/photos_batch02/eg_cheese_tomato.jpg",
+      "original_jpeg_sha256": "636bdff3307d88f0377829cc2c258695c062cab77f74bf820e2437cd628f4e69",
+      "original_bytes": 298460,
+      "output": "assets/photos/eg_cheese_tomato.webp",
+      "webp_sha256": "43321a7b3fb0e15eb2dc52c8749b08aed8b409e949a26157a47b66d75e41721b",
+      "webp_bytes": 50280,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_chicken_cream_mushroom",
+      "input": "assets/photos_batch02/eg_chicken_cream_mushroom.jpg",
+      "original_jpeg_sha256": "f4542123647d6bb142cc49091775575250de43a40a358bffe049230908e9499d",
+      "original_bytes": 375033,
+      "output": "assets/photos/eg_chicken_cream_mushroom.webp",
+      "webp_sha256": "c98972070621204d3b3dbc20f1a32f315819da2148df5962054b567fe72f6637",
+      "webp_bytes": 65786,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_chicken_roasted_onion",
+      "input": "assets/photos_batch02/eg_chicken_roasted_onion.jpg",
+      "original_jpeg_sha256": "e852cb388a75606aeaf2baf27226f752988e53f993e749cb1bd69f5c3ce8b383",
+      "original_bytes": 659683,
+      "output": "assets/photos/eg_chicken_roasted_onion.webp",
+      "webp_sha256": "aeef18798afee651658f2638ef8b01503976ab2ee7d50a0d7b7b05857aa8b0a8",
+      "webp_bytes": 147380,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_egg_omelet_veg",
+      "input": "assets/photos_batch02/eg_egg_omelet_veg.jpg",
+      "original_jpeg_sha256": "b8a40a4237a5a50ad4817cdb0535b0c5fff11593a6ad99f37e74eb32064a322f",
+      "original_bytes": 783019,
+      "output": "assets/photos/eg_egg_omelet_veg.webp",
+      "webp_sha256": "6019587b31868d6f1e71c26581373e8ff8bc445278fca8f6d81768adade3cf67",
+      "webp_bytes": 184240,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_egg_pastrami",
+      "input": "assets/photos_batch02/eg_egg_pastrami.jpg",
+      "original_jpeg_sha256": "9a71fd7c93903acc20ff5ac33c24c290cf17449d0c7236cb0007a3c03238593f",
+      "original_bytes": 407590,
+      "output": "assets/photos/eg_egg_pastrami.webp",
+      "webp_sha256": "84e451739503e3b03d02e6304cf2215fbd384f391e8b8f4badfc86d592d00fe1",
+      "webp_bytes": 74664,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_eggplant_minced",
+      "input": "assets/photos_batch02/eg_eggplant_minced.jpg",
+      "original_jpeg_sha256": "2ee126292cc4bad6a1a2bd4b7bd57c27c3a5138a66428fae72a9918d008fca20",
+      "original_bytes": 607780,
+      "output": "assets/photos/eg_eggplant_minced.webp",
+      "webp_sha256": "f1429f08054990c6fc4fef5e89a0cbb13c951fd686bcba08dd26be3ff3bfd5c7",
+      "webp_bytes": 135372,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_eggs_potatoes",
+      "input": "assets/photos_batch02/eg_eggs_potatoes.jpg",
+      "original_jpeg_sha256": "4219d47bb2067235f2b8420045d2ffb634143f7dd3f41a302bf0affa132d897d",
+      "original_bytes": 520182,
+      "output": "assets/photos/eg_eggs_potatoes.webp",
+      "webp_sha256": "1a6ae5d640dedd750d747537004eb213c44502c17c07ad030b68b7f3d19e6e59",
+      "webp_bytes": 90678,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_fasolia_green",
+      "input": "assets/photos_batch02/eg_fasolia_green.jpg",
+      "original_jpeg_sha256": "51faa6db0137fc7d2f070b50bf5b4d5989be6b9a12aaee927105346c18800c30",
+      "original_bytes": 465269,
+      "output": "assets/photos/eg_fasolia_green.webp",
+      "webp_sha256": "337b16710ddcdb2ee75ee6bc904b867e0005a127cd0a85f27ede1aa86d057158",
+      "webp_bytes": 96868,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_fatta_chicken",
+      "input": "assets/photos_batch02/eg_fatta_chicken.jpg",
+      "original_jpeg_sha256": "9032ec4e440f16073f75382eed0a8b0b1c484cb38b77297fc3ac01d0f9a06141",
+      "original_bytes": 584538,
+      "output": "assets/photos/eg_fatta_chicken.webp",
+      "webp_sha256": "125337f15047f5fe4e95fe542a4345352cfd1745c1793a9b85cbff7aab7e846a",
+      "webp_bytes": 132250,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_fried_eggplant_breakfast",
+      "input": "assets/photos_batch02/eg_fried_eggplant_breakfast.jpg",
+      "original_jpeg_sha256": "e14e146e3206b4fc9745861c79b8719ac094665614d88707105ee2cef3731d35",
+      "original_bytes": 438607,
+      "output": "assets/photos/eg_fried_eggplant_breakfast.webp",
+      "webp_sha256": "a192485f4549ef98a2ea90b82d6a828c4da58c5f4c2b87f6e670c819e64d9443",
+      "webp_bytes": 74160,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_lentil_rice",
+      "input": "assets/photos_batch02/eg_lentil_rice.jpg",
+      "original_jpeg_sha256": "ac162b2044b2d8885648877e7b34eeb1f17ea2350140b15bbb76cf8a2780df69",
+      "original_bytes": 394453,
+      "output": "assets/photos/eg_lentil_rice.webp",
+      "webp_sha256": "ee77758228da6dda96ccc9e795ca06255ca77f6225356cb8aa5d0d43373c3f6c",
+      "webp_bytes": 70884,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_loubia_white",
+      "input": "assets/photos_batch02/eg_loubia_white.jpg",
+      "original_jpeg_sha256": "80b8434e900907718f8b7fe35b219ba77ecc79fcb506c1e81388a0227c3982d8",
+      "original_bytes": 317191,
+      "output": "assets/photos/eg_loubia_white.webp",
+      "webp_sha256": "6cdf5b59a1c1491ea1fc9808e9d7eef031cf8fd8d5708a69b497497df03104c3",
+      "webp_bytes": 53548,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_molokhia_plain",
+      "input": "assets/photos_batch02/eg_molokhia_plain.jpg",
+      "original_jpeg_sha256": "6cd1fafa0d0f6917f08b50acc770afe6fa14e74736981d27f9f8f8420d49c00a",
+      "original_bytes": 467146,
+      "output": "assets/photos/eg_molokhia_plain.webp",
+      "webp_sha256": "26f5e2bec21abb3c22db543c2d25bca1035c0094da0072f2237b5ed35eebda5e",
+      "webp_bytes": 96352,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_okra_meat",
+      "input": "assets/photos_batch02/eg_okra_meat.jpg",
+      "original_jpeg_sha256": "100bb91d9ddf52b8cc5b6504f01b4303ea874d0d78761887bd36f51bdb2db997",
+      "original_bytes": 372799,
+      "output": "assets/photos/eg_okra_meat.webp",
+      "webp_sha256": "9578deef60267304de9cc1117d8525edf35908b3e566ef1cec5fed21c4355380",
+      "webp_bytes": 63442,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_old_cheese_salad",
+      "input": "assets/photos_batch02/eg_old_cheese_salad.jpg",
+      "original_jpeg_sha256": "485eb0a9c51bdb0d052db3d01fc54a830ad1e154fb2de40165ebdfbc79318f4b",
+      "original_bytes": 476872,
+      "output": "assets/photos/eg_old_cheese_salad.webp",
+      "webp_sha256": "cdcc0aff07a99011b67876268fc35018618a81407cbbe82d16913bd4bbe9f3d1",
+      "webp_bytes": 93054,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_peas_carrots",
+      "input": "assets/photos_batch02/eg_peas_carrots.jpg",
+      "original_jpeg_sha256": "190252d3c081eec972ddbcd50c25fe88784df206ecd5691b191e57b7028aa74c",
+      "original_bytes": 418873,
+      "output": "assets/photos/eg_peas_carrots.webp",
+      "webp_sha256": "6b74a23e502e5976e47efe0f11e8236d1141710f677386c1724474e1496fbfba",
+      "webp_bytes": 64852,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_shakshuka_egypt",
+      "input": "assets/photos_batch02/eg_shakshuka_egypt.jpg",
+      "original_jpeg_sha256": "eaa6edfc7c00700dcab288bd134ee701b2219430d03473978abd1ad6208ac2a1",
+      "original_bytes": 568941,
+      "output": "assets/photos/eg_shakshuka_egypt.webp",
+      "webp_sha256": "3eea1d568441215c99159ca6f399bd4175975a9972b2c171ccfed7684781cd99",
+      "webp_bytes": 130496,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_spinach_chickpeas",
+      "input": "assets/photos_batch02/eg_spinach_chickpeas.jpg",
+      "original_jpeg_sha256": "9422b42e79bb92669696b369b3465622d03b60d54dd85a95b350f6d416e87c81",
+      "original_bytes": 369337,
+      "output": "assets/photos/eg_spinach_chickpeas.webp",
+      "webp_sha256": "a77e32e8ad0d6b379e0fc9d2f37acf3bdc66b72515168058bb00909b60b8a99c",
+      "webp_bytes": 70920,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_taameya",
+      "input": "assets/photos_batch02/eg_taameya.jpg",
+      "original_jpeg_sha256": "dc3ceeb95c4a69c13065deaf5c258a25c7152f0c13debfe4aac1a583827e0f09",
+      "original_bytes": 433446,
+      "output": "assets/photos/eg_taameya.webp",
+      "webp_sha256": "6d24c05a10a09b84424b121e4b36c8ad06439621764946f95afbb154fb82ac14",
+      "webp_bytes": 86200,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_tarro_chard",
+      "input": "assets/photos_batch02/eg_tarro_chard.jpg",
+      "original_jpeg_sha256": "120089f31348ea8b4c366ef27588e214265236e98783a1fa86732db370228874",
+      "original_bytes": 334182,
+      "output": "assets/photos/eg_tarro_chard.webp",
+      "webp_sha256": "c512fdd3fe298a6e896def7556ce54dd3c8955a1ac872553606c911b65aad92f",
+      "webp_bytes": 57092,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_boiled_fava_green",
+      "input": "assets/photos_batch03/eg_boiled_fava_green.jpg",
+      "original_jpeg_sha256": "d7931c8aa8ff2a1a89b942138835d4f8841a0f739c61f49999da51cbe28e0a46",
+      "original_bytes": 391676,
+      "output": "assets/photos/eg_boiled_fava_green.webp",
+      "webp_sha256": "7eb74c85f64055ca67b2267e74b4f24cae00f6d9b071f0d9133ee3c5f4826331",
+      "webp_bytes": 73998,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_fesikh_salad",
+      "input": "assets/photos_batch03/eg_fesikh_salad.jpg",
+      "original_jpeg_sha256": "f97adb530904b36ac1d739c190b9a3bd7bbd6a6f1e4eea73016377ad42f04b5e",
+      "original_bytes": 619578,
+      "output": "assets/photos/eg_fesikh_salad.webp",
+      "webp_sha256": "7a9eb6a894f6485e52836fc1aeed2b4a99ba601880fd60394646358c95f19f79",
+      "webp_bytes": 124214,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_feteer_sugar",
+      "input": "assets/photos_batch03/eg_feteer_sugar.jpg",
+      "original_jpeg_sha256": "d95b530321410c5643d56d1c0f667a20469c45f4629510601088cc342ff7c9ed",
+      "original_bytes": 539575,
+      "output": "assets/photos/eg_feteer_sugar.webp",
+      "webp_sha256": "232a2d3d268c312e96caa0f21da65c48efea9ff9d9faceab06304411cef41c08",
+      "webp_bytes": 118786,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_kaware3",
+      "input": "assets/photos_batch03/eg_kaware3.jpg",
+      "original_jpeg_sha256": "56597c9f3ac46d402e1a162ee0dc34ad1879c984d76cca15d90b676aefcbfe01",
+      "original_bytes": 624589,
+      "output": "assets/photos/eg_kaware3.webp",
+      "webp_sha256": "40b47d8e49016ba939b847d38f6e8c166ae6a9bdf9bed84e352001b11297f009",
+      "webp_bytes": 129024,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_liver_alexandria",
+      "input": "assets/photos_batch03/eg_liver_alexandria.jpg",
+      "original_jpeg_sha256": "ec86d4eed4e1bad6aaf337f110664baacf2550776e5ed29c3bc3e57ffdbc046c",
+      "original_bytes": 469283,
+      "output": "assets/photos/eg_liver_alexandria.webp",
+      "webp_sha256": "74790a53e1937272134c3b6a72779ff10dade9e4f5c2d904cf5db898a475cff7",
+      "webp_bytes": 101828,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_moza_veg",
+      "input": "assets/photos_batch03/eg_moza_veg.jpg",
+      "original_jpeg_sha256": "5d249827b5c6104da301a1cdd440c44d58f082b26e6bd935f7d6e176e8f3b805",
+      "original_bytes": 408664,
+      "output": "assets/photos/eg_moza_veg.webp",
+      "webp_sha256": "8647938259b7539012b2e22f776cd1fd36d7a63b5f2008b911e1ebd8153d26d8",
+      "webp_bytes": 80174,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_onion_mahshi",
+      "input": "assets/photos_batch03/eg_onion_mahshi.jpg",
+      "original_jpeg_sha256": "3d51afaaef5293bddf83e8b7a58d22c967f23cd88be195e47592a3c9785ef19c",
+      "original_bytes": 419518,
+      "output": "assets/photos/eg_onion_mahshi.webp",
+      "webp_sha256": "6c6484d21283e1083e36096effe99fc088b9bc21da332570074e7ea668f9539b",
+      "webp_bytes": 77238,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_pigeon_freekeh",
+      "input": "assets/photos_batch03/eg_pigeon_freekeh.jpg",
+      "original_jpeg_sha256": "cbed91496767d2b9b920e3ca891d2994bf7b8f325588d56ec7a8d2796cc38d70",
+      "original_bytes": 449688,
+      "output": "assets/photos/eg_pigeon_freekeh.webp",
+      "webp_sha256": "cb45fa23634da42904d9004374133c785256d9fea7139aef99f3f8741d98eff6",
+      "webp_bytes": 88664,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_pigeon_rice",
+      "input": "assets/photos_batch03/eg_pigeon_rice.jpg",
+      "original_jpeg_sha256": "2511f097f1179bf6aed9de30373b767c2da5488091e288f0a82c50f8ef6069a2",
+      "original_bytes": 554035,
+      "output": "assets/photos/eg_pigeon_rice.webp",
+      "webp_sha256": "c96683682a61148bfe640f6c4aa14b61211f3ebe1de3f3b47ae5dc8b5c27420a",
+      "webp_bytes": 114216,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_potato_chicken_tray",
+      "input": "assets/photos_batch03/eg_potato_chicken_tray.jpg",
+      "original_jpeg_sha256": "892d63645b5cbc4b9d1a0974f963d61135b6cf6cfef8294f19c9cd1665b20298",
+      "original_bytes": 439054,
+      "output": "assets/photos/eg_potato_chicken_tray.webp",
+      "webp_sha256": "57dc53d50de791ea0aa955c598784c2a096f75ceda67ba80d273ed082d85c0f3",
+      "webp_bytes": 117934,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_potato_mahshi_meat",
+      "input": "assets/photos_batch03/eg_potato_mahshi_meat.jpg",
+      "original_jpeg_sha256": "13b0fceb5a2b3451b77ade72d2fbfa2db8eb9b5c5e56bb27020b6ef0bd91111f",
+      "original_bytes": 370975,
+      "output": "assets/photos/eg_potato_mahshi_meat.webp",
+      "webp_sha256": "60583b593d4c6ad1e9e611076c20bab568f1d7787d133c7acec318daff29d742",
+      "webp_bytes": 93276,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_potato_meat_tray",
+      "input": "assets/photos_batch03/eg_potato_meat_tray.jpg",
+      "original_jpeg_sha256": "05ca4292e63966ba9440ae43e27c901609df45aefd5aedbb6296cac17cdc4ea2",
+      "original_bytes": 455860,
+      "output": "assets/photos/eg_potato_meat_tray.webp",
+      "webp_sha256": "90d28af1d6307807f71ec734c20c03a15a1b5c6e064bad46220114f9d8667e21",
+      "webp_bytes": 124384,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_ro2a2_meat",
+      "input": "assets/photos_batch03/eg_ro2a2_meat.jpg",
+      "original_jpeg_sha256": "b493b51aa808665f3f50af6dcf58e6d098b76110a91fc37af0eef5d72a638900",
+      "original_bytes": 507050,
+      "output": "assets/photos/eg_ro2a2_meat.webp",
+      "webp_sha256": "fa2b30e5fe58cf2992ab244ea67ce1b629439bd2d1f10a63ce029daa5f993038",
+      "webp_bytes": 95144,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_roasted_duck",
+      "input": "assets/photos_batch03/eg_roasted_duck.jpg",
+      "original_jpeg_sha256": "64b5f52e0c0efa9920f17271338ae43cb44a17d1f850779e3a82e851d2e4a911",
+      "original_bytes": 514653,
+      "output": "assets/photos/eg_roasted_duck.webp",
+      "webp_sha256": "2258e69d448cc9f6d2e2a94456b2202dead12be3a82b48597237c42f9914837e",
+      "webp_bytes": 105682,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_sogo2_alexandria",
+      "input": "assets/photos_batch03/eg_sogo2_alexandria.jpg",
+      "original_jpeg_sha256": "a96ec2338f2dba295b6fc886f2f348baf44c944a19acc7ee31e1236446336131",
+      "original_bytes": 546606,
+      "output": "assets/photos/eg_sogo2_alexandria.webp",
+      "webp_sha256": "9b5632769318c6ebdff238d3453a0a8df4f8c0cb0471c2f26e1eb931da8ea867",
+      "webp_bytes": 121704,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_stuffed_tomatoes",
+      "input": "assets/photos_batch03/eg_stuffed_tomatoes.jpg",
+      "original_jpeg_sha256": "f8a174ef5384d0e0c00cf23c5599421f577d6ef1aac3828f346626f2175d0370",
+      "original_bytes": 394377,
+      "output": "assets/photos/eg_stuffed_tomatoes.webp",
+      "webp_sha256": "1abfb720b68155f2e6ec90fe0fa72eb38ae65ef1680ce8ee95299b90d95b88dc",
+      "webp_bytes": 91766,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_torb",
+      "input": "assets/photos_batch03/eg_torb.jpg",
+      "original_jpeg_sha256": "835a73ca0e8599e2095f792673e890d73d6043850547175635ac173c28fb2caf",
+      "original_bytes": 596603,
+      "output": "assets/photos/eg_torb.webp",
+      "webp_sha256": "f91cfcd6d5906a83754db7a55d6eb2abe993d65c4d40b136bf44814d8ff2990d",
+      "webp_bytes": 137778,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_torly_oven",
+      "input": "assets/photos_batch03/eg_torly_oven.jpg",
+      "original_jpeg_sha256": "f97a70930476b2a75d613a0313d6ce4ad73ed1a127c74626bdca4c2ad219cbb3",
+      "original_bytes": 425645,
+      "output": "assets/photos/eg_torly_oven.webp",
+      "webp_sha256": "b433aba15a70732c79b826e2bee613f0ef9da28e9efeeb70fb935cfa5b46474f",
+      "webp_bytes": 94694,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_vine_leaves_meat",
+      "input": "assets/photos_batch03/eg_vine_leaves_meat.jpg",
+      "original_jpeg_sha256": "f01b8fd4142bd00041f4de8ec62c4806a5a1c3e16935d9cbfe4c4344d3235ec4",
+      "original_bytes": 642804,
+      "output": "assets/photos/eg_vine_leaves_meat.webp",
+      "webp_sha256": "9b3e36a9771c691d480fb5758017fd5d5048d61e38d1c883e9ef53a5fd05f777",
+      "webp_bytes": 145014,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_wara2_3enab",
+      "input": "assets/photos_batch03/eg_wara2_3enab.jpg",
+      "original_jpeg_sha256": "ace09c9cb1d60183c53e4bc593781286456ea752f17c9af67076ba24bad2234d",
+      "original_bytes": 591675,
+      "output": "assets/photos/eg_wara2_3enab.webp",
+      "webp_sha256": "e7aa8da7b9b1e569f9680ad0feb8f1d0f3796fe58649d6acc7a8b6bbf111d60c",
+      "webp_bytes": 143874,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_chicken_cream_soup",
+      "input": "assets/photos_batch04/eg_chicken_cream_soup.jpg",
+      "original_jpeg_sha256": "11ea6528d6c9a27504439b55eefa0a95bc75a52f0b167adc119af93e87189172",
+      "original_bytes": 416131,
+      "output": "assets/photos/eg_chicken_cream_soup.webp",
+      "webp_sha256": "8bd7e623bb4289b9769da8113c35477529ad977edf9297d97f9b06bfb10bcada",
+      "webp_bytes": 61918,
+      "original_dimensions": [
+        2048,
+        1592
+      ]
+    },
+    {
+      "recipe_id": "eg_glash_meat_tray",
+      "input": "assets/photos_batch04/eg_glash_meat_tray.jpg",
+      "original_jpeg_sha256": "485998382aa5bb553046087c1795bc16e3a54558c3432cd228c2e82f85e9187b",
+      "original_bytes": 408798,
+      "output": "assets/photos/eg_glash_meat_tray.webp",
+      "webp_sha256": "c160249ea59fcb63c90750425d06d1610a75edaab663d7a94a1e3e1ec358f626",
+      "webp_bytes": 80968,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_macaroni_oven_meat",
+      "input": "assets/photos_batch04/eg_macaroni_oven_meat.jpg",
+      "original_jpeg_sha256": "975127f3dba2082692e9ca89680ba4421490418997985c5eda45bf127e0012ba",
+      "original_bytes": 477437,
+      "output": "assets/photos/eg_macaroni_oven_meat.webp",
+      "webp_sha256": "6a9276f3137a381e9d086ff1f5532a2e93d2d68750f3cf61e7daa8312550cfff",
+      "webp_bytes": 99700,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_meat_broth",
+      "input": "assets/photos_batch04/eg_meat_broth.jpg",
+      "original_jpeg_sha256": "c1fa0cb16606a131b5b4b8a97d3af93cc8df30615ad69bff5b2bdbc4320f9610",
+      "original_bytes": 398162,
+      "output": "assets/photos/eg_meat_broth.webp",
+      "webp_sha256": "74e8a7b09edbbf5b16e7fcb582a41d5a97b19019cdb3829ed02949e9245ad38c",
+      "webp_bytes": 52976,
+      "original_dimensions": [
+        2048,
+        1592
+      ]
+    },
+    {
+      "recipe_id": "eg_okka_tagine",
+      "input": "assets/photos_batch04/eg_okka_tagine.jpg",
+      "original_jpeg_sha256": "874376dcb23f62c28bc11a51ca1903076b2cfb037847416f85dfb282e48c9767",
+      "original_bytes": 840867,
+      "output": "assets/photos/eg_okka_tagine.webp",
+      "webp_sha256": "da705b649505a35e8e59890150d75060149c93c43f65bf5cbc96ba12b574b66a",
+      "webp_bytes": 181608,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_okra_shrimp_tagine",
+      "input": "assets/photos_batch04/eg_okra_shrimp_tagine.jpg",
+      "original_jpeg_sha256": "ccc471f3a30dfaaddf61f405147c06d98067f7d20ebb8c52fea9fa802ce31ba2",
+      "original_bytes": 572625,
+      "output": "assets/photos/eg_okra_shrimp_tagine.webp",
+      "webp_sha256": "4d3306f3ee9f65d7ca02ac38849e806f009b86cd2aab5b78e1d43d3b8b5de902",
+      "webp_bytes": 127518,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_orzo_soup",
+      "input": "assets/photos_batch04/eg_orzo_soup.jpg",
+      "original_jpeg_sha256": "cee0cc01344e58331e7dc30de4a7033379c2f1cb569e12a6161230d98a850d96",
+      "original_bytes": 301887,
+      "output": "assets/photos/eg_orzo_soup.webp",
+      "webp_sha256": "ab178954c8a4b1215c5553fe641cef4cab84d6acaa436cb1f2a1c7275704d609",
+      "webp_bytes": 41124,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_orzo_tagine",
+      "input": "assets/photos_batch04/eg_orzo_tagine.jpg",
+      "original_jpeg_sha256": "e7bdcc61988d68bc91df9bbe1e8631463638af0cf5807d1782d15e8a5dd5e36e",
+      "original_bytes": 524348,
+      "output": "assets/photos/eg_orzo_tagine.webp",
+      "webp_sha256": "dc834517684277da053bd55171389a68acabd778556d25230c287e6204143c72",
+      "webp_bytes": 95356,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_oxtail_tagine",
+      "input": "assets/photos_batch04/eg_oxtail_tagine.jpg",
+      "original_jpeg_sha256": "62ac5079b1a37115b0c6e5a6116591d146862c69159e79ccd280d029f7920da7",
+      "original_bytes": 548535,
+      "output": "assets/photos/eg_oxtail_tagine.webp",
+      "webp_sha256": "d6f0e1c19af94c8f58dc319c72d7a3f9c19a848f5a65ca459f53f9504beb8654",
+      "webp_bytes": 94036,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_rice_moammar",
+      "input": "assets/photos_batch04/eg_rice_moammar.jpg",
+      "original_jpeg_sha256": "f0e9eb49f1c220edd7b5114230cc80a5ec692fc74471a9d30a38faf734f6bb82",
+      "original_bytes": 639480,
+      "output": "assets/photos/eg_rice_moammar.webp",
+      "webp_sha256": "8cc5573a129639ed29cbca239edc2aa23fdb42b73c8c64b6b2afbd7a92c2daac",
+      "webp_bytes": 108504,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_sayadeya_rice",
+      "input": "assets/photos_batch04/eg_sayadeya_rice.jpg",
+      "original_jpeg_sha256": "a4f45baa796ef30527f280fb3fea6c9d0f0bd4690d27828834faf75f73b911ce",
+      "original_bytes": 448690,
+      "output": "assets/photos/eg_sayadeya_rice.webp",
+      "webp_sha256": "f97c4b36ae45569c006d024aa73edcdcd02537494895b0ccea1be1a03bf0ab02",
+      "webp_bytes": 70656,
+      "original_dimensions": [
+        2048,
+        1592
+      ]
+    },
+    {
+      "recipe_id": "eg_seafood_soup_eg",
+      "input": "assets/photos_batch04/eg_seafood_soup_eg.jpg",
+      "original_jpeg_sha256": "083f8c0b9978471700ce85c791b4c8ba36d9623deb6c23a5f27d90698c844bd4",
+      "original_bytes": 472944,
+      "output": "assets/photos/eg_seafood_soup_eg.webp",
+      "webp_sha256": "05df47f77af4998062a8317bc52aecda6324c74d33e360ca19035c37a8a1d920",
+      "webp_bytes": 65572,
+      "original_dimensions": [
+        2048,
+        1592
+      ]
+    },
+    {
+      "recipe_id": "eg_tomato_soup",
+      "input": "assets/photos_batch04/eg_tomato_soup.jpg",
+      "original_jpeg_sha256": "b3ba8fd747e91fbec824accebbbd6670e5ebe717dca25e0e37438c12cfe67b90",
+      "original_bytes": 471168,
+      "output": "assets/photos/eg_tomato_soup.webp",
+      "webp_sha256": "8aed6c5bdee5db8f9588f63c9fc6cb0f446093fe5741e78032d5ca78328ada5f",
+      "webp_bytes": 71376,
+      "original_dimensions": [
+        2048,
+        1592
+      ]
+    },
+    {
+      "recipe_id": "eg_vegetable_soup",
+      "input": "assets/photos_batch04/eg_vegetable_soup.jpg",
+      "original_jpeg_sha256": "75c557bef6a45fe3822fd0152d51fa6dc0266d0a9cbcfd3598ad3e54bccaf79d",
+      "original_bytes": 407178,
+      "output": "assets/photos/eg_vegetable_soup.webp",
+      "webp_sha256": "62776e527020920c12598cb26bca63495dc4952329b48d14165f697d29aa594a",
+      "webp_bytes": 73136,
+      "original_dimensions": [
+        1728,
+        1344
+      ]
+    },
+    {
+      "recipe_id": "eg_bouri_oven",
+      "input": "assets/photos_batch05/eg_bouri_oven.jpg",
+      "original_jpeg_sha256": "305ca108b6c6bcd3ca947be553f5ed0e26286894f9e4655bd25f649135acbc61",
+      "original_bytes": 252214,
+      "output": "assets/photos/eg_bouri_oven.webp",
+      "webp_sha256": "f242f69cbb4c906fcea69879b80554632ebd9e9a139fa8f56717f650d851ddd2",
+      "webp_bytes": 132684,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_calamari_fried",
+      "input": "assets/photos_batch05/eg_calamari_fried.jpg",
+      "original_jpeg_sha256": "16578329aecfcbf1bb03a89e05cca6059af624c899f395b06bdae870b2c4852b",
+      "original_bytes": 172783,
+      "output": "assets/photos/eg_calamari_fried.webp",
+      "webp_sha256": "b8b08da40229c88b3196cc8c7ba076b33347f43dfa6133fc272b6e49aca3644a",
+      "webp_bytes": 59558,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_calamari_tagine",
+      "input": "assets/photos_batch05/eg_calamari_tagine.jpg",
+      "original_jpeg_sha256": "8a4bbbb6107800c67bd1de6d6605b290c011ddd0de25cecb186c17b1672c2b0b",
+      "original_bytes": 258435,
+      "output": "assets/photos/eg_calamari_tagine.webp",
+      "webp_sha256": "13028ebd21398ad7c000eff389ecc84e551c19e7e0a19b01406a121ccde7f044",
+      "webp_bytes": 103114,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_feteer_meshaltet",
+      "input": "assets/photos_batch05/eg_feteer_meshaltet.jpg",
+      "original_jpeg_sha256": "925ce8e272d138e2351c61e4fd6e47e502b61915db1ad904762b2ffc032e2c60",
+      "original_bytes": 250400,
+      "output": "assets/photos/eg_feteer_meshaltet.webp",
+      "webp_sha256": "e66376ac0addb90ffed8856c52ea998c0851a9c58b82b80a2cd9b7907c939ea0",
+      "webp_bytes": 106614,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_fish_singari",
+      "input": "assets/photos_batch05/eg_fish_singari.jpg",
+      "original_jpeg_sha256": "3de1d92fc58b018013651fc68742b1be1719c264986e9ce98440c4cd6cc090cb",
+      "original_bytes": 153190,
+      "output": "assets/photos/eg_fish_singari.webp",
+      "webp_sha256": "32b901974dafc9b750f3226c1624374ea775c664283e0971eec30f19e7c3d214",
+      "webp_bytes": 63694,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_fish_tahini",
+      "input": "assets/photos_batch05/eg_fish_tahini.jpg",
+      "original_jpeg_sha256": "318044aac5a05acd4292b0305107998c11b24ed84910bce4b5f69f25765caf49",
+      "original_bytes": 282464,
+      "output": "assets/photos/eg_fish_tahini.webp",
+      "webp_sha256": "710b506e0c8b6f300ca6d92771232e659410d2a924a34b0ff5b5e1d473391cc0",
+      "webp_bytes": 125484,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_flahy_qors",
+      "input": "assets/photos_batch05/eg_flahy_qors.jpg",
+      "original_jpeg_sha256": "43b447c4117d4869f06ad81305499d6d993f29a35a1357c1040ac177a1146560",
+      "original_bytes": 210744,
+      "output": "assets/photos/eg_flahy_qors.webp",
+      "webp_sha256": "565305839e47b031f1cb367cc803ed2a5847053e405798fd13cbef90c32b63b0",
+      "webp_bytes": 76830,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_sardines_fried",
+      "input": "assets/photos_batch05/eg_sardines_fried.jpg",
+      "original_jpeg_sha256": "37464f552e37571aee5fe6e4e5c9be96fab207b5b323c83af96b6dc7bf1cf896",
+      "original_bytes": 240442,
+      "output": "assets/photos/eg_sardines_fried.webp",
+      "webp_sha256": "888da36a3ffd14f8dd12d6ff59bfccb77f5d3a3991c29640073b397ad7d77016",
+      "webp_bytes": 101332,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_shrimp_alex",
+      "input": "assets/photos_batch05/eg_shrimp_alex.jpg",
+      "original_jpeg_sha256": "f4d99fca7ae8747943cf231cbd5bc530e9a69be242238b4607eca2eb1612ec74",
+      "original_bytes": 126988,
+      "output": "assets/photos/eg_shrimp_alex.webp",
+      "webp_sha256": "ebcdba4062b2964613d406f50f935973ae5f6198742fe6a4bbc53824997c196e",
+      "webp_bytes": 46100,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_shrimp_red_sauce",
+      "input": "assets/photos_batch05/eg_shrimp_red_sauce.jpg",
+      "original_jpeg_sha256": "a0c745a07320dc62bd85752cf18174e3f9bed6828a19a2bc22950f89835dbe25",
+      "original_bytes": 186612,
+      "output": "assets/photos/eg_shrimp_red_sauce.webp",
+      "webp_sha256": "ee9f536de933595553b3fc99d40f4de9b5da032cb7ed496c927de6521cc40518",
+      "webp_bytes": 62226,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_tilapia_fried",
+      "input": "assets/photos_batch05/eg_tilapia_fried.jpg",
+      "original_jpeg_sha256": "dc88dfc3f3c880b691d3c88ed0b297626f8acf536f2cd26f8fda1e2c6e70609e",
+      "original_bytes": 171694,
+      "output": "assets/photos/eg_tilapia_fried.webp",
+      "webp_sha256": "7a051b95d7cbbd0a798579286b4a0948225a688f670fc09888d8259bc5615573",
+      "webp_bytes": 79782,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_tilapia_grilled",
+      "input": "assets/photos_batch05/eg_tilapia_grilled.jpg",
+      "original_jpeg_sha256": "7a065e6e6e1025c531c74ae7526200e39982d1934a6ca6225ebd3b479a3ca19f",
+      "original_bytes": 229951,
+      "output": "assets/photos/eg_tilapia_grilled.webp",
+      "webp_sha256": "b985c674fc302e39c47aacfd01d915e20453ededf8ac8b92534b2ac763f6f296",
+      "webp_bytes": 129412,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_duqqa_alex",
+      "input": "assets/photos_batch06/eg_duqqa_alex.jpg",
+      "original_jpeg_sha256": "0c6ceea6c78177e2e377b2b37a7548ed28b5fd5a71b0a6048dfebdda243eaea7",
+      "original_bytes": 165609,
+      "output": "assets/photos/eg_duqqa_alex.webp",
+      "webp_sha256": "68d9d67d7923101feb620d17da2b4afb04d679e9590f39807b0bac46a41503df",
+      "webp_bytes": 44674,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_feteer_cream",
+      "input": "assets/photos_batch06/eg_feteer_cream.jpg",
+      "original_jpeg_sha256": "44c6e16b04291a428cfdfee7fc990a3d2901feb4e1e85e5100a1a440213225d0",
+      "original_bytes": 251188,
+      "output": "assets/photos/eg_feteer_cream.webp",
+      "webp_sha256": "c2d965b809a9ae9f4031de4883f9345d58731a70e136bd92282850e9583ba5d0",
+      "webp_bytes": 85378,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_qurasa_milk",
+      "input": "assets/photos_batch06/eg_qurasa_milk.jpg",
+      "original_jpeg_sha256": "746e66bf67877e74640804156615bca6f6f45364521c95a918a78d980b5323c8",
+      "original_bytes": 206036,
+      "output": "assets/photos/eg_qurasa_milk.webp",
+      "webp_sha256": "f8eb9b673474898825e47f194c836d7e7b50ae47b5a9f5a574ea432b024b316a",
+      "webp_bytes": 64848,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_baba_ghanoush",
+      "input": "assets/photos_batch07/eg_baba_ghanoush.jpg",
+      "original_jpeg_sha256": "03f1ac65bd64b60172f409c83119fd975ff14c8358571488fb9ccd8703fb4db4",
+      "original_bytes": 219630,
+      "output": "assets/photos/eg_baba_ghanoush.webp",
+      "webp_sha256": "d90aa032fa5cb1983983a63001dec30f9ff0faac42fe686776402834ec7c560f",
+      "webp_bytes": 82226,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    },
+    {
+      "recipe_id": "eg_kunafa_cream",
+      "input": "assets/photos_batch07/eg_kunafa_cream.jpg",
+      "original_jpeg_sha256": "c6ecc36b086fc30e8de4f3800f30cf8e17811a602a0994811fac6591eb8b2263",
+      "original_bytes": 218636,
+      "output": "assets/photos/eg_kunafa_cream.webp",
+      "webp_sha256": "7f8a5068be29024f7ba6f6d69f511a4bb2195601cef7896a770693b2c0bf1b99",
+      "webp_bytes": 91446,
+      "original_dimensions": [
+        1152,
+        896
+      ]
+    }
+  ],
+  "apk_size_bytes": 164728178,
+  "apk_sha256": "9344da2c94c57136f82bcad0822390a75aad2e57f3d84cf2a12569cbf7e96c9e",
+  "safe_source_size_bytes": 10254092,
+  "safe_source_sha256": "916edeaf936658cdb2e095a2ae974870dc83ed94850a5e6fb97f6a14016e860e",
+  "build_type": "Flutter debug APK (not a signed Google Play release)",
+  "debug_signing_note": "Debug key can differ from previously installed builds; an in-place upgrade is not guaranteed",
+  "android_apk_image_asset_count_verified": 131
+}
