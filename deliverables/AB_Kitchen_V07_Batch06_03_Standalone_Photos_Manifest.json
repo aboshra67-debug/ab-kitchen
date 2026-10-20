@@ -1,0 +1,62 @@
+{
+  "project": "AB Kitchen V0.7",
+  "batch": "06",
+  "new_photos": 3,
+  "photo_type": "AI-generated food imagery",
+  "duplicate_recipe_ids": 0,
+  "duplicate_exact_sha256": 0,
+  "user_review_pending": true,
+  "source_app_untouched": true,
+  "still_missing_in_github_recipe_images": 19,
+  "existing_fino_separate_local_file": true,
+  "photos": [
+    {
+      "recipe_id": "eg_qurasa_milk",
+      "name_ar": "قرص باللبن",
+      "ingredients_ar": [
+        "دقيق",
+        "لبن",
+        "زبدة",
+        "سكر",
+        "خميرة",
+        "سمسم"
+      ],
+      "filename": "eg_qurasa_milk.jpg",
+      "width": 1152,
+      "height": 896,
+      "sha256": "746e66bf67877e74640804156615bca6f6f45364521c95a918a78d980b5323c8"
+    },
+    {
+      "recipe_id": "eg_feteer_cream",
+      "name_ar": "فطير بالقشطة والعسل",
+      "ingredients_ar": [
+        "دقيق",
+        "ماء",
+        "سمن",
+        "قشطة",
+        "عسل نحل",
+        "ملح"
+      ],
+      "filename": "eg_feteer_cream.jpg",
+      "width": 1152,
+      "height": 896,
+      "sha256": "44c6e16b04291a428cfdfee7fc990a3d2901feb4e1e85e5100a1a440213225d0"
+    },
+    {
+      "recipe_id": "eg_duqqa_alex",
+      "name_ar": "دقة إسكندراني",
+      "ingredients_ar": [
+        "ثوم",
+        "خل",
+        "ليمون",
+        "ماء",
+        "كمون",
+        "فلفل حار"
+      ],
+      "filename": "eg_duqqa_alex.jpg",
+      "width": 1152,
+      "height": 896,
+      "sha256": "0c6ceea6c78177e2e377b2b37a7548ed28b5fd5a71b0a6048dfebdda243eaea7"
+    }
+  ]
+}
