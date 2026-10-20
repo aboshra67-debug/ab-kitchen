@@ -1,0 +1,24 @@
+{
+  "project": "AB Kitchen",
+  "version": "V0.7",
+  "batch": "07",
+  "part": "A",
+  "photos": [
+    {
+      "recipe_id": "eg_baba_ghanoush",
+      "name_ar": "بابا غنوج",
+      "filename": "eg_baba_ghanoush.jpg",
+      "description": "Roasted eggplant with tahini lemon garlic olive oil parsley"
+    },
+    {
+      "recipe_id": "eg_kunafa_cream",
+      "name_ar": "كنافة بالقشطة",
+      "filename": "eg_kunafa_cream.jpg",
+      "description": "Crisp kataifi strands enclosing visible white cream and syrup"
+    }
+  ],
+  "generated_by": "Adobe Firefly AI, independent recipe-specific realistic imagery; not camera photographs",
+  "visual_review": "Two photos inspected individually; appear to match main ingredients",
+  "status": "Stage only. Do not show in app until approved.",
+  "main_modified": false
+}

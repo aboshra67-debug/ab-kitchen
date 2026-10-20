@@ -1,0 +1,37 @@
+name: AB Kitchen V0.7 - batch07 two photo ZIP PDF
+on:
+  push:
+    branches:
+      - assets/v07-batch07-two-new-reviewed
+    paths:
+      - .github/workflows/ab_kitchen_batch07_delivery.yml
+      - assets/photos_batch07/**
+      - tools/build_batch07_delivery.py
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  test-and-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install packages for image and PDF QA
+        run: python -m pip install --disable-pip-version-check Pillow reportlab arabic-reshaper python-bidi PyMuPDF
+      - name: Check image identities and generate separate images catalog
+        run: python tools/build_batch07_delivery.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V07-Batch07-2-Standalone-JPG-PDF-ZIP
+          path: deliverables/AB_Kitchen_V07_Batch07_PartA_02_Recipe_Photos*
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish on isolated assets branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add deliverables/AB_Kitchen_V07_Batch07_PartA_02_Recipe_Photos*
+          if git diff --cached --quiet; then echo "Already delivered"; else git commit -m 'deliverables: two standalone food photos with QA PDF ZIP'; git push origin HEAD:assets/v07-batch07-two-new-reviewed; fi
