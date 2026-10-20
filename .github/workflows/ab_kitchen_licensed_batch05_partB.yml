@@ -1,0 +1,38 @@
+name: AB Kitchen V0.7 - 4 Commons licensed recipe images
+on:
+  push:
+    branches:
+      - 'assets/v07-batch05-partB-commons-QA'
+    paths:
+      - '.github/workflows/ab_kitchen_licensed_batch05_partB.yml'
+      - 'tools/build_batch05_partB_commons.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  license-verify-and-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image and PDF audit tools
+        run: pip install --disable-pip-version-check requests Pillow reportlab arabic-reshaper python-bidi PyMuPDF
+      - name: Download 4 real photos, confirm licenses, generate PDF ZIP and manifest
+        run: python tools/build_batch05_partB_commons.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V07-Batch05-PartB-4-Real-Photos
+          path: |
+            deliverables/AB_Kitchen_V07_Batch05_PartB_4_Licensed_Real_Photos.*
+            deliverables/AB_Kitchen_V07_Batch05_PartB_4_Licensed_Real_Photos_Attribution.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish delivery and staged source photos on isolated branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/photos_batch05_partB_verified/*.jpg deliverables/AB_Kitchen_V07_Batch05_PartB_4_Licensed_Real_Photos*
+          if git diff --cached --quiet; then echo "Already published"; else git commit -m 'deliverables: 4 exact-match licensed Commons food photos with attribution'; git push origin HEAD:assets/v07-batch05-partB-commons-QA; fi
