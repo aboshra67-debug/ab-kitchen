@@ -1,0 +1,53 @@
+name: AB Kitchen V0.7 - batch 03 and 04 photo deliveries
+on:
+  push:
+    branches:
+      - 'assets/v07-photo-deliveries-03-04'
+    paths:
+      - '.github/workflows/build_recipe_photos_batches03_04.yml'
+      - 'tools/build_batch03_04_catalog.py'
+      - 'assets/photos_batch03/**'
+      - 'assets/photos_batch04/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-and-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install safe image and PDF QA dependencies
+        run: |
+          python -m pip install --disable-pip-version-check Pillow reportlab arabic-reshaper python-bidi PyMuPDF
+      - name: Audit all 74 staged images and create independent batch PDF/ZIP outputs
+        run: python tools/build_batch03_04_catalog.py
+      - name: Upload batch 03 and 04 QA deliverables
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V07-Batches03-04-Photo-Deliverables
+          path: |
+            deliverables/AB_Kitchen_V07_Batch03_20_Recipes.pdf
+            deliverables/AB_Kitchen_V07_Batch03_20_JPG.zip
+            deliverables/AB_Kitchen_V07_Batch03_Manifest.json
+            deliverables/AB_Kitchen_V07_Batch04_14_Recipes.pdf
+            deliverables/AB_Kitchen_V07_Batch04_14_JPG.zip
+            deliverables/AB_Kitchen_V07_Batch04_Manifest.json
+            deliverables/AB_Kitchen_V07_AllBatches_Audit.json
+          if-no-files-found: error
+      - name: Commit audited deliveries to this isolated branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add deliverables/AB_Kitchen_V07_Batch03_* deliverables/AB_Kitchen_V07_Batch04_* deliverables/AB_Kitchen_V07_AllBatches_Audit.json
+          if git diff --cached --quiet; then
+            echo "No new deliverables"
+          else
+            git commit -m "deliverables: publish verified batch 03/04 PDF and JPG ZIP packages"
+            git push origin HEAD:assets/v07-photo-deliveries-03-04
+          fi
