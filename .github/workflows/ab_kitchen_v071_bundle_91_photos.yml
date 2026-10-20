@@ -1,0 +1,92 @@
+name: AB Kitchen V0.7.1 - Safe Offline Photos Build + APK Source
+on:
+  push:
+    branches:
+      - feature/v08-bundled-photo-integration-safe
+    paths:
+      - '.github/workflows/ab_kitchen_v071_bundle_91_photos.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  bundle-and-build:
+    name: Integrate photos, verify Flutter, create APK and Safe Source
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Checkout untouched V0.7 source with safe patch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Retrieve exact 91 approved/staged recipe JPEGs without merging code
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/abk-images"
+          git fetch --no-tags --depth=1 origin "refs/heads/assets/v07-batch07-two-new-reviewed"
+          git archive --format=tar FETCH_HEAD assets/photos_batch01 assets/photos_batch02 assets/photos_batch03 assets/photos_batch04 assets/photos_batch05 assets/photos_batch06 assets/photos_batch07 | tar -xf - -C "$RUNNER_TEMP/abk-images"
+          echo "ABK_SOURCE_IMAGES=$RUNNER_TEMP/abk-images" >> "$GITHUB_ENV"
+          find "$RUNNER_TEMP/abk-images/assets" -type f -name '*.jpg' | wc -l
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image processing package
+        run: python -m pip install --disable-pip-version-check Pillow
+      - name: Validate exact IDs and make 91 optimized per-recipe WebP images
+        run: python tools/integrate_recipe_photos_v071.py --source-root "$ABK_SOURCE_IMAGES"
+      - name: Setup stable Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate Android platform only, without replacing existing Dart files
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Delete only obsolete example widget test if generated
+        run: |
+          if [ -f test/widget_test.dart ] && grep -q 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
+      - name: Install Flutter dependencies
+        run: flutter pub get
+      - name: Apply existing brand icon (unchanged)
+        run: dart run flutter_launcher_icons -f flutter_launcher_icons_android.yaml
+      - name: Flutter static analysis
+        run: flutter analyze
+      - name: Flutter unit + UI regression tests including ALL 131 offline photos
+        run: flutter test
+      - name: Build Android debug APK with bundled photos
+        run: flutter build apk --debug
+      - name: Verify 131 photos are truly in APK and package Safe Source
+        run: |
+          git add assets/photos/ deliverables/AB_Kitchen_V071_91_Photos_Integration_Audit.json
+          python tools/integrate_recipe_photos_v071.py --package
+          ls -lh deliverables/AB_Kitchen_V071_131_PHOTOS_ANDROID_DEBUG.apk deliverables/AB_Kitchen_V071_131_PHOTOS_SAFE_SOURCE.zip
+      - name: Deliver both APK and Safe Source regardless of GitHub file limits
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V071-131-Photos-APK-Safe-Source
+          path: |
+            deliverables/AB_Kitchen_V071_131_PHOTOS_ANDROID_DEBUG.apk
+            deliverables/AB_Kitchen_V071_131_PHOTOS_SAFE_SOURCE.zip
+            deliverables/AB_Kitchen_V071_91_Photos_Integration_Audit.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Commit safe WebP assets and portable deliverables on this branch ONLY
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/photos/ deliverables/AB_Kitchen_V071_91_Photos_Integration_Audit.json deliverables/AB_Kitchen_V071_131_PHOTOS_SAFE_SOURCE.zip
+          size=$(stat -c%s deliverables/AB_Kitchen_V071_131_PHOTOS_ANDROID_DEBUG.apk)
+          if [ "$size" -le 90000000 ]; then
+            git add deliverables/AB_Kitchen_V071_131_PHOTOS_ANDROID_DEBUG.apk
+          else
+            echo "::warning::APK exceeds safe direct GitHub upload size; download it from Actions artifact."
+          fi
+          if git diff --cached --quiet; then
+            echo "Identical assets already published"
+          else
+            git commit -m "release(photos): bundle 91 real per-recipe assets, Android debug APK and Safe Source V0.7.1"
+            git push origin HEAD:feature/v08-bundled-photo-integration-safe
+          fi
