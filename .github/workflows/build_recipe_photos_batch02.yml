@@ -1,0 +1,60 @@
+name: AB Kitchen V0.7 first 20 recipe photo delivery
+on:
+  push:
+    branches:
+      - assets/v07-photos-batch02-20
+    paths:
+      - 'tools/build_batch02_catalog.py'
+      - 'assets/photos_batch02/**'
+      - '.github/workflows/build_recipe_photos_batch02.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  deliver_first_20:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated image branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF and Arabic rendering dependencies
+        run: |
+          python -m pip install --disable-pip-version-check Pillow reportlab arabic-reshaper python-bidi PyMuPDF
+      - name: Build verified standalone JPEG ZIP and 20-page PDF
+        run: python tools/build_batch02_catalog.py
+      - name: Verify rendered PDF pages
+        run: |
+          python - <<'PY'
+          import fitz
+          path='deliverables/AB_Kitchen_V07_Batch02_20_Recipes.pdf'
+          doc=fitz.open(path)
+          assert len(doc)==20, f'Expected 20 pages, got {len(doc)}'
+          assert all(len(p.get_images())>0 for p in doc), 'A page has no embedded food image'
+          assert all(len(p.get_text().strip())>40 for p in doc), 'A page is missing caption text'
+          print('PDF QA passed:',len(doc),'pages, all with images and captions')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V07-Batch02-20-JPG-PDF
+          path: |
+            deliverables/AB_Kitchen_V07_Batch02_20_Recipes.pdf
+            deliverables/AB_Kitchen_V07_Batch02_20_JPG.zip
+            deliverables/AB_Kitchen_V07_Batch02_Manifest.json
+          if-no-files-found: error
+          retention-days: 60
+      - name: Publish deliverables on isolated branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add deliverables/AB_Kitchen_V07_Batch02_20_Recipes.pdf deliverables/AB_Kitchen_V07_Batch02_20_JPG.zip deliverables/AB_Kitchen_V07_Batch02_Manifest.json
+          if git diff --cached --quiet; then
+            echo 'Outputs already committed'
+          else
+            git commit -m 'deliverables: publish first 20 food JPGs and formatted PDF'
+            git push origin HEAD:assets/v07-photos-batch02-20
+          fi

@@ -2,7 +2,7 @@
   "project": "AB Kitchen",
   "base_version": "V0.7",
   "batch": "03",
-  "images": "AI generated food visuals; not camera photographs",
+  "images": "AI generated photorealistic images; not documentary photographs",
   "photos": [
     {
       "id": "eg_boiled_fava_green",

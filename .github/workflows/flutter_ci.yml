@@ -70,3 +70,51 @@ jobs:
         run: flutter test
       - name: Build unsigned iOS simulator binary
         run: flutter build ios --simulator --debug
+  export_photo_batch_02:
+    name: Batch 02 photo catalog PDF and JPG ZIP
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/assets/v07-photos-batches02-05'
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image and Arabic PDF build dependencies
+        run: python -m pip install Pillow reportlab arabic-reshaper python-bidi PyMuPDF
+      - name: Build image batch 02
+        run: python tools/build_batch02_catalog.py
+      - name: Verify each PDF page has food image and text
+        run: |
+          python - <<'PY'
+          import fitz,zipfile
+          f='deliverables/AB_Kitchen_V07_Batch02_20_Recipes.pdf'
+          doc=fitz.open(f)
+          assert len(doc)==20
+          assert all(p.get_images() for p in doc)
+          assert all(p.get_text().strip() for p in doc)
+          with zipfile.ZipFile('deliverables/AB_Kitchen_V07_Batch02_20_JPG.zip') as z:
+              assert z.testzip() is None
+              assert sum(x.startswith('photos/') and x.endswith('.jpg') for x in z.namelist())==20
+          print('20 unique photos and 20 page catalog confirmed')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V07-Batch02-20-JPG-PDF
+          path: |
+            deliverables/AB_Kitchen_V07_Batch02_20_Recipes.pdf
+            deliverables/AB_Kitchen_V07_Batch02_20_JPG.zip
+            deliverables/AB_Kitchen_V07_Batch02_Manifest.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Commit generated deliverables on isolated branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add deliverables/AB_Kitchen_V07_Batch02_20_Recipes.pdf deliverables/AB_Kitchen_V07_Batch02_20_JPG.zip deliverables/AB_Kitchen_V07_Batch02_Manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'deliverables: publish 20 individual recipe photos from batch 02'
+            git push origin HEAD:assets/v07-photos-batches02-05
+          fi
