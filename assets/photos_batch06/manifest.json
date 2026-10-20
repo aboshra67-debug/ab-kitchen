@@ -1,0 +1,17 @@
+{
+  "project": "AB Kitchen",
+  "version": "V0.7",
+  "batch": "06",
+  "status": "part 1 / 3 standalone food images generated and staged, not integrated into main",
+  "source": "Adobe Firefly AI generated photorealistic images",
+  "photos": [
+    "eg_qurasa_milk",
+    "eg_feteer_cream",
+    "eg_duqqa_alex"
+  ],
+  "fino_follows_separately": "eg_fino_bread was produced in an earlier conversation deliverable, but is not yet present on GitHub",
+  "recipe_count": 148,
+  "original_source_modified": false,
+  "approved": false,
+  "notes": "Per-recipe exact ID matched. Visual review of all 3 performed in ChatGPT; user approval and testing in app still pending."
+}
