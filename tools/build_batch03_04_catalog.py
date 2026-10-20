@@ -136,7 +136,7 @@ def make_batch(num, expected):
             x=box[0]+(box[2]-width)/2;y=box[1]+(box[3]-height)/2
             c.setFillColor(colors.HexColor("#EEE8E5"))
             c.roundRect(box[0]-3,box[1]-3,box[2]+6,box[3]+6,10,fill=1,stroke=0)
-            c.drawImage(ImageReader(img),x,y,width,height,mask="auto")
+            c.drawImage(str(p),x,y,width,height,mask="auto")
         ar(c,"المكونات الأساسية: "+ "، ".join(entry["ingredients_ar"][:5]),W-43,197,11)
         c.setStrokeColor(colors.HexColor("#E4D5D5"));c.line(43,159,W-43,159)
         c.setFont("Helvetica",9);c.setFillColor(colors.HexColor("#666166"))
@@ -145,6 +145,7 @@ def make_batch(num, expected):
         c.drawString(43,94,f"Filename: {entry['filename']}")
         c.showPage()
     c.save()
+    assert pdf_path.stat().st_size < 45_000_000, 'PDF too large for direct GitHub delivery'
     doc=fitz.open(pdf_path)
     assert len(doc)==expected
     assert all(p.get_images() and len(p.get_text().strip())>30 for p in doc)
