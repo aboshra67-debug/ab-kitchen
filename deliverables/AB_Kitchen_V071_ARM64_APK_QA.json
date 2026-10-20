@@ -1,0 +1,12 @@
+{
+  "project": "AB Kitchen",
+  "version": "0.7.1+8",
+  "variant": "Android ARM64 only / release-optimized TEST build; not production signed",
+  "photo_assets_in_apk": 132,
+  "unique_recipes_pictured": 131,
+  "package_name_expected": "com.absoftware.ab_kitchen",
+  "signing_warning": "Uses default Flutter-generated debug signing config unless separately configured; key is NOT original production key and in-place updates may be impossible.",
+  "apk_bytes": 28589084,
+  "sha256": "2606f93c26c3595fc94faae288102b64ad4aec422fdf2006df200d3511267619",
+  "safe_source": "AB_Kitchen_V071_131_PHOTOS_SAFE_SOURCE.zip"
+}
