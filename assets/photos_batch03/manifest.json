@@ -1,0 +1,148 @@
+{
+  "project": "AB Kitchen",
+  "base_version": "V0.7",
+  "batch": "03",
+  "images": "AI generated food visuals; not camera photographs",
+  "photos": [
+    {
+      "id": "eg_boiled_fava_green",
+      "name": "فول أخضر بالثوم",
+      "country": "eg",
+      "filename": "eg_boiled_fava_green.jpg",
+      "ordinal": 41
+    },
+    {
+      "id": "eg_feteer_sugar",
+      "name": "فطير بالسكر والسمن",
+      "country": "eg",
+      "filename": "eg_feteer_sugar.jpg",
+      "ordinal": 42
+    },
+    {
+      "id": "eg_liver_alexandria",
+      "name": "كبدة إسكندراني",
+      "country": "eg",
+      "filename": "eg_liver_alexandria.jpg",
+      "ordinal": 43
+    },
+    {
+      "id": "eg_sogo2_alexandria",
+      "name": "سجق إسكندراني",
+      "country": "eg",
+      "filename": "eg_sogo2_alexandria.jpg",
+      "ordinal": 44
+    },
+    {
+      "id": "eg_pigeon_freekeh",
+      "name": "حمام محشي فريك",
+      "country": "eg",
+      "filename": "eg_pigeon_freekeh.jpg",
+      "ordinal": 45
+    },
+    {
+      "id": "eg_pigeon_rice",
+      "name": "حمام محشي أرز",
+      "country": "eg",
+      "filename": "eg_pigeon_rice.jpg",
+      "ordinal": 46
+    },
+    {
+      "id": "eg_kaware3",
+      "name": "كوارع بالصلصة",
+      "country": "eg",
+      "filename": "eg_kaware3.jpg",
+      "ordinal": 47
+    },
+    {
+      "id": "eg_torb",
+      "name": "طرب مشوي",
+      "country": "eg",
+      "filename": "eg_torb.jpg",
+      "ordinal": 48
+    },
+    {
+      "id": "eg_moza_veg",
+      "name": "موزة ضاني بالبصل",
+      "country": "eg",
+      "filename": "eg_moza_veg.jpg",
+      "ordinal": 49
+    },
+    {
+      "id": "eg_fesikh_salad",
+      "name": "سلطة رنجة مدخنة",
+      "country": "eg",
+      "filename": "eg_fesikh_salad.jpg",
+      "ordinal": 50
+    },
+    {
+      "id": "eg_ro2a2_meat",
+      "name": "رقاق باللحمة المفرومة",
+      "country": "eg",
+      "filename": "eg_ro2a2_meat.jpg",
+      "ordinal": 51
+    },
+    {
+      "id": "eg_roasted_duck",
+      "name": "بط محمر",
+      "country": "eg",
+      "filename": "eg_roasted_duck.jpg",
+      "ordinal": 52
+    },
+    {
+      "id": "eg_wara2_3enab",
+      "name": "ورق عنب مصري",
+      "country": "eg",
+      "filename": "eg_wara2_3enab.jpg",
+      "ordinal": 53
+    },
+    {
+      "id": "eg_onion_mahshi",
+      "name": "محشي بصل",
+      "country": "eg",
+      "filename": "eg_onion_mahshi.jpg",
+      "ordinal": 54
+    },
+    {
+      "id": "eg_vine_leaves_meat",
+      "name": "ورق سلق محشي",
+      "country": "eg",
+      "filename": "eg_vine_leaves_meat.jpg",
+      "ordinal": 55
+    },
+    {
+      "id": "eg_stuffed_tomatoes",
+      "name": "طماطم محشية بالأرز",
+      "country": "eg",
+      "filename": "eg_stuffed_tomatoes.jpg",
+      "ordinal": 56
+    },
+    {
+      "id": "eg_potato_mahshi_meat",
+      "name": "بطاطس محشية لحمة",
+      "country": "eg",
+      "filename": "eg_potato_mahshi_meat.jpg",
+      "ordinal": 57
+    },
+    {
+      "id": "eg_potato_chicken_tray",
+      "name": "صينية بطاطس بالفراخ",
+      "country": "eg",
+      "filename": "eg_potato_chicken_tray.jpg",
+      "ordinal": 58
+    },
+    {
+      "id": "eg_potato_meat_tray",
+      "name": "صينية بطاطس باللحمة",
+      "country": "eg",
+      "filename": "eg_potato_meat_tray.jpg",
+      "ordinal": 59
+    },
+    {
+      "id": "eg_torly_oven",
+      "name": "طاجن تورلي باللحمة",
+      "country": "eg",
+      "filename": "eg_torly_oven.jpg",
+      "ordinal": 60
+    }
+  ]
+}
