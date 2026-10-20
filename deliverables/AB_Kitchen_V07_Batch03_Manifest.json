@@ -1,0 +1,394 @@
+{
+  "project": "AB Kitchen",
+  "version": "V0.7",
+  "batch": "03",
+  "count": 20,
+  "image_type": "AI-generated photorealistic representations",
+  "photos": [
+    {
+      "recipe_id": "eg_boiled_fava_green",
+      "name_ar": "فول أخضر بالثوم",
+      "ingredients_ar": [
+        "فول أخضر",
+        "ثوم",
+        "ليمون",
+        "شبت",
+        "زيت",
+        "كمون"
+      ],
+      "country": "eg",
+      "filename": "eg_boiled_fava_green.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "d7931c8aa8ff2a1a89b942138835d4f8841a0f739c61f49999da51cbe28e0a46"
+    },
+    {
+      "recipe_id": "eg_feteer_sugar",
+      "name_ar": "فطير بالسكر والسمن",
+      "ingredients_ar": [
+        "دقيق",
+        "ماء",
+        "سمن",
+        "سكر",
+        "ملح"
+      ],
+      "country": "eg",
+      "filename": "eg_feteer_sugar.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "d95b530321410c5643d56d1c0f667a20469c45f4629510601088cc342ff7c9ed"
+    },
+    {
+      "recipe_id": "eg_liver_alexandria",
+      "name_ar": "كبدة إسكندراني",
+      "ingredients_ar": [
+        "كبدة بقري",
+        "فلفل أخضر",
+        "ثوم",
+        "خل",
+        "ليمون",
+        "زيت",
+        "كمون"
+      ],
+      "country": "eg",
+      "filename": "eg_liver_alexandria.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "ec86d4eed4e1bad6aaf337f110664baacf2550776e5ed29c3bc3e57ffdbc046c"
+    },
+    {
+      "recipe_id": "eg_sogo2_alexandria",
+      "name_ar": "سجق إسكندراني",
+      "ingredients_ar": [
+        "سجق بلدي",
+        "بصل",
+        "فلفل رومي",
+        "طماطم",
+        "ثوم",
+        "زيت"
+      ],
+      "country": "eg",
+      "filename": "eg_sogo2_alexandria.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "a96ec2338f2dba295b6fc886f2f348baf44c944a19acc7ee31e1236446336131"
+    },
+    {
+      "recipe_id": "eg_pigeon_freekeh",
+      "name_ar": "حمام محشي فريك",
+      "ingredients_ar": [
+        "حمام منظف",
+        "فريك",
+        "بصل",
+        "سمن",
+        "مرق",
+        "فلفل أسود"
+      ],
+      "country": "eg",
+      "filename": "eg_pigeon_freekeh.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "cbed91496767d2b9b920e3ca891d2994bf7b8f325588d56ec7a8d2796cc38d70"
+    },
+    {
+      "recipe_id": "eg_pigeon_rice",
+      "name_ar": "حمام محشي أرز",
+      "ingredients_ar": [
+        "حمام منظف",
+        "أرز مصري",
+        "كبد وقوانص منظفة",
+        "بصل",
+        "سمن",
+        "مرق"
+      ],
+      "country": "eg",
+      "filename": "eg_pigeon_rice.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "2511f097f1179bf6aed9de30373b767c2da5488091e288f0a82c50f8ef6069a2"
+    },
+    {
+      "recipe_id": "eg_kaware3",
+      "name_ar": "كوارع بالصلصة",
+      "ingredients_ar": [
+        "كوارع منظفة",
+        "بصل",
+        "طماطم",
+        "ثوم",
+        "خل",
+        "سمن"
+      ],
+      "country": "eg",
+      "filename": "eg_kaware3.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "56597c9f3ac46d402e1a162ee0dc34ad1879c984d76cca15d90b676aefcbfe01"
+    },
+    {
+      "recipe_id": "eg_torb",
+      "name_ar": "طرب مشوي",
+      "ingredients_ar": [
+        "لحم مفروم",
+        "منديل ضاني",
+        "بصل",
+        "بقدونس",
+        "فلفل أسود"
+      ],
+      "country": "eg",
+      "filename": "eg_torb.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "835a73ca0e8599e2095f792673e890d73d6043850547175635ac173c28fb2caf"
+    },
+    {
+      "recipe_id": "eg_moza_veg",
+      "name_ar": "موزة ضاني بالبصل",
+      "ingredients_ar": [
+        "موزات ضاني",
+        "بصل",
+        "ثوم",
+        "جزر",
+        "مرق",
+        "سمن"
+      ],
+      "country": "eg",
+      "filename": "eg_moza_veg.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "5d249827b5c6104da301a1cdd440c44d58f082b26e6bd935f7d6e176e8f3b805"
+    },
+    {
+      "recipe_id": "eg_fesikh_salad",
+      "name_ar": "سلطة رنجة مدخنة",
+      "ingredients_ar": [
+        "رنجة مدخنة جاهزة للأكل",
+        "بصل",
+        "طماطم",
+        "ليمون",
+        "طحينة",
+        "زيت"
+      ],
+      "country": "eg",
+      "filename": "eg_fesikh_salad.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "f97adb530904b36ac1d739c190b9a3bd7bbd6a6f1e4eea73016377ad42f04b5e"
+    },
+    {
+      "recipe_id": "eg_ro2a2_meat",
+      "name_ar": "رقاق باللحمة المفرومة",
+      "ingredients_ar": [
+        "رقاق ناشف",
+        "لحم مفروم",
+        "بصل",
+        "مرق لحم",
+        "سمن"
+      ],
+      "country": "eg",
+      "filename": "eg_ro2a2_meat.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "b493b51aa808665f3f50af6dcf58e6d098b76110a91fc37af0eef5d72a638900"
+    },
+    {
+      "recipe_id": "eg_roasted_duck",
+      "name_ar": "بط محمر",
+      "ingredients_ar": [
+        "بطة منظفة",
+        "بصل",
+        "جزر",
+        "سمن",
+        "ليمون",
+        "مرق"
+      ],
+      "country": "eg",
+      "filename": "eg_roasted_duck.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "64b5f52e0c0efa9920f17271338ae43cb44a17d1f850779e3a82e851d2e4a911"
+    },
+    {
+      "recipe_id": "eg_wara2_3enab",
+      "name_ar": "ورق عنب مصري",
+      "ingredients_ar": [
+        "ورق عنب",
+        "أرز مصري",
+        "طماطم",
+        "بصل",
+        "بقدونس",
+        "شبت",
+        "مرق",
+        "ليمون"
+      ],
+      "country": "eg",
+      "filename": "eg_wara2_3enab.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "ace09c9cb1d60183c53e4bc593781286456ea752f17c9af67076ba24bad2234d"
+    },
+    {
+      "recipe_id": "eg_onion_mahshi",
+      "name_ar": "محشي بصل",
+      "ingredients_ar": [
+        "بصل كبير",
+        "أرز مصري",
+        "طماطم",
+        "بقدونس",
+        "مرق",
+        "زيت"
+      ],
+      "country": "eg",
+      "filename": "eg_onion_mahshi.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "3d51afaaef5293bddf83e8b7a58d22c967f23cd88be195e47592a3c9785ef19c"
+    },
+    {
+      "recipe_id": "eg_vine_leaves_meat",
+      "name_ar": "ورق سلق محشي",
+      "ingredients_ar": [
+        "ورق سلق",
+        "أرز مصري",
+        "طماطم",
+        "بصل",
+        "شبت",
+        "مرق",
+        "ليمون"
+      ],
+      "country": "eg",
+      "filename": "eg_vine_leaves_meat.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "f01b8fd4142bd00041f4de8ec62c4806a5a1c3e16935d9cbfe4c4344d3235ec4"
+    },
+    {
+      "recipe_id": "eg_stuffed_tomatoes",
+      "name_ar": "طماطم محشية بالأرز",
+      "ingredients_ar": [
+        "طماطم كبيرة",
+        "أرز مصري",
+        "بصل",
+        "شبت",
+        "بقدونس",
+        "مرق"
+      ],
+      "country": "eg",
+      "filename": "eg_stuffed_tomatoes.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "f8a174ef5384d0e0c00cf23c5599421f577d6ef1aac3828f346626f2175d0370"
+    },
+    {
+      "recipe_id": "eg_potato_mahshi_meat",
+      "name_ar": "بطاطس محشية لحمة",
+      "ingredients_ar": [
+        "بطاطس كبيرة",
+        "لحم مفروم",
+        "بصل",
+        "صلصة طماطم",
+        "ثوم",
+        "مرق"
+      ],
+      "country": "eg",
+      "filename": "eg_potato_mahshi_meat.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "13b0fceb5a2b3451b77ade72d2fbfa2db8eb9b5c5e56bb27020b6ef0bd91111f"
+    },
+    {
+      "recipe_id": "eg_potato_chicken_tray",
+      "name_ar": "صينية بطاطس بالفراخ",
+      "ingredients_ar": [
+        "دجاج",
+        "بطاطس",
+        "بصل",
+        "طماطم",
+        "مرق",
+        "ليمون",
+        "زيت"
+      ],
+      "country": "eg",
+      "filename": "eg_potato_chicken_tray.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "892d63645b5cbc4b9d1a0974f963d61135b6cf6cfef8294f19c9cd1665b20298"
+    },
+    {
+      "recipe_id": "eg_potato_meat_tray",
+      "name_ar": "صينية بطاطس باللحمة",
+      "ingredients_ar": [
+        "لحم شرائح",
+        "بطاطس",
+        "بصل",
+        "طماطم",
+        "مرق",
+        "سمن"
+      ],
+      "country": "eg",
+      "filename": "eg_potato_meat_tray.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "05ca4292e63966ba9440ae43e27c901609df45aefd5aedbb6296cac17cdc4ea2"
+    },
+    {
+      "recipe_id": "eg_torly_oven",
+      "name_ar": "طاجن تورلي باللحمة",
+      "ingredients_ar": [
+        "لحم مكعبات",
+        "بطاطس",
+        "كوسة",
+        "جزر",
+        "بسلة",
+        "صلصة طماطم",
+        "بصل"
+      ],
+      "country": "eg",
+      "filename": "eg_torly_oven.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "f97a70930476b2a75d613a0313d6ce4ad73ed1a127c74626bdca4c2ad219cbb3"
+    }
+  ],
+  "source_branch": "assets/v07-photos-batches02-05",
+  "review": "IDs, file count, dimensions, SHA256 and perceptual similarity checked by CI; semantic dish appearance requires human review."
+}

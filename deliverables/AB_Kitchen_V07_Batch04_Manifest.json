@@ -1,0 +1,275 @@
+{
+  "project": "AB Kitchen",
+  "version": "V0.7",
+  "batch": "04",
+  "count": 14,
+  "image_type": "AI-generated photorealistic representations",
+  "photos": [
+    {
+      "recipe_id": "eg_okka_tagine",
+      "name_ar": "طاجن بامية باللحم",
+      "ingredients_ar": [
+        "بامية",
+        "لحم مكعبات",
+        "طماطم",
+        "ثوم",
+        "بصل",
+        "مرق"
+      ],
+      "country": "eg",
+      "filename": "eg_okka_tagine.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "874376dcb23f62c28bc11a51ca1903076b2cfb037847416f85dfb282e48c9767"
+    },
+    {
+      "recipe_id": "eg_oxtail_tagine",
+      "name_ar": "طاجن عكاوي",
+      "ingredients_ar": [
+        "عكاوي منظفة",
+        "بصل",
+        "طماطم",
+        "ثوم",
+        "مرق",
+        "سمن"
+      ],
+      "country": "eg",
+      "filename": "eg_oxtail_tagine.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "62ac5079b1a37115b0c6e5a6116591d146862c69159e79ccd280d029f7920da7"
+    },
+    {
+      "recipe_id": "eg_orzo_tagine",
+      "name_ar": "طاجن لسان عصفور باللحمة",
+      "ingredients_ar": [
+        "لسان عصفور",
+        "لحم مكعبات",
+        "بصل",
+        "مرق",
+        "صلصة طماطم",
+        "سمن"
+      ],
+      "country": "eg",
+      "filename": "eg_orzo_tagine.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "e7bdcc61988d68bc91df9bbe1e8631463638af0cf5807d1782d15e8a5dd5e36e"
+    },
+    {
+      "recipe_id": "eg_rice_moammar",
+      "name_ar": "أرز معمر فلاحي",
+      "ingredients_ar": [
+        "أرز مصري",
+        "لبن كامل الدسم",
+        "قشطة",
+        "سمن",
+        "ملح"
+      ],
+      "country": "eg",
+      "filename": "eg_rice_moammar.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "f0e9eb49f1c220edd7b5114230cc80a5ec692fc74471a9d30a38faf734f6bb82"
+    },
+    {
+      "recipe_id": "eg_macaroni_oven_meat",
+      "name_ar": "طاجن مكرونة باللحمة",
+      "ingredients_ar": [
+        "مكرونة قلم",
+        "لحم مفروم",
+        "بصل",
+        "صلصة طماطم",
+        "ثوم",
+        "مرق"
+      ],
+      "country": "eg",
+      "filename": "eg_macaroni_oven_meat.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "975127f3dba2082692e9ca89680ba4421490418997985c5eda45bf127e0012ba"
+    },
+    {
+      "recipe_id": "eg_glash_meat_tray",
+      "name_ar": "جلاش باللحمة المفرومة",
+      "ingredients_ar": [
+        "جلاش",
+        "لحم مفروم",
+        "بصل",
+        "سمن",
+        "لبن",
+        "بيض"
+      ],
+      "country": "eg",
+      "filename": "eg_glash_meat_tray.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "485998382aa5bb553046087c1795bc16e3a54558c3432cd228c2e82f85e9187b"
+    },
+    {
+      "recipe_id": "eg_okra_shrimp_tagine",
+      "name_ar": "طاجن بامية بالجمبري",
+      "ingredients_ar": [
+        "بامية",
+        "جمبري منظف",
+        "طماطم",
+        "بصل",
+        "ثوم",
+        "مرق"
+      ],
+      "country": "eg",
+      "filename": "eg_okra_shrimp_tagine.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "ccc471f3a30dfaaddf61f405147c06d98067f7d20ebb8c52fea9fa802ce31ba2"
+    },
+    {
+      "recipe_id": "eg_orzo_soup",
+      "name_ar": "شوربة لسان عصفور",
+      "ingredients_ar": [
+        "لسان عصفور",
+        "مرق دجاج",
+        "سمن",
+        "جزر",
+        "فلفل أسود"
+      ],
+      "country": "eg",
+      "filename": "eg_orzo_soup.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "cee0cc01344e58331e7dc30de4a7033379c2f1cb569e12a6161230d98a850d96"
+    },
+    {
+      "recipe_id": "eg_vegetable_soup",
+      "name_ar": "شوربة خضار مصرية",
+      "ingredients_ar": [
+        "كوسة",
+        "جزر",
+        "بطاطس",
+        "بسلة",
+        "مرق",
+        "بصل"
+      ],
+      "country": "eg",
+      "filename": "eg_vegetable_soup.jpg",
+      "dimensions": [
+        1728,
+        1344
+      ],
+      "sha256": "75c557bef6a45fe3822fd0152d51fa6dc0266d0a9cbcfd3598ad3e54bccaf79d"
+    },
+    {
+      "recipe_id": "eg_tomato_soup",
+      "name_ar": "شوربة طماطم",
+      "ingredients_ar": [
+        "طماطم",
+        "بصل",
+        "ثوم",
+        "مرق خضار",
+        "زبدة",
+        "دقيق"
+      ],
+      "country": "eg",
+      "filename": "eg_tomato_soup.jpg",
+      "dimensions": [
+        2048,
+        1592
+      ],
+      "sha256": "b3ba8fd747e91fbec824accebbbd6670e5ebe717dca25e0e37438c12cfe67b90"
+    },
+    {
+      "recipe_id": "eg_chicken_cream_soup",
+      "name_ar": "شوربة فراخ بالكريمة",
+      "ingredients_ar": [
+        "دجاج مسلوق",
+        "مرق دجاج",
+        "كريمة طهي",
+        "جزر",
+        "بصل",
+        "زبدة"
+      ],
+      "country": "eg",
+      "filename": "eg_chicken_cream_soup.jpg",
+      "dimensions": [
+        2048,
+        1592
+      ],
+      "sha256": "11ea6528d6c9a27504439b55eefa0a95bc75a52f0b167adc119af93e87189172"
+    },
+    {
+      "recipe_id": "eg_meat_broth",
+      "name_ar": "شوربة لحمة بلدي",
+      "ingredients_ar": [
+        "لحم بعظم",
+        "بصل",
+        "جزر",
+        "ماء",
+        "حبهان",
+        "ورق لورا"
+      ],
+      "country": "eg",
+      "filename": "eg_meat_broth.jpg",
+      "dimensions": [
+        2048,
+        1592
+      ],
+      "sha256": "c1fa0cb16606a131b5b4b8a97d3af93cc8df30615ad69bff5b2bdbc4320f9610"
+    },
+    {
+      "recipe_id": "eg_seafood_soup_eg",
+      "name_ar": "شوربة سي فود إسكندراني",
+      "ingredients_ar": [
+        "جمبري منظف",
+        "سمك فيليه",
+        "كاليماري",
+        "مرق سمك",
+        "بصل",
+        "ثوم",
+        "كريمة"
+      ],
+      "country": "eg",
+      "filename": "eg_seafood_soup_eg.jpg",
+      "dimensions": [
+        2048,
+        1592
+      ],
+      "sha256": "083f8c0b9978471700ce85c791b4c8ba36d9623deb6c23a5f27d90698c844bd4"
+    },
+    {
+      "recipe_id": "eg_sayadeya_rice",
+      "name_ar": "رز صيادية",
+      "ingredients_ar": [
+        "أرز مصري",
+        "بصل",
+        "مرق سمك",
+        "زيت",
+        "كمون"
+      ],
+      "country": "eg",
+      "filename": "eg_sayadeya_rice.jpg",
+      "dimensions": [
+        2048,
+        1592
+      ],
+      "sha256": "a4f45baa796ef30527f280fb3fea6c9d0f0bd4690d27828834faf75f73b911ce"
+    }
+  ],
+  "source_branch": "assets/v07-photos-batches02-05",
+  "review": "IDs, file count, dimensions, SHA256 and perceptual similarity checked by CI; semantic dish appearance requires human review."
+}

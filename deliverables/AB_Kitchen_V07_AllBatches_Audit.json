@@ -1,0 +1,11 @@
+{
+  "project": "AB Kitchen",
+  "version": "V0.7",
+  "source": "AI-generated realistic food visuals; not real camera photographs",
+  "staged_unique_recipe_images": 74,
+  "bundled_recipe_images": 40,
+  "still_missing_recipe_photos": 34,
+  "identical_sha256_duplicates": 0,
+  "suspicious_visual_pairs_review": [],
+  "modified_app_files": false
+}
