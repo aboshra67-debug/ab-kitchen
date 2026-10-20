@@ -1,0 +1,27 @@
+{
+  "project": "AB Kitchen",
+  "version": "V0.7",
+  "batch": "05",
+  "part": "A",
+  "count": 12,
+  "status": "Partial batch 05 — 12 of the next 20; 22 missing recipe images remain to be created overall.",
+  "source": "Adobe Firefly generation with individual dish-specific prompts, not camera photography.",
+  "photo_ids": [
+    "eg_fish_singari",
+    "eg_tilapia_grilled",
+    "eg_tilapia_fried",
+    "eg_bouri_oven",
+    "eg_shrimp_alex",
+    "eg_shrimp_red_sauce",
+    "eg_calamari_fried",
+    "eg_calamari_tagine",
+    "eg_sardines_fried",
+    "eg_fish_tahini",
+    "eg_feteer_meshaltet",
+    "eg_flahy_qors"
+  ],
+  "created_on_branch": "assets/v07-photos-batch05-06-safe",
+  "modifies_application_source": false,
+  "quality_checks": "Decoded JPEG, dimensions, exact recipe ID, SHA-256 duplicates and visual-near-duplicate flags, and per-page PDF QA.",
+  "notes": "No app main branch changes; new images staged for review before integration."
+}
