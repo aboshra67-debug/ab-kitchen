@@ -1,0 +1,30 @@
+name: AB Kitchen - Export Android signing tools for private offline release signing
+on:
+  push:
+    branches: [fix/v074-permanent-release-signing]
+    paths: ['.github/workflows/ab_kitchen_signing_tools.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tools:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect official Android apksigner binary and library
+        run: |
+          set -euo pipefail
+          root="$ANDROID_HOME/build-tools"
+          version=$(ls -1 "$root" | sort -V | tail -n1)
+          src="$root/$version"
+          mkdir -p tools-out
+          cp "$src/lib/apksigner.jar" tools-out/apksigner.jar
+          cp "$src/zipalign" tools-out/zipalign
+          chmod +x tools-out/zipalign
+          echo "Android build-tools: $version"
+          java -cp tools-out/apksigner.jar com.android.apksigner.ApkSignerTool --version
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-Official-Android-APKSigner-Tools
+          path: tools-out/
+          if-no-files-found: error
+          retention-days: 7
