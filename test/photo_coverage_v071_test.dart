@@ -6,12 +6,12 @@ import 'package:ab_kitchen/widgets/recipe_photo.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('131 food photographs are bundled, mapped to their own recipe and offline', () async {
+  test('147 food photographs are bundled, mapped to their own recipe and offline', () async {
     final data = jsonDecode(await rootBundle.loadString('assets/data/recipes_ar.json'))
         as List<dynamic>;
     final ids = data.map((entry) => (entry as Map<String, dynamic>)['id'] as String).toSet();
     expect(ids.length, 148);
-    expect(RecipePhoto.picturedRecipes.length, 131);
+    expect(RecipePhoto.picturedRecipes.length, 147);
     expect(RecipePhoto.picturedRecipes.difference(ids), isEmpty);
 
     for (final id in RecipePhoto.picturedRecipes) {
@@ -27,8 +27,8 @@ void main() {
     expect(originalHero.lengthInBytes, greaterThan(3000));
 
     final missing = ids.difference(RecipePhoto.picturedRecipes);
-    expect(missing.length, 17);
-    expect(missing, contains('eg_fino_bread')); // Earlier offline JPEG not in source GitHub yet.
+    expect(missing.length, 1);
+    expect(missing, contains('eg_fino_bread')); // Only fino bread remains unpictured; its correct illustration is not available yet.
     for (final id in missing) {
       expect(RecipePhoto.assetFor(id), isNull);
     }

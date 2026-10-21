@@ -14,6 +14,22 @@ class RecipePhoto extends StatelessWidget {
   final double borderRadius;
 
   static const picturedRecipes = <String>{
+    'eg_eggplant_pickled', // V0.7.4 individually matched illustration
+    'eg_yogurt_cucumber', // V0.7.4 individually matched illustration
+    'eg_pickled_turnip', // V0.7.4 individually matched illustration
+    'eg_tomato_daqa', // V0.7.4 individually matched illustration
+    'eg_meshabbak_domyat', // V0.7.4 individually matched illustration
+    'eg_sawabe_zainab', // V0.7.4 individually matched illustration
+    'eg_shakalama', // V0.7.4 individually matched illustration
+    'eg_semsemiya', // V0.7.4 individually matched illustration
+    'eg_ghorayeba', // V0.7.4 individually matched illustration
+    'eg_petit_four', // V0.7.4 individually matched illustration
+    'eg_mahalabiya', // V0.7.4 individually matched illustration
+    'eg_asoura', // V0.7.4 individually matched illustration
+    'eg_atayef_nuts', // V0.7.4 individually matched illustration
+    'eg_balh_sham', // V0.7.4 individually matched illustration
+    'eg_zalabia', // V0.7.4 individually matched illustration
+    'eg_kahk_eid', // V0.7.4 individually matched illustration
     'eg_koshari','eg_molokhia','eg_mahshi','eg_ful','eg_besbousa',
     'eg_macaroni_beshamel','eg_hawawshi','eg_mombar','eg_kofta_rice',
     'eg_tahini_salad','eg_salata_baladi','eg_cabbage_mahshi',

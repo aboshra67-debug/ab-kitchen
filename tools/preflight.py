@@ -37,11 +37,11 @@ for expected in (
 ):
     assert (root / expected).is_file(), expected
 pubspec = (root / 'pubspec.yaml').read_text(encoding='utf-8')
-assert 'version: 0.7.3+10' in pubspec
+assert 'version: 0.7.4+11' in pubspec
 assert 'assets/photos/' in pubspec
 for photo in (root/'assets/photos').glob('*.webp'):
     assert photo.stat().st_size > 3000, str(photo)
-assert len(list((root/'assets/photos').glob('*.webp'))) == 132
+assert len(list((root/'assets/photos').glob('*.webp'))) == 148
 assert 'assets/data/recipes_ar.json' in pubspec and 'assets/branding/ab_kitchen_logo.jpg' in pubspec
 assert 'shared_preferences:' in pubspec and 'flutter_tts:' in pubspec
 assert 'shared_preferences_android: 2.4.28' in pubspec, 'Unsafe JNI Android storage plugin version'

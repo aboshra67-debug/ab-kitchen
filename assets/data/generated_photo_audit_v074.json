@@ -1,0 +1,140 @@
+[
+  {
+    "recipe_id": "eg_eggplant_pickled",
+    "origin": "original single dish image generated for this project",
+    "image_source": "باذنجان_مخلل_بالثوم_والفلفل_الحار.png",
+    "output": "assets/photos/eg_eggplant_pickled.webp"
+  },
+  {
+    "recipe_id": "eg_yogurt_cucumber",
+    "origin": "original single dish image generated for this project",
+    "image_source": "سلطة_خيار_بالزبادي_والنعناع.png",
+    "output": "assets/photos/eg_yogurt_cucumber.webp"
+  },
+  {
+    "recipe_id": "eg_pickled_turnip",
+    "origin": "original single dish image generated for this project",
+    "image_source": "مخلل_اللفت_المصري_الوردي.png",
+    "output": "assets/photos/eg_pickled_turnip.webp"
+  },
+  {
+    "recipe_id": "eg_tomato_daqa",
+    "origin": "original single dish image generated for this project",
+    "image_source": "دقة_طماطم_بلدي_على_سفرة_ريفية.png",
+    "output": "assets/photos/eg_tomato_daqa.webp"
+  },
+  {
+    "recipe_id": "eg_meshabbak_domyat",
+    "origin": "original single dish image generated for this project",
+    "image_source": "حلوى_زلابية_ذهبية_لامعة.png",
+    "output": "assets/photos/eg_meshabbak_domyat.webp"
+  },
+  {
+    "recipe_id": "eg_sawabe_zainab",
+    "origin": "original single dish image generated for this project",
+    "image_source": "حلويات_ذهبية_مغمورة_بالشراب.png",
+    "output": "assets/photos/eg_sawabe_zainab.webp"
+  },
+  {
+    "recipe_id": "eg_shakalama",
+    "origin": "original single dish image generated for this project",
+    "image_source": "ماكرون_جوز_الهند_الذهبي_الريفي.png",
+    "output": "assets/photos/eg_shakalama.webp"
+  },
+  {
+    "recipe_id": "eg_semsemiya",
+    "origin": "original single dish image generated for this project",
+    "image_source": "حلوى_السمسم_الذهبية_على_طبق_مزخرف.png",
+    "output": "assets/photos/eg_semsemiya.webp"
+  },
+  {
+    "recipe_id": "eg_ghorayeba",
+    "origin": "original single dish image generated for this project",
+    "image_source": "كعك_العيد_بالفستق_واللوز.png",
+    "output": "assets/photos/eg_ghorayeba.webp"
+  },
+  {
+    "recipe_id": "eg_petit_four",
+    "origin": "individual original generated meal crop from 17-image illustration",
+    "image_source": "a_high_resolution_clean_grid_collage_infographic.png",
+    "crop": [
+      1,
+      512,
+      303,
+      709
+    ],
+    "output": "assets/photos/eg_petit_four.webp"
+  },
+  {
+    "recipe_id": "eg_mahalabiya",
+    "origin": "individual original generated meal crop from 17-image illustration",
+    "image_source": "a_high_resolution_clean_grid_collage_infographic.png",
+    "crop": [
+      312,
+      512,
+      613,
+      709
+    ],
+    "output": "assets/photos/eg_mahalabiya.webp"
+  },
+  {
+    "recipe_id": "eg_asoura",
+    "origin": "individual original generated meal crop from 17-image illustration",
+    "image_source": "a_high_resolution_clean_grid_collage_infographic.png",
+    "crop": [
+      619,
+      512,
+      921,
+      709
+    ],
+    "output": "assets/photos/eg_asoura.webp"
+  },
+  {
+    "recipe_id": "eg_atayef_nuts",
+    "origin": "individual original generated meal crop from 17-image illustration",
+    "image_source": "a_high_resolution_clean_grid_collage_infographic.png",
+    "crop": [
+      928,
+      512,
+      1226,
+      709
+    ],
+    "output": "assets/photos/eg_atayef_nuts.webp"
+  },
+  {
+    "recipe_id": "eg_balh_sham",
+    "origin": "individual original generated meal crop from 17-image illustration",
+    "image_source": "a_high_resolution_clean_grid_collage_infographic.png",
+    "crop": [
+      1234,
+      512,
+      1533,
+      709
+    ],
+    "output": "assets/photos/eg_balh_sham.webp"
+  },
+  {
+    "recipe_id": "eg_zalabia",
+    "origin": "individual original generated meal crop from 17-image illustration",
+    "image_source": "a_high_resolution_clean_grid_collage_infographic.png",
+    "crop": [
+      1,
+      771,
+      303,
+      962
+    ],
+    "output": "assets/photos/eg_zalabia.webp"
+  },
+  {
+    "recipe_id": "eg_kahk_eid",
+    "origin": "individual original generated meal crop from 17-image illustration",
+    "image_source": "a_high_resolution_clean_grid_collage_infographic.png",
+    "crop": [
+      311,
+      771,
+      683,
+      961
+    ],
+    "output": "assets/photos/eg_kahk_eid.webp"
+  }
+]

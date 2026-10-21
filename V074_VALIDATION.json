@@ -1,0 +1,51 @@
+{
+  "source_version": "0.7.3+10",
+  "target_version": "0.7.4+11",
+  "recipes_preserved": 148,
+  "previous_pictured_recipes": 131,
+  "new_images": 16,
+  "pictured_recipes": 147,
+  "previous_webp_assets": 132,
+  "webp_assets": 148,
+  "remaining_without_image": [
+    "eg_fino_bread"
+  ],
+  "old_files_deleted": [],
+  "original_files_modified": [
+    "lib/widgets/recipe_photo.dart",
+    "pubspec.yaml",
+    "test/photo_coverage_v071_test.dart",
+    "tools/preflight.py"
+  ],
+  "files_added": [
+    "V074_PHOTO_SAFE_PATCH_REPORT.md",
+    "test/photo_coverage_v074_test.dart",
+    "tools/verify_v074_release.py",
+    "tools/ci_v074_android_emulator.sh",
+    ".github/workflows/ab_kitchen_v074_photos.yml",
+    "assets/photos/eg_meshabbak_domyat.webp",
+    "assets/photos/eg_eggplant_pickled.webp",
+    "assets/photos/eg_kahk_eid.webp",
+    "assets/photos/eg_sawabe_zainab.webp",
+    "assets/photos/eg_semsemiya.webp",
+    "assets/photos/eg_atayef_nuts.webp",
+    "assets/photos/eg_yogurt_cucumber.webp",
+    "assets/photos/eg_ghorayeba.webp",
+    "assets/photos/eg_balh_sham.webp",
+    "assets/photos/eg_pickled_turnip.webp",
+    "assets/photos/eg_tomato_daqa.webp",
+    "assets/photos/eg_zalabia.webp",
+    "assets/photos/eg_mahalabiya.webp",
+    "assets/photos/eg_petit_four.webp",
+    "assets/photos/eg_asoura.webp",
+    "assets/photos/eg_shakalama.webp",
+    "assets/data/generated_photo_audit_v074.json"
+  ],
+  "flutter_analyze": "NOT RUN (Flutter SDK unavailable here)",
+  "flutter_test": "NOT RUN (Flutter SDK unavailable here)",
+  "android_apk": "NOT BUILT (Flutter Android build unavailable)",
+  "on_device_test": "NOT RUN",
+  "webp_decoding": "PASS (148 WebP files checked)",
+  "photo_uniqueness": "PASS (16 distinct SHA256 images)",
+  "old_recipe_file_byte_identical": "PASS"
+}
