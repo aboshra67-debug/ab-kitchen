@@ -7,6 +7,7 @@ on:
       - '.github/workflows/ab_kitchen_v072_storage_fix.yml'
       - 'pubspec.yaml'
       - 'lib/main.dart'
+      - 'tools/ci_v072_android_emulator.sh'
   workflow_dispatch:
 permissions:
   contents: write
@@ -88,29 +89,7 @@ jobs:
           profile: pixel_6
           disable-animations: true
           emulator-boot-timeout: 900
-          script: |
-            set -eu
-            adb install -r build/app/outputs/flutter-apk/app-x86_64-release.apk
-            adb logcat -c
-            adb shell am start -W -n com.absoftware.ab_kitchen/.MainActivity
-            READY=0
-            for i in $(seq 1 30); do
-              if adb logcat -d | grep -Fq "AB_KITCHEN_STARTUP_READY recipes=148"; then
-                READY=1
-                break
-              fi
-              sleep 2
-            done
-            if [ "$READY" -ne 1 ]; then
-              adb logcat -d | grep -E 'NoSuchMethodError|PlatformException|flutter|AB_KITCHEN' | tail -100 || true
-              echo "::error::Release Android SharedPreferences startup was NOT verified"
-              exit 1
-            fi
-            if adb logcat -d | grep -Fq 'SharedPreferencesApiRegistrar;.getAll'; then
-              echo "::error::Original JNI NoSuchMethodError still present"
-              exit 1
-            fi
-            echo "PASS: Android emulator actually started release app, loaded 148 recipes, initialized SharedPreferences"
+          script: bash tools/ci_v072_android_emulator.sh
       - name: Package ready-to-download ARM64 APK and portable Safe Source
         shell: bash
         run: |
