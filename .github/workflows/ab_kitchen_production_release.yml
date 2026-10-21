@@ -40,15 +40,15 @@ jobs:
           flutter analyze
           flutter test
       - name: Compile arm64 Release artifact (debug signed build is PRIVATE INPUT ONLY)
-        run: flutter build apk --release --target-platform android-arm64
-      - name: Replace test signing with canonical production certificate and verify
+        run: flutter build apk --release --split-per-abi
+      # Keep split-per-ABI versionCode offset consistent with the existing V074 arm64 APK.\n      - name: Replace test signing with canonical production certificate and verify
         shell: bash
         env:
           ABK_PASS: ${{ secrets.AB_KITCHEN_RELEASE_KEYSTORE_PASSWORD }}
           ABK_ALIAS: ${{ secrets.AB_KITCHEN_RELEASE_KEY_ALIAS }}
         run: |
           set -euo pipefail
-          source="build/app/outputs/flutter-apk/app-release.apk"
+          source="build/app/outputs/flutter-apk/app-arm64-v8a-release.apk"
           mkdir -p release
           target="release/AB_Kitchen_ARM64_PRODUCTION_SIGNED.apk"
           tools="$ANDROID_HOME/build-tools/$(ls -1 "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
