@@ -54,6 +54,10 @@ jobs:
             "$TOOLS/apksigner" verify --verbose "$APK"
             "$TOOLS/aapt" dump badging "$APK" | grep -E "^package: name='com.absoftware.ab_kitchen' versionCode='[0-9]+' versionName='0.7.3'"
           done
+      - name: Enable Linux KVM for accelerated emulator boot
+        run: |
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
       - name: Boot release APK twice in Android 35 emulator, check JNI and screenshots
         uses: reactivecircus/android-emulator-runner@v2
         with:
