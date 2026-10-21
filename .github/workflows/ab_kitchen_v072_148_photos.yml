@@ -1,0 +1,81 @@
+name: AB Kitchen V0.7.2 - 148 Offline Photos APK + Safe Source
+on:
+  push:
+    branches:
+      - feature/v072-148-offline-photos-safe
+    paths:
+      - '.github/workflows/ab_kitchen_v072_148_photos.yml'
+      - 'tools/integrate_recipe_photos_v072.py'
+      - 'assets/photos_batch08_17/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-build-deliver:
+    name: Safe WebP integration, Flutter checks and ARM64 test release
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PNG/JPG to WebP image check dependency
+        run: python -m pip install --disable-pip-version-check Pillow
+      - name: Build exactly 17 verified new images; refuse overwrites
+        run: python tools/integrate_recipe_photos_v072.py
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Create Android platform safely from standard Flutter template
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove only legacy generated Flutter example test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -q 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
+      - name: Resolve dependencies
+        run: flutter pub get
+      - name: Keep original brand launcher icon
+        run: dart run flutter_launcher_icons -f flutter_launcher_icons_android.yaml
+      - name: Flutter analyze
+        run: flutter analyze
+      - name: Run all Flutter regression tests + 148 exact offline images
+        run: flutter test
+      - name: Build optimized ARM64 testing APK
+        run: flutter build apk --release --split-per-abi --target-platform android-arm64
+      - name: Verify the actual APK embeds all 149 assets, create Safe Source
+        run: python tools/integrate_recipe_photos_v072.py --finish
+      - name: Verify Android APK signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name apksigner -type f | sort -V | tail -1)
+          test -n "$APKSIGNER"
+          "$APKSIGNER" verify --verbose --print-certs deliverables/AB_Kitchen_V072_148_PHOTOS_ARM64_TEST_ONLY.apk
+      - name: Upload APK, Safe Source and validation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V072-148-Photos-APK-Safe-Source
+          path: |
+            deliverables/AB_Kitchen_V072_148_PHOTOS_ARM64_TEST_ONLY.apk
+            deliverables/AB_Kitchen_V072_148_PHOTOS_SAFE_SOURCE.zip
+            deliverables/AB_Kitchen_V072_148_PHOTOS_AUDIT.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish direct-download artifacts ONLY on this feature branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/photos/*.webp deliverables/AB_Kitchen_V072_148_PHOTOS*
+          if git diff --cached --quiet; then
+            echo "Artifacts already published"
+          else
+            git commit -m 'release(photos): 148 independent offline recipe photos, test APK and complete safe source'
+            git push origin HEAD:feature/v072-148-offline-photos-safe
+          fi

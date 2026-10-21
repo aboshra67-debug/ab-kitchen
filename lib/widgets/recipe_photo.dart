@@ -59,6 +59,24 @@ class RecipePhoto extends StatelessWidget {
     'ma_harira',    'ma_tajine',    'tr_kofte',
     'tr_lentil',
 
+    // V0.7.2: per-recipe independent optimized offline photo assets.
+    'eg_asoura',
+    'eg_atayef_nuts',
+    'eg_balh_sham',
+    'eg_eggplant_pickled',
+    'eg_fino_bread',
+    'eg_ghorayeba',
+    'eg_kahk_eid',
+    'eg_mahalabiya',
+    'eg_meshabbak_domyat',
+    'eg_petit_four',
+    'eg_pickled_turnip',
+    'eg_sawabe_zainab',
+    'eg_semsemiya',
+    'eg_shakalama',
+    'eg_tomato_daqa',
+    'eg_yogurt_cucumber',
+    'eg_zalabia',
   };
 
   static String? assetFor(String id, {bool hero = false}) {
