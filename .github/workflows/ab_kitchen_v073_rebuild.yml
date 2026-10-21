@@ -52,7 +52,7 @@ jobs:
           TOOLS="$ANDROID_HOME/build-tools/$(ls -1 "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
           for APK in build/app/outputs/flutter-apk/app-{arm64-v8a,x86_64}-release.apk; do
             "$TOOLS/apksigner" verify --verbose "$APK"
-            "$TOOLS/aapt" dump badging "$APK" | grep -E "^package: name='com.absoftware.ab_kitchen' versionCode='10'"
+            "$TOOLS/aapt" dump badging "$APK" | grep -E "^package: name='com.absoftware.ab_kitchen' versionCode='[0-9]+' versionName='0.7.3'"
           done
       - name: Boot release APK twice in Android 35 emulator, check JNI and screenshots
         uses: reactivecircus/android-emulator-runner@v2
