@@ -46,6 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ...otherCategories,
       ];
       final egyptianCount = control.recipes.where((r) => r.country == 'eg').length;
+      // Egyptian-only shortcuts must not override the selected cuisine.
+      final showEgyptianShortcuts = selectedCountry == 'all' || selectedCountry == 'eg';
+      final activeCountry = countries[selectedCountry];
       final filtered = control.recipes.where((r) {
         final q = query.trim();
         return (selectedCountry == 'all' || r.country == selectedCountry) &&
@@ -65,18 +68,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 gradient: const LinearGradient(colors: [Color(0xFF7B2C20), KitchenBrand.tomato, KitchenBrand.amber], begin: Alignment.topRight, end: Alignment.bottomLeft),
                 borderRadius: BorderRadius.circular(24)),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('وصفات من العالم • على ذوقك', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 12)),
+                Text(selectedCountry == 'all' ? 'وصفات من العالم • على ذوقك' : 'وصفات ${activeCountry?.$1 ?? ''} • على ذوقك', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 12)),
                 const SizedBox(height: 5),
-                const Text('كل مطابخ العالم في مطبخك ✨',
-                  style: TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 21)),
+                Text(selectedCountry == 'all' ? 'كل مطابخ العالم في مطبخك ✨' : selectedCountry == 'sa' ? 'المطبخ السعودي 🇸🇦' : '${activeCountry?.$2 ?? '🍽️'} وصفات ${activeCountry?.$1 ?? ''}',
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 21)),
                 const SizedBox(height: 8),
-                Text('اكتشف ${control.recipes.length} وصفة من ${countries.length} مطابخ، واطبخ خطوة بخطوة.',
+                Text(selectedCountry == 'all' ? 'اكتشف ${control.recipes.length} وصفة من ${countries.length} مطابخ، واطبخ خطوة بخطوة.' : 'اكتشف ${filtered.length} وصفة من ${activeCountry?.$1 ?? ''} واطبخ خطوة بخطوة.',
                   style: const TextStyle(color: Colors.white, fontSize: 14)),
                 const SizedBox(height: 12),
                 const Row(children: [Icon(Icons.check_circle_outline, color: Colors.white, size: 18),
                   SizedBox(width: 7), Text('مقادير قابلة للتعديل • وصفات بدون إنترنت', style: TextStyle(color: Colors.white, fontSize: 12))]),
               ]),
             ),
+            if (showEgyptianShortcuts) ...[
             const SizedBox(height: 12),
             Card(child: ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
@@ -107,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 searchController.clear();
               }),
             )),
+            ],
             const SizedBox(height: 12),
             TextField(controller: searchController, onChanged: (v) => setState(() => query = v),
               decoration: const InputDecoration(prefixIcon: Icon(Icons.search), hintText: 'ابحث عن أكلة أو مكوّن...')),
