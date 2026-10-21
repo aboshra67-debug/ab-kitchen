@@ -1,7 +1,7 @@
 name: ab_kitchen
 description: AB Kitchen - Interactive world recipes and home cooking assistant.
 publish_to: none
-version: 0.7.1+8
+version: 0.7.2+9
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.3.2
+  # Pin stable MethodChannel bridge: Android 2.5.0 fails under R8 in release builds.
+  # Preserve legacy SharedPreferences key names and existing on-device user data.
+  shared_preferences_android: 2.4.28
   flutter_tts: ^4.2.5
 
 dev_dependencies:
