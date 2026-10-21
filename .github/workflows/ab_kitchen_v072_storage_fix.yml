@@ -1,0 +1,176 @@
+name: AB Kitchen V0.7.2 - Native preferences release crash fix
+on:
+  push:
+    branches:
+      - fix/v072-release-storage-safe
+    paths:
+      - '.github/workflows/ab_kitchen_v072_storage_fix.yml'
+      - 'pubspec.yaml'
+      - 'lib/main.dart'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate-and-deliver:
+    name: Android release build, native startup test, APK and source
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate Android platform without replacing working Dart code
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove ONLY generated default MyApp test if present
+        run: |
+          if [ -f test/widget_test.dart ] && grep -q 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
+      - name: Resolve and freeze safe Android SharedPreferences plugin version
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          lock = Path("pubspec.lock").read_text()
+          match = re.search(r'^  shared_preferences_android:\n(?:(?: {4,}.*)\n)*?    version: "([^"]+)"',lock,re.M)
+          assert match, "Android preferences plugin missing from resolved dependencies"
+          assert match.group(1) == "2.4.28", f"Regressed shared_preferences_android to {match.group(1)}"
+          print("PASS pinned safe plugin",match.group(1))
+          PY
+      - name: Preserve original AB Kitchen launcher icon
+        run: dart run flutter_launcher_icons -f flutter_launcher_icons_android.yaml
+      - name: Flutter analysis
+        run: flutter analyze
+      - name: Flutter regression tests, including all 131 local recipe pictures
+        run: flutter test
+      - name: Build actual release APK variants with R8
+        run: flutter build apk --release --split-per-abi
+      - name: Verify Android release APK integrity, offline photos, and signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile,hashlib
+          arm = Path("build/app/outputs/flutter-apk/app-arm64-v8a-release.apk")
+          x86 = Path("build/app/outputs/flutter-apk/app-x86_64-release.apk")
+          assert arm.stat().st_size > 10_000_000
+          assert x86.stat().st_size > 10_000_000
+          photos = {str(p) for p in Path("assets/photos").glob("*.webp")}
+          assert len(photos) == 132,len(photos)
+          for name,p in (("arm64",arm),("x86_64",x86)):
+              with zipfile.ZipFile(p) as z:
+                  assert z.testzip() is None
+                  missing=[f for f in photos if f"assets/flutter_assets/{f}" not in z.namelist()]
+                  assert not missing,(name,missing)
+              print("PASS",name,round(p.stat().st_size/1024/1024,1),"MB, 132 assets SHA256",hashlib.sha256(p.read_bytes()).hexdigest())
+          PY
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name apksigner -type f | sort -V | tail -1)
+          test -n "$APKSIGNER"
+          "$APKSIGNER" verify --verbose build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+      - name: Enable Linux KVM for Android emulator
+        run: |
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+      - name: Real Android emulator test of Release SharedPreferences JNI startup
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-boot-timeout: 900
+          script: |
+            set -euo pipefail
+            adb install -r build/app/outputs/flutter-apk/app-x86_64-release.apk
+            adb logcat -c
+            adb shell am start -W -n com.absoftware.ab_kitchen/.MainActivity
+            READY=0
+            for i in $(seq 1 30); do
+              if adb logcat -d | grep -Fq "AB_KITCHEN_STARTUP_READY recipes=148"; then
+                READY=1
+                break
+              fi
+              sleep 2
+            done
+            if [ "$READY" -ne 1 ]; then
+              adb logcat -d | grep -E 'NoSuchMethodError|PlatformException|flutter|AB_KITCHEN' | tail -100 || true
+              echo "::error::Release Android SharedPreferences startup was NOT verified"
+              exit 1
+            fi
+            if adb logcat -d | grep -Fq 'SharedPreferencesApiRegistrar;.getAll'; then
+              echo "::error::Original JNI NoSuchMethodError still present"
+              exit 1
+            fi
+            echo "PASS: Android emulator actually started release app, loaded 148 recipes, initialized SharedPreferences"
+      - name: Package ready-to-download ARM64 APK and portable Safe Source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p deliverables
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk deliverables/AB_Kitchen_V072_Storage_Fix_131_Photos_ARM64_TEST_SIGNED.apk
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess, zipfile, hashlib, json
+          root=Path(".")
+          apk=root/"deliverables/AB_Kitchen_V072_Storage_Fix_131_Photos_ARM64_TEST_SIGNED.apk"
+          archive=root/"deliverables/AB_Kitchen_V072_Storage_Fix_131_Photos_SAFE_SOURCE.zip"
+          files={Path(p.decode()) for p in subprocess.check_output(["git","ls-files","-z"]).split(b"\0") if p}
+          files={p for p in files if p.is_file() and not str(p).startswith(("deliverables/","build/","android/","ios/"))}
+          assert (root/"pubspec.lock").is_file()
+          files.add(Path("pubspec.lock"))
+          assert len([p for p in files if str(p).startswith("assets/photos/") and p.suffix==".webp"])==132
+          with zipfile.ZipFile(archive,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+            for p in sorted(files): z.write(p,arcname=str(p))
+          with zipfile.ZipFile(archive) as z:
+            assert z.testzip() is None
+            assert "pubspec.lock" in z.namelist()
+            assert "lib/main.dart" in z.namelist()
+          report={
+            "project":"AB Kitchen", "version":"0.7.2+9",
+            "fix":"Pinned shared_preferences_android exactly 2.4.28; no on-device settings or stored recipes changed",
+            "native_android_emulator_release_startup":"PASS, SharedPreferences loaded + 148 recipes",
+            "flutter_analyze_and_test":"PASS",
+            "bundled_recipe_images":131,"bundled_webp_files":132,
+            "apk_type":"Android ARM64 release optimized, TEST signing only, not Google Play signing",
+            "package_name":"com.absoftware.ab_kitchen",
+            "warning":"Different ephemeral debug signing key from older builds may prevent in-place update; do not uninstall an app with valuable data.",
+            "apk_sha256":hashlib.sha256(apk.read_bytes()).hexdigest(),
+            "apk_size_bytes":apk.stat().st_size,
+            "safe_source_sha256":hashlib.sha256(archive.read_bytes()).hexdigest(),
+            "safe_source_size_bytes":archive.stat().st_size}
+          (root/"deliverables/AB_Kitchen_V072_Storage_Fix_Verification.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print("PASS delivered",report)
+          PY
+      - name: Upload verified release APK, Safe Source and diagnostic report
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V072-Working-Android-APK-and-Safe-Source
+          path: |
+            deliverables/AB_Kitchen_V072_Storage_Fix_131_Photos_ARM64_TEST_SIGNED.apk
+            deliverables/AB_Kitchen_V072_Storage_Fix_131_Photos_SAFE_SOURCE.zip
+            deliverables/AB_Kitchen_V072_Storage_Fix_Verification.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish direct download links on fix branch, never touch main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f pubspec.lock
+          git add deliverables/AB_Kitchen_V072_Storage_Fix_131_Photos_ARM64_TEST_SIGNED.apk
+          git add deliverables/AB_Kitchen_V072_Storage_Fix_131_Photos_SAFE_SOURCE.zip
+          git add deliverables/AB_Kitchen_V072_Storage_Fix_Verification.json
+          if git diff --cached --quiet; then echo "No changes to deliver"; else
+            git commit -m "fix(android): verified release SharedPreferences startup, deliver V0.7.2 APK and Safe Source"
+            git push origin HEAD:fix/v072-release-storage-safe
+          fi
