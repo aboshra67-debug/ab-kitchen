@@ -1,0 +1,69 @@
+name: AB Kitchen - ONLY canonical production-signed release
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - name: Require persistent secret signing material - never fallback to debug key
+        shell: bash
+        env:
+          ABK_KEY_B64: ${{ secrets.AB_KITCHEN_RELEASE_KEYSTORE_B64 }}
+          ABK_PASS: ${{ secrets.AB_KITCHEN_RELEASE_KEYSTORE_PASSWORD }}
+          ABK_ALIAS: ${{ secrets.AB_KITCHEN_RELEASE_KEY_ALIAS }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$ABK_KEY_B64" || -z "$ABK_PASS" || "$ABK_ALIAS" != "ab_kitchen" ]]; then
+            echo "::error::Missing protected production signing secrets. NEVER publish CI debug-signed APK as production."
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/abk_private"
+          chmod 700 "$RUNNER_TEMP/abk_private"
+          (umask 077; printf '%s' "$ABK_KEY_B64" | base64 -d > "$RUNNER_TEMP/abk_private/production.p12")
+          keytool -list -keystore "$RUNNER_TEMP/abk_private/production.p12" -storetype PKCS12 -storepass "$ABK_PASS" -alias "$ABK_ALIAS" -v | grep -qi 'AD:AB:C0:3B:93:B6:2A:96:0E:57:3C:5C:99:10:27:76:D8:C7:25:A1:BC:03:9C:E2:B3:B0:CF:59:D1:AA:5F:E0'
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Generate native Android configuration
+        run: |
+          flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+          if [ -f test/widget_test.dart ] && grep -Fq 'MyApp' test/widget_test.dart; then rm test/widget_test.dart; fi
+      - name: Clean build, static analysis and app unit tests
+        run: |
+          flutter clean
+          flutter pub get
+          flutter analyze
+          flutter test
+      - name: Compile arm64 Release artifact (debug signed build is PRIVATE INPUT ONLY)
+        run: flutter build apk --release --target-platform android-arm64
+      - name: Replace test signing with canonical production certificate and verify
+        shell: bash
+        env:
+          ABK_PASS: ${{ secrets.AB_KITCHEN_RELEASE_KEYSTORE_PASSWORD }}
+          ABK_ALIAS: ${{ secrets.AB_KITCHEN_RELEASE_KEY_ALIAS }}
+        run: |
+          set -euo pipefail
+          source="build/app/outputs/flutter-apk/app-release.apk"
+          mkdir -p release
+          target="release/AB_Kitchen_ARM64_PRODUCTION_SIGNED.apk"
+          tools="$ANDROID_HOME/build-tools/$(ls -1 "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
+          "$tools/apksigner" sign --ks "$RUNNER_TEMP/abk_private/production.p12" --ks-type PKCS12 --ks-key-alias "$ABK_ALIAS" --ks-pass env:ABK_PASS --key-pass env:ABK_PASS --v2-signing-enabled true --v3-signing-enabled true --out "$target" "$source"
+          "$tools/apksigner" verify --verbose --print-certs "$target" | tee release/certificate-verification.txt
+          grep -qi 'adabc03b93b62a960e573c5c99102776d8c725a1bc039ce2b3b0cf59d1aa5fe0' release/certificate-verification.txt
+          grep -q 'Verified using v2 scheme (APK Signature Scheme v2): true' release/certificate-verification.txt
+          grep -q 'Verified using v3 scheme (APK Signature Scheme v3): true' release/certificate-verification.txt
+          "$tools/aapt" dump badging "$target" | grep -q "package: name='com.absoftware.ab_kitchen'"
+          sha256sum "$target" > release/apk_sha256.txt
+          rm -f "$RUNNER_TEMP/abk_private/production.p12"
+      - name: Deliver ONLY verified production signed release
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-PRODUCTION-SIGNED-APK
+          path: release/
+          if-no-files-found: error
+          retention-days: 90
