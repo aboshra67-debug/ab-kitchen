@@ -17,6 +17,8 @@ Future<void> main() async {
     final results = await Future.wait([RecipeRepository.load(), SharedPreferences.getInstance()]);
     final controller = KitchenController.open(
       results[0] as List<Recipe>, results[1] as SharedPreferences);
+    // Release smoke-test marker: initialized preferences + loaded every recipe.
+    debugPrint('AB_KITCHEN_STARTUP_READY recipes=${controller.recipes.length}');
     runApp(ABKitchenApp(controller: controller));
   } catch (error) {
     runApp(MaterialApp(
