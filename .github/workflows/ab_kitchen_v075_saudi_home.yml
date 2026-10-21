@@ -1,0 +1,133 @@
+name: AB Kitchen V0.7.5 - Saudi country filter Release QA
+on:
+  push:
+    branches: [fix/v075-saudi-home-context-safe]
+    paths:
+      - '.github/workflows/ab_kitchen_v075_saudi_home.yml'
+      - 'lib/screens/home_screen.dart'
+      - 'test/saudi_home_filter_test.dart'
+      - 'pubspec.yaml'
+      - 'tools/verify_v074_release.py'
+      - 'tools/ci_v074_android_emulator.sh'
+      - 'tools/preflight.py'
+      - 'test/storage_legacy_compat_test.dart'
+      - 'test/photo_coverage_v074_test.dart'
+      - 'assets/photos/**'
+      - 'assets/data/generated_photo_audit_v074.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate native Android platform without touching Dart app or user data
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove only generated default MyApp template test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -Fq 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
+      - name: Clean all build products and re-resolve exact locked dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter clean
+          flutter pub get
+          python tools/preflight.py
+      - name: Preserve AB Kitchen icon
+        run: dart run flutter_launcher_icons -f flutter_launcher_icons_android.yaml
+      - name: Static Flutter analysis and all regression tests
+        run: |
+          flutter analyze
+          flutter test
+      - name: Build both actual Android release ABIs with R8
+        run: flutter build apk --release --split-per-abi
+      - name: Verify exact recipe/image payload and forbid JNI registrar mismatch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/verify_v074_release.py build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/app-x86_64-release.apk
+          TOOLS="$ANDROID_HOME/build-tools/$(ls -1 "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
+          for APK in build/app/outputs/flutter-apk/app-{arm64-v8a,x86_64}-release.apk; do
+            "$TOOLS/apksigner" verify --verbose "$APK"
+            "$TOOLS/aapt" dump badging "$APK" | grep -E "^package: name='com.absoftware.ab_kitchen' versionCode='[0-9]+' versionName='0.7.5'"
+          done
+      - name: Enable Linux KVM for accelerated emulator boot
+        run: |
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+      - name: Boot release APK twice in Android 35 emulator, check JNI and screenshots
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-boot-timeout: 900
+          script: bash tools/ci_v074_android_emulator.sh
+      - name: Package Safe Source including generated Android platform, APK and verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk deliverables/AB_Kitchen_V075_ARM64_RELEASE_TEST_SIGNED.apk
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess, zipfile, hashlib, json
+          root=Path('.')
+          apk=root/'deliverables/AB_Kitchen_V075_ARM64_RELEASE_TEST_SIGNED.apk'
+          out=root/'deliverables/AB_Kitchen_V075_SAFE_SOURCE.zip'
+          tracked={Path(p.decode()) for p in subprocess.check_output(['git','ls-files','-z']).split(b'\0') if p}
+          android={p for p in Path('android').rglob('*') if p.is_file()}
+          files=tracked|android
+          def eligible(p):
+            name=str(p).replace('\\','/')
+            blocked=['.git/','.gradle/','.dart_tool/','build/','deliverables/','.idea/','android/local.properties','android/key.properties','android/app/debug.keystore','android/.flutter-plugins']
+            if any(name.startswith(x) or '/'+x in name for x in blocked): return False
+            if p.suffix.lower() in ('.jks','.keystore','.p12','.key'): return False
+            return p.is_file()
+          with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+            for p in sorted(files):
+              if eligible(p): z.write(p,arcname=str(p))
+          with zipfile.ZipFile(out) as z:
+            assert z.testzip() is None
+            required=('lib/main.dart','pubspec.yaml','pubspec.lock','assets/data/recipes_ar.json','android/app/build.gradle.kts','tools/verify_v074_release.py')
+            assert all(f in z.namelist() for f in required), 'Safe Source incomplete'
+          report={
+            'version':'0.7.5+12','package':'com.absoftware.ab_kitchen',
+            'recipes':148,'recipe_photos':147,'webp_assets':148,
+            'android_plugin':'shared_preferences_android 2.4.28 (non-JNI)',
+            'diagnosis':'Reported JNI registrar symbol belongs to Android 2.5.0, absent from uploaded V0.7.2 and this build',
+            'android_emulator':'release x86_64 Android API 35, two boots, 148 recipes + pref load: PASS',
+            'real_phone':'NOT TESTED',
+            'signing':'Android test/debug certificate generated by CI, NOT verified to match installed app. Do not uninstall if data matters.',
+            'apk_sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),
+            'safe_source_sha256':hashlib.sha256(out.read_bytes()).hexdigest(),
+          }
+          (root/'deliverables/AB_Kitchen_V075_VERIFICATION.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('PASS: delivered',report)
+          PY
+      - name: Publish verified build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V075-APK-Safe-Source
+          path: deliverables/*
+          if-no-files-found: error
+          retention-days: 90
+      - name: Preserve verified files on isolated release branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f deliverables/AB_Kitchen_V075_ARM64_RELEASE_TEST_SIGNED.apk deliverables/AB_Kitchen_V075_SAFE_SOURCE.zip deliverables/AB_Kitchen_V075_VERIFICATION.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'build: V0.7.5 Saudi UI QA passed, store Test APK and Safe Source'
+            git push origin HEAD:fix/v075-saudi-home-context-safe
+          fi
