@@ -1,0 +1,16 @@
+{
+  "project": "AB Kitchen",
+  "version": "0.7.2+9",
+  "fix": "Pinned shared_preferences_android exactly 2.4.28; no on-device settings or stored recipes changed",
+  "native_android_emulator_release_startup": "PASS, SharedPreferences loaded + 148 recipes",
+  "flutter_analyze_and_test": "PASS",
+  "bundled_recipe_images": 131,
+  "bundled_webp_files": 132,
+  "apk_type": "Android ARM64 release optimized, TEST signing only, not Google Play signing",
+  "package_name": "com.absoftware.ab_kitchen",
+  "warning": "Different ephemeral debug signing key from older builds may prevent in-place update; do not uninstall an app with valuable data.",
+  "apk_sha256": "a6ec86c377c01106851c226111b2845b29e7f8309b411cc2d2e721664068dff9",
+  "apk_size_bytes": 28216355,
+  "safe_source_sha256": "ac5702acd0ea484be85622533a182a47138e971f06ea2df81cc003229658aebb",
+  "safe_source_size_bytes": 10263227
+}
