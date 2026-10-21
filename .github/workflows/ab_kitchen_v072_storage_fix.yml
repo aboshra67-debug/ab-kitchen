@@ -89,7 +89,7 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 900
           script: |
-            set -euo pipefail
+            set -eu
             adb install -r build/app/outputs/flutter-apk/app-x86_64-release.apk
             adb logcat -c
             adb shell am start -W -n com.absoftware.ab_kitchen/.MainActivity
