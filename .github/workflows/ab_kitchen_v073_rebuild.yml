@@ -24,6 +24,11 @@ jobs:
           cache: true
       - name: Generate native Android platform without touching Dart app or user data
         run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove only generated default MyApp template test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -Fq 'MyApp' test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
       - name: Clean all build products and re-resolve exact locked dependencies
         shell: bash
         run: |
