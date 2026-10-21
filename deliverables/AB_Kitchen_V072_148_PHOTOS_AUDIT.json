@@ -1,0 +1,228 @@
+{
+  "project": "AB Kitchen",
+  "version": "0.7.2+9",
+  "recipe_total": 148,
+  "images_new": 17,
+  "images_prior": 131,
+  "recipe_photos_offline": 148,
+  "webp_assets_including_koshari_hero": 149,
+  "new_image_details": [
+    {
+      "id": "eg_asoura",
+      "jpg_bytes": 107585,
+      "jpg_sha256": "45315018f81b75e0f35cdb278b7ca87e8995d83b9d9b43b57b1c47c984029649",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 49534,
+      "webp_sha256": "1c4b505934ee9c52662e7691bb2a8f470217a75d1f11d0158b6f580386eb14eb",
+      "webp_asset": "assets/photos/eg_asoura.webp"
+    },
+    {
+      "id": "eg_atayef_nuts",
+      "jpg_bytes": 157622,
+      "jpg_sha256": "707c86a82447265ba538031f29eb80839cb87c6eb9c56a7ae8f54c1a99d84e1b",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 87132,
+      "webp_sha256": "97ebf2727e00987d188c454d5e0c963ac3345905a74f7565fb7c2e99af61c0d8",
+      "webp_asset": "assets/photos/eg_atayef_nuts.webp"
+    },
+    {
+      "id": "eg_balh_sham",
+      "jpg_bytes": 116464,
+      "jpg_sha256": "e4cccc2db31f0b2eb4a85630b62021716c358ed83208aeaadff0ef3ecaa179cb",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 56224,
+      "webp_sha256": "04073472212771cec2f569957dc77a65591b5b2bad596dcc621129137974b6b2",
+      "webp_asset": "assets/photos/eg_balh_sham.webp"
+    },
+    {
+      "id": "eg_eggplant_pickled",
+      "jpg_bytes": 207442,
+      "jpg_sha256": "6af33f079fd4f566cba5ab03d2ffadd75fd52532522076e96a9676dbaf0ffc1a",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 139586,
+      "webp_sha256": "835f50bb6ba9346477d9cd149fb09b702c051e07878a057c2ba183db1594a0be",
+      "webp_asset": "assets/photos/eg_eggplant_pickled.webp"
+    },
+    {
+      "id": "eg_fino_bread",
+      "jpg_bytes": 224049,
+      "jpg_sha256": "64d502ac939f4fc0947cf290426a27b74ee209cd8d3e56d429ae8d40ffef3e56",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 155188,
+      "webp_sha256": "ad380925d99a120f37c2b878ec05dade117f2c0f32ddaa86929f0aa12d493c78",
+      "webp_asset": "assets/photos/eg_fino_bread.webp"
+    },
+    {
+      "id": "eg_ghorayeba",
+      "jpg_bytes": 100546,
+      "jpg_sha256": "231b270fc73c05de6dfc538be9121945f474529b3c47b532e873cbedfb78d4db",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 44766,
+      "webp_sha256": "de676225474055917b1dd805263bc6f852837341c838e397dcb02d55c5e3f196",
+      "webp_asset": "assets/photos/eg_ghorayeba.webp"
+    },
+    {
+      "id": "eg_kahk_eid",
+      "jpg_bytes": 142970,
+      "jpg_sha256": "10168b810c33535445612e9646b4a7153a994870777ed4e976b1ad1e1489f05d",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 87650,
+      "webp_sha256": "0513ea30c1bceb367cb5048f6130a37d461a5603d6cb89481a78020419f848c6",
+      "webp_asset": "assets/photos/eg_kahk_eid.webp"
+    },
+    {
+      "id": "eg_mahalabiya",
+      "jpg_bytes": 104369,
+      "jpg_sha256": "af88c774c99a7794f88d61922a07fdba2c2e0697fde028431cda7d9883d2af6c",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 48504,
+      "webp_sha256": "032ea74f38615a5b6e483ac1e0da7c1920d3c573ed44657225df0199e61a6461",
+      "webp_asset": "assets/photos/eg_mahalabiya.webp"
+    },
+    {
+      "id": "eg_meshabbak_domyat",
+      "jpg_bytes": 267731,
+      "jpg_sha256": "ebf29c5203587983f4432aafdcb7b7d9cf92a00ec8c2cc959f911a48fe72ea7b",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 152662,
+      "webp_sha256": "591fa8d75dc64e0b6dffe9bb84bb30894d7a16952c27850025338ac30d889e00",
+      "webp_asset": "assets/photos/eg_meshabbak_domyat.webp"
+    },
+    {
+      "id": "eg_petit_four",
+      "jpg_bytes": 116040,
+      "jpg_sha256": "eb87ed197a280511332d09b82b9da1fcba982b4879ea65e5ef90a36d3a95c90c",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 59814,
+      "webp_sha256": "a195de2697b66642316ee077d40518d11ca3c1dd4a2872bb14e8dfb9c1ae8940",
+      "webp_asset": "assets/photos/eg_petit_four.webp"
+    },
+    {
+      "id": "eg_pickled_turnip",
+      "jpg_bytes": 125666,
+      "jpg_sha256": "e9026ca3463396a866e92952d9d037903d0a1a24aa07a54c3e3dd6e8cf2c721e",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 65008,
+      "webp_sha256": "2e99df7cb73caa566532ea5b3982680cb4bce224e58c6d0ef18500e5f4f6ef47",
+      "webp_asset": "assets/photos/eg_pickled_turnip.webp"
+    },
+    {
+      "id": "eg_sawabe_zainab",
+      "jpg_bytes": 140964,
+      "jpg_sha256": "36987d9dc85543f9814401a57a3bc970b210f16ab2674df6b4b0b5e40b06cf20",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 81818,
+      "webp_sha256": "b2005adefe6e25f7e1e05a803d69c92c2bdecdd3979c6148b08e55a90c68079a",
+      "webp_asset": "assets/photos/eg_sawabe_zainab.webp"
+    },
+    {
+      "id": "eg_semsemiya",
+      "jpg_bytes": 108543,
+      "jpg_sha256": "cb9c2c225dde1be54a779f28e53273c548530a53299301ac2b21cae58e6bccc6",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 58902,
+      "webp_sha256": "995c474a728a04ad238f1efd6585cd8daeb7a101956014939ebadcb30ddabb90",
+      "webp_asset": "assets/photos/eg_semsemiya.webp"
+    },
+    {
+      "id": "eg_shakalama",
+      "jpg_bytes": 137298,
+      "jpg_sha256": "fbd29cd76bbe386e26bdf9db39cda1ba9a79a44a4e2006ef995abb104861e4bb",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 72606,
+      "webp_sha256": "f6ce8c3aa9a0d19f5415bd8333c35477a8ca69a9516a415709cf647ed125ccbc",
+      "webp_asset": "assets/photos/eg_shakalama.webp"
+    },
+    {
+      "id": "eg_tomato_daqa",
+      "jpg_bytes": 147459,
+      "jpg_sha256": "36e134be2ec5ffd14da6c915f6643c22124cc26973093121a0ffff185c9623b7",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 80430,
+      "webp_sha256": "e024b068c118a137b3db4d20aa96b32d6765f2fb90081087f23ab26c0ba190bd",
+      "webp_asset": "assets/photos/eg_tomato_daqa.webp"
+    },
+    {
+      "id": "eg_yogurt_cucumber",
+      "jpg_bytes": 123004,
+      "jpg_sha256": "3431c94d33746dccb98c9f509477eb69f095d89c54f7a3c302da9e07cf41872b",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 58486,
+      "webp_sha256": "b48d78ca6a8f7c0d5c3e8aae855239fc848ca936324bec03a1a7bbe3f68aa9f1",
+      "webp_asset": "assets/photos/eg_yogurt_cucumber.webp"
+    },
+    {
+      "id": "eg_zalabia",
+      "jpg_bytes": 152614,
+      "jpg_sha256": "2ce558d8aa77b7b4dbe1ea3ec9e6f9c625f94496e3de72c0874f15f0aebb1505",
+      "jpeg_dimensions": [
+        1152,
+        896
+      ],
+      "webp_bytes": 97914,
+      "webp_sha256": "eda7b395fdc8234768904a23255cada351dd85b435676365a64c5a0cc7a70226",
+      "webp_asset": "assets/photos/eg_zalabia.webp"
+    }
+  ],
+  "possible_visual_similarity_for_review": [],
+  "all_old_images_retained": true,
+  "no_recipe_data_modified": true,
+  "no_other_modules_changed": true,
+  "photo_type": "Individually generated realistic food illustrations, not original camera photos",
+  "human_visual_approval": "Pending final user assessment; programmatic image validation passed",
+  "arm64_test_apk_sha256": "e0719e7c79b89baaa40b156fd1a82fbb97d93be09f7e4bff343f29f92ea305d3",
+  "arm64_test_apk_bytes": 29988689,
+  "safe_source_sha256": "ec0c6b5a3dc8329fefe52c90361bc5e6785ad6870bb15d3c31379964c0d4c57b",
+  "safe_source_bytes": 14137730,
+  "apk_variant": "Android ARM64 release-optimized, but signed with runner DEBUG key; not a production release",
+  "signed_key_caveat": "Might NOT upgrade prior APK signed under another debug key; do not uninstall apps with local data",
+  "files_in_apk_verified": 149
+}
