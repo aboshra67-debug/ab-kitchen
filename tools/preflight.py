@@ -44,14 +44,7 @@ for photo in (root/'assets/photos').glob('*.webp'):
 assert len(list((root/'assets/photos').glob('*.webp'))) == 132
 assert 'assets/data/recipes_ar.json' in pubspec and 'assets/branding/ab_kitchen_logo.jpg' in pubspec
 assert 'shared_preferences:' in pubspec and 'flutter_tts:' in pubspec
-assert re.search(r'^\s*shared_preferences_android:\s*2\.4\.28\s*
-logo = root / 'assets/branding/ab_kitchen_logo.jpg'
-assert logo.is_file() and logo.stat().st_size > 10000
-assert (root / 'assets/branding/ab_kitchen_app_icon.png').is_file()
-assert 'flutter_launcher_icons:' in pubspec
-assert (root / 'lib/branding/brand_widgets.dart').is_file()
-print(f'PASS: {len(recipes)} recipes; 8 cuisines; {len(paths)} Dart files; local imports resolve; CI/test/build scripts present.')
-print('NOT TESTED: Dart parsing, Flutter static analysis, Flutter widget execution, Android/iOS binaries.'), pubspec, re.MULTILINE), 'Unsafe JNI Android storage plugin version'
+assert 'shared_preferences_android: 2.4.28' in pubspec, 'Unsafe JNI Android storage plugin version'
 logo = root / 'assets/branding/ab_kitchen_logo.jpg'
 assert logo.is_file() and logo.stat().st_size > 10000
 assert (root / 'assets/branding/ab_kitchen_app_icon.png').is_file()
