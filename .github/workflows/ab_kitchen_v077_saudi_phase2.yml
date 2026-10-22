@@ -97,7 +97,7 @@ jobs:
           python - <<'PY'
           import subprocess, zipfile, pathlib
           out=pathlib.Path('deliverables/AB_Kitchen_V077_SAFE_SOURCE.zip')
-          files=[pathlib.Path(x.decode()) for x in subprocess.check_output(['git','ls-files','-z']).split(b'\\0') if x]
+          files=[pathlib.Path(x.decode()) for x in subprocess.check_output(['git','ls-files','-z']).split(bytes([0])) if x]
           platform=[p for p in pathlib.Path('android').rglob('*') if p.is_file()]
           skip=('.git/','.gradle/','.dart_tool/','build/','deliverables/','android/local.properties','android/key.properties')
           with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
