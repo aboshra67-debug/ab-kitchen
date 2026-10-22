@@ -108,7 +108,7 @@ jobs:
           with zipfile.ZipFile(out) as z:
             assert z.testzip() is None
             assert 'assets/data/saudi_phase2_recipes.json' in z.namelist()
-            assert len([n for n in z.namelist() if n.startswith('assets/photos/sa_') and n.endswith('.jpg')])==20
+            assert all('assets/photos/'+r['id']+'.jpg' in z.namelist() for r in __import__('json').loads(z.read('assets/data/saudi_phase2_recipes.json')))
           print('Safe Source complete')
           PY
       - name: Deliver tested APK for private original-key signing
