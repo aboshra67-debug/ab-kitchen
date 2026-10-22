@@ -12,6 +12,7 @@ on:
       - 'test/saudi_phase2_test.dart'
       - 'pubspec.yaml'
       - 'tools/preflight.py'
+      - 'tools/verify_v074_release.py'
   workflow_dispatch:
 permissions:
   contents: read
