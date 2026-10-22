@@ -85,6 +85,9 @@ class RecipePhoto extends StatelessWidget {
     'sa_daghabees','sa_mersa','sa_mufallaq_shrimp','sa_asidah','sa_millet_soup','sa_habb_soup','sa_arboud_bread','sa_qishd','sa_masabeeb','sa_mashghoutha','sa_mathloutha','sa_shaatha','sa_mahshoush','sa_maifa_bread','sa_tasabee','sa_mafalit','sa_mardhoufa','sa_fahsa','sa_moqalqal','sa_khameer_red'
   };
 
+  // Backward-compatible alias used by existing V0.7.1 photo coverage tests.
+  static const saudiPhase2JpegIds = saudiPhase2Jpg;
+
   static String? assetFor(String id, {bool hero = false}) {
     if (!picturedRecipes.contains(id)) return null;
     if (id == 'eg_koshari' && hero) return 'assets/photos/eg_koshari_hero.webp';
