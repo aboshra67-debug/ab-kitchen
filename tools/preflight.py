@@ -8,9 +8,8 @@ root = Path(__file__).resolve().parents[1]
 original = json.loads((root / 'assets/data/recipes_ar.json').read_text(encoding='utf-8'))
 saudi_phase1 = json.loads((root / 'assets/data/saudi_phase1_recipes.json').read_text(encoding='utf-8'))
 saudi_phase2 = json.loads((root / 'assets/data/saudi_phase2_recipes.json').read_text(encoding='utf-8'))
-saudi_phase2 = json.loads((root / 'assets/data/saudi_phase2_recipes.json').read_text(encoding='utf-8'))
-assert len(original) == 148 and len(saudi_phase1) == 20 and len(saudi_phase2) == 20 and len(saudi_phase2) == 20
-recipes = original + saudi_phase1 + saudi_phase2 + saudi_phase2
+assert len(original) == 148 and len(saudi_phase1) == 20 and len(saudi_phase2) == 20
+recipes = original + saudi_phase1 + saudi_phase2
 assert isinstance(recipes, list) and len(recipes) == 188
 ids = [r['id'] for r in recipes]
 assert len(ids) == len(set(ids))
