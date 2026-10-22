@@ -1,122 +1,142 @@
 [
   {
     "recipe_id": "sa_daghabees",
-    "output": "assets/photos/sa_daghabees.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_mufallaq_shrimp",
-    "output": "assets/photos/sa_mufallaq_shrimp.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_asida",
-    "output": "assets/photos/sa_asida.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_millet_soup",
-    "output": "assets/photos/sa_millet_soup.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_hab_soup",
-    "output": "assets/photos/sa_hab_soup.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_arabood",
-    "output": "assets/photos/sa_arabood.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_masabeeb",
-    "output": "assets/photos/sa_masabeeb.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_mashghoutha",
-    "output": "assets/photos/sa_mashghoutha.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_mathloutha",
-    "output": "assets/photos/sa_mathloutha.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_shaatha",
-    "output": "assets/photos/sa_shaatha.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_mahshoush",
-    "output": "assets/photos/sa_mahshoush.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_maifa_bread",
-    "output": "assets/photos/sa_maifa_bread.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_tasabee",
-    "output": "assets/photos/sa_tasabee.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_mafalit",
-    "output": "assets/photos/sa_mafalit.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_mardhoufa",
-    "output": "assets/photos/sa_mardhoufa.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_fahsa",
-    "output": "assets/photos/sa_fahsa.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_moqalqal",
-    "output": "assets/photos/sa_moqalqal.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_khameer_red",
-    "output": "assets/photos/sa_khameer_red.jpg",
-    "format": ".jpg",
-    "country": "sa"
-  },
-  {
-    "recipe_id": "sa_qishd",
-    "output": "assets/photos/sa_qishd.jpg",
-    "format": ".jpg",
-    "country": "sa"
+    "asset": "assets/photos/sa_daghabees.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "الباحة وعسير"
   },
   {
     "recipe_id": "sa_mersa",
-    "output": "assets/photos/sa_mersa.jpg",
-    "format": ".jpg",
-    "country": "sa"
+    "asset": "assets/photos/sa_mersa.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "جازان"
+  },
+  {
+    "recipe_id": "sa_mufallaq_shrimp",
+    "asset": "assets/photos/sa_mufallaq_shrimp.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "المنطقة الشرقية"
+  },
+  {
+    "recipe_id": "sa_asidah",
+    "asset": "assets/photos/sa_asidah.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "عسير والباحة"
+  },
+  {
+    "recipe_id": "sa_millet_soup",
+    "asset": "assets/photos/sa_millet_soup.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "نجران والجنوب"
+  },
+  {
+    "recipe_id": "sa_habb_soup",
+    "asset": "assets/photos/sa_habb_soup.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "المدينة المنورة"
+  },
+  {
+    "recipe_id": "sa_arboud_bread",
+    "asset": "assets/photos/sa_arboud_bread.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "الجوف"
+  },
+  {
+    "recipe_id": "sa_qishd",
+    "asset": "assets/photos/sa_qishd.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "الرياض والقصيم"
+  },
+  {
+    "recipe_id": "sa_masabeeb",
+    "asset": "assets/photos/sa_masabeeb.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "القصيم"
+  },
+  {
+    "recipe_id": "sa_mashghoutha",
+    "asset": "assets/photos/sa_mashghoutha.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "عسير والباحة"
+  },
+  {
+    "recipe_id": "sa_mathloutha",
+    "asset": "assets/photos/sa_mathloutha.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "نجد"
+  },
+  {
+    "recipe_id": "sa_shaatha",
+    "asset": "assets/photos/sa_shaatha.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "وسط المملكة"
+  },
+  {
+    "recipe_id": "sa_mahshoush",
+    "asset": "assets/photos/sa_mahshoush.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "جازان"
+  },
+  {
+    "recipe_id": "sa_maifa_bread",
+    "asset": "assets/photos/sa_maifa_bread.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "جازان وعسير"
+  },
+  {
+    "recipe_id": "sa_tasabee",
+    "asset": "assets/photos/sa_tasabee.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "عسير"
+  },
+  {
+    "recipe_id": "sa_mafalit",
+    "asset": "assets/photos/sa_mafalit.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "جازان"
+  },
+  {
+    "recipe_id": "sa_mardhoufa",
+    "asset": "assets/photos/sa_mardhoufa.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "نجران"
+  },
+  {
+    "recipe_id": "sa_fahsa",
+    "asset": "assets/photos/sa_fahsa.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "عسير"
+  },
+  {
+    "recipe_id": "sa_moqalqal",
+    "asset": "assets/photos/sa_moqalqal.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "مناطق المملكة"
+  },
+  {
+    "recipe_id": "sa_khameer_red",
+    "asset": "assets/photos/sa_khameer_red.jpg",
+    "content_type": "image/jpeg",
+    "source": "AI-generated food illustration; not documentary photography",
+    "region": "عسير وجازان"
   }
 ]
