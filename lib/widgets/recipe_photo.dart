@@ -40,6 +40,8 @@ class RecipePhoto extends StatelessWidget {
     'sa_masabeeb','sa_mashghoutha','sa_mathloutha','sa_shaatha','sa_mahshoush','sa_maifa_bread',
     'sa_tasabee','sa_mafalit','sa_mardhoufa','sa_fahsa','sa_moqalqal','sa_khameer_red','sa_qishd','sa_mersa',
     // Saudi phase 1 — 20 independently authored, offline WebP photographs.
+    // Saudi phase 2: 20 standalone offline JPEG illustrations.
+    'sa_daghabees','sa_mersa','sa_mufallaq_shrimp','sa_asidah','sa_millet_soup','sa_habb_soup','sa_arboud_bread','sa_qishd','sa_masabeeb','sa_mashghoutha','sa_mathloutha','sa_shaatha','sa_mahshoush','sa_maifa_bread','sa_tasabee','sa_mafalit','sa_mardhoufa','sa_fahsa','sa_moqalqal','sa_khameer_red',
     'sa_marqooq','sa_qursan','sa_matazeez','sa_haneeth','sa_madini_rice','sa_hasawi_rice','sa_sayadiyah_tabuk','sa_maghsh_jazan','sa_ruqsh_najran','sa_mlaihiyya','sa_bakeelah_jawf','sa_muqanah_bahah','sa_kubaibat_hail','sa_kleija_qassim','sa_maqshush','sa_areeka','sa_haneeni','sa_balila_hijazi','sa_masoob','sa_tamees',
     'sy_fatteh','sy_kibbeh','sy_muhammara','sy_shishbarak',
     'sy_hariseh','tr_menemen',
@@ -106,9 +108,14 @@ class RecipePhoto extends StatelessWidget {
     'sa_mersa',
   };
 
+  static const saudiPhase2Jpg = <String>{
+    'sa_daghabees','sa_mersa','sa_mufallaq_shrimp','sa_asidah','sa_millet_soup','sa_habb_soup','sa_arboud_bread','sa_qishd','sa_masabeeb','sa_mashghoutha','sa_mathloutha','sa_shaatha','sa_mahshoush','sa_maifa_bread','sa_tasabee','sa_mafalit','sa_mardhoufa','sa_fahsa','sa_moqalqal','sa_khameer_red'
+  };
+
   static String? assetFor(String id, {bool hero = false}) {
     if (!picturedRecipes.contains(id)) return null;
     if (id == 'eg_koshari' && hero) return 'assets/photos/eg_koshari_hero.webp';
+    if (saudiPhase2Jpg.contains(id)) return 'assets/photos/$id.jpg';
     if (id.startsWith('sa_') && saudiPhase2JpegIds.contains(id)) return 'assets/photos/$id.jpg';
     return 'assets/photos/$id.webp';
   }

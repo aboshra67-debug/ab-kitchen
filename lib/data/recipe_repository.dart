@@ -10,10 +10,13 @@ class RecipeRepository {
     final phase2Raw = await rootBundle.loadString('assets/data/saudi_phase2_recipes.json');
     final base = jsonDecode(raw) as List<dynamic>;
     final saudi = jsonDecode(saudiRaw) as List<dynamic>;
+    final phase2Raw = await rootBundle.loadString('assets/data/saudi_phase2_recipes.json');
+    final phase2 = jsonDecode(phase2Raw) as List<dynamic>;
     final phase2 = jsonDecode(phase2Raw) as List<dynamic>;
     final all = <Recipe>[
       ...base.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
       ...saudi.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
+      ...phase2.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
       ...phase2.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
     ];
     assert(all.length == all.map((r) => r.id).toSet().length,

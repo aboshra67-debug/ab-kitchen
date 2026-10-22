@@ -29,6 +29,8 @@ flutter:
     - assets/data/saudi_phase1_photo_audit.json
     - assets/data/saudi_phase1_recipes.json
     - assets/data/saudi_phase2_recipes.json
+    - assets/data/saudi_phase2_photo_audit.json
+    - assets/data/saudi_phase2_recipes.json
     - assets/data/licensed_photo_credits.json
     - assets/branding/ab_kitchen_logo.jpg
     - assets/photos/

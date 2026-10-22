@@ -1,4 +1,4 @@
-name: AB Kitchen V0.7.7 Saudi phase 2 - 20 more recipes Release validation
+name: AB Kitchen V0.7.7 Saudi phase 2 - Release validation
 on:
   push:
     branches: [feature/v077-saudi-phase2-20-recipes]
@@ -7,7 +7,6 @@ on:
       - 'assets/data/saudi_phase2_recipes.json'
       - 'assets/data/saudi_phase2_photo_audit.json'
       - 'assets/photos/sa_*.jpg'
-      - 'assets/photos/sa_*.webp'
       - 'lib/data/recipe_repository.dart'
       - 'lib/widgets/recipe_photo.dart'
       - 'test/saudi_phase2_test.dart'
@@ -81,7 +80,8 @@ jobs:
               'total_recipes':188,
               'saudi_recipes':45,
               'new_saudi_recipes':20,
-              'offline_photos':188,
+              'offline_webp_images':168,
+              'offline_jpeg_images':20,
               'android_release_test':'PASS, Android 35 two boots',
               'real_phone_test':'NOT TESTED',
               'signature':'CI temporary debug/test key: DO NOT DISTRIBUTE. Re-sign offline with canonical private production key',
@@ -89,6 +89,26 @@ jobs:
               'apk_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
           }
           Path('deliverables/AB_Kitchen_V077_TEST_VERIFICATION.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+          PY
+      - name: Create complete Safe Source without private signing keys
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess, zipfile, pathlib
+          out=pathlib.Path('deliverables/AB_Kitchen_V077_SAFE_SOURCE.zip')
+          files=[pathlib.Path(x.decode()) for x in subprocess.check_output(['git','ls-files','-z']).split(b'\\0') if x]
+          platform=[p for p in pathlib.Path('android').rglob('*') if p.is_file()]
+          skip=('.git/','.gradle/','.dart_tool/','build/','deliverables/','android/local.properties','android/key.properties')
+          with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+            for p in sorted(set(files+platform)):
+              name=p.as_posix()
+              if not p.is_file() or any(s in name for s in skip) or p.suffix.lower() in ('.jks','.p12','.keystore','.key'): continue
+              z.write(p,name)
+          with zipfile.ZipFile(out) as z:
+            assert z.testzip() is None
+            assert 'assets/data/saudi_phase2_recipes.json' in z.namelist()
+            assert len([n for n in z.namelist() if n.startswith('assets/photos/sa_') and n.endswith('.jpg')])==20
+          print('Safe Source complete')
           PY
       - name: Deliver tested APK for private original-key signing
         uses: actions/upload-artifact@v4
