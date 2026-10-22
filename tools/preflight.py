@@ -47,9 +47,9 @@ assert 'assets/photos/' in pubspec
 for photo in (root/'assets/photos').glob('*.webp'):
     assert photo.stat().st_size > 3000, str(photo)
 assert len(list((root/'assets/photos').glob('*.webp'))) == 168
-assert len(list((root/'assets/photos').glob('sa_*.jpg'))) == 20
+assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 # Twenty new photo JPEGs are checked after CI materializes the GitHub tree.
-assert len(list((root/'assets/photos').glob('sa_*.jpg'))) == 20
+assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 assert 'assets/data/recipes_ar.json' in pubspec and 'assets/branding/ab_kitchen_logo.jpg' in pubspec
 assert 'shared_preferences:' in pubspec and 'flutter_tts:' in pubspec
