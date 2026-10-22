@@ -35,6 +35,8 @@ class RecipePhoto extends StatelessWidget {
     'eg_tahini_salad','eg_salata_baladi','eg_cabbage_mahshi',
     'eg_kishk_egyptian','eg_baladi_bread','eg_lentil_soup',
     'sa_kabsa','sa_jareesh','sa_saleeg','sa_mutabbaq','sa_luqaimat',
+    // Saudi phase 1 — 20 independently authored, offline WebP photographs.
+    'sa_marqooq','sa_qursan','sa_matazeez','sa_haneeth','sa_madini_rice','sa_hasawi_rice','sa_sayadiyah_tabuk','sa_maghsh_jazan','sa_ruqsh_najran','sa_mlaihiyya','sa_bakeelah_jawf','sa_muqanah_bahah','sa_kubaibat_hail','sa_kleija_qassim','sa_maqshush','sa_areeka','sa_haneeni','sa_balila_hijazi','sa_masoob','sa_tamees',
     'sy_fatteh','sy_kibbeh','sy_muhammara','sy_shishbarak',
     'sy_hariseh','tr_menemen',
     'eg_dessert_rice_pudding','eg_dessert_qashtuta','eg_dessert_sweet_koshari',
