@@ -1,0 +1,99 @@
+name: AB Kitchen V0.7.7 Saudi phase 2 - 20 more recipes Release validation
+on:
+  push:
+    branches: [feature/v077-saudi-phase2-20-recipes]
+    paths:
+      - '.github/workflows/ab_kitchen_v077_saudi_phase2.yml'
+      - 'assets/data/saudi_phase2_recipes.json'
+      - 'assets/data/saudi_phase2_photo_audit.json'
+      - 'assets/photos/sa_*.jpg'
+      - 'assets/photos/sa_*.webp'
+      - 'lib/data/recipe_repository.dart'
+      - 'lib/widgets/recipe_photo.dart'
+      - 'test/saudi_phase2_test.dart'
+      - 'pubspec.yaml'
+      - 'tools/preflight.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate matching Android platform
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove ONLY generated Flutter template widget test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -Fq 'MyApp' test/widget_test.dart; then rm test/widget_test.dart; fi
+      - name: Resolve pinned dependencies and validate original recipe preservation
+        run: |
+          flutter clean
+          flutter pub get
+          python tools/preflight.py
+      - name: Preserve approved launcher icon
+        run: dart run flutter_launcher_icons -f flutter_launcher_icons_android.yaml
+      - name: Analyze and test all existing and new recipes
+        run: |
+          flutter analyze
+          flutter test
+      - name: Build Release ABIs
+        run: flutter build apk --release --split-per-abi
+      - name: Check APK contents and 188 recipes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/verify_v074_release.py build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/app-x86_64-release.apk
+          TOOLS="$ANDROID_HOME/build-tools/$(ls -1 "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
+          for APK in build/app/outputs/flutter-apk/app-{arm64-v8a,x86_64}-release.apk; do
+            "$TOOLS/apksigner" verify --verbose "$APK"
+            "$TOOLS/aapt" dump badging "$APK" | grep -E "^package: name='com.absoftware.ab_kitchen' versionCode='[0-9]+' versionName='0.7.7'"
+          done
+      - name: Enable Android 35 emulator hardware virtualization
+        run: |
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+      - name: Test startup twice with 188 recipes and no native JNI failures
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-boot-timeout: 900
+          script: bash tools/ci_v077_android_emulator.sh
+      - name: Stage successful Release test APK and report
+        run: |
+          mkdir -p deliverables
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk deliverables/AB_Kitchen_V077_ARM64_RELEASE_TEST_ONLY.apk
+          python - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          p=Path('deliverables/AB_Kitchen_V077_ARM64_RELEASE_TEST_ONLY.apk')
+          result={
+              'version':'0.7.7+14',
+              'total_recipes':188,
+              'saudi_recipes':45,
+              'new_saudi_recipes':20,
+              'offline_photos':188,
+              'android_release_test':'PASS, Android 35 two boots',
+              'real_phone_test':'NOT TESTED',
+              'signature':'CI temporary debug/test key: DO NOT DISTRIBUTE. Re-sign offline with canonical private production key',
+              'canonical_certificate_sha256':'adabc03b93b62a960e573c5c99102776d8c725a1bc039ce2b3b0cf59d1aa5fe0',
+              'apk_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+          }
+          Path('deliverables/AB_Kitchen_V077_TEST_VERIFICATION.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+          PY
+      - name: Deliver tested APK for private original-key signing
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V077-Saudi20-Release-Test
+          path: deliverables/*
+          if-no-files-found: error
+          retention-days: 90

@@ -21,7 +21,7 @@ void main() {
     SharedPreferences.setMockInitialValues({'ab_kitchen_v1': original});
     final prefs = await SharedPreferences.getInstance();
     final controller = KitchenController.open(await RecipeRepository.load(), prefs);
-    expect(controller.recipes.length, 168);
+    expect(controller.recipes.length, 188);
     expect(controller.hasStorageError, isFalse);
     expect(controller.favorites, contains('eg_koshari'));
     expect(controller.pantry, contains('أرز'));
