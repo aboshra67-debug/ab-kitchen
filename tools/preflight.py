@@ -8,14 +8,15 @@ root = Path(__file__).resolve().parents[1]
 original = json.loads((root / 'assets/data/recipes_ar.json').read_text(encoding='utf-8'))
 saudi_phase1 = json.loads((root / 'assets/data/saudi_phase1_recipes.json').read_text(encoding='utf-8'))
 saudi_phase2 = json.loads((root / 'assets/data/saudi_phase2_recipes.json').read_text(encoding='utf-8'))
-assert len(original) == 148 and len(saudi_phase1) == 20 and len(saudi_phase2) == 20
-recipes = original + saudi_phase1 + saudi_phase2
-assert isinstance(recipes, list) and len(recipes) == 188
+saudi_phase3 = json.loads((root / 'assets/data/saudi_phase3_recipes.json').read_text(encoding='utf-8'))
+assert len(original) == 148 and len(saudi_phase1) == 20 and len(saudi_phase2) == 20 and len(saudi_phase3) == 20
+recipes = original + saudi_phase1 + saudi_phase2 + saudi_phase3
+assert isinstance(recipes, list) and len(recipes) == 208
 ids = [r['id'] for r in recipes]
 assert len(ids) == len(set(ids))
 assert sum(r.get('collection') == 'blaban_inspired' for r in recipes) == 14
 assert sum(r['country'] == 'eg' for r in recipes) == 123
-assert sum(r['country'] == 'sa' for r in recipes) == 45
+assert sum(r['country'] == 'sa' for r in recipes) == 65
 assert len({r['category'] for r in recipes if r['country'] == 'eg'}) == 11
 assert len({r['name'].strip() for r in recipes if r['country'] == 'eg'}) == 123
 assert all(len(r.get('topping_ids', [])) >= 4 for r in recipes if r.get('collection') == 'blaban_inspired')
@@ -42,13 +43,14 @@ for expected in (
 ):
     assert (root / expected).is_file(), expected
 pubspec = (root / 'pubspec.yaml').read_text(encoding='utf-8')
-assert 'version: 0.7.7+14' in pubspec
+assert 'version: 0.7.8+15' in pubspec
 assert 'assets/photos/' in pubspec
 for photo in (root/'assets/photos').glob('*.webp'):
     assert photo.stat().st_size > 3000, str(photo)
 assert len(list((root/'assets/photos').glob('*.webp'))) == 168
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
-# Twenty new photo JPEGs are checked after CI materializes the GitHub tree.
+assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase3)
+# Phase 3 images are original generated illustrations. Earlier photos are retained.
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 assert 'assets/data/recipes_ar.json' in pubspec and 'assets/branding/ab_kitchen_logo.jpg' in pubspec
