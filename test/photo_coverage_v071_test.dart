@@ -6,11 +6,11 @@ import 'package:ab_kitchen/widgets/recipe_photo.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('187 food photographs are bundled, mapped to their own recipe and offline', () async {
+  test('207 food images are bundled, mapped to their own recipe and offline', () async {
     final recipes = await RecipeRepository.load();
     final ids = recipes.map((entry) => entry.id).toSet();
-    expect(ids.length, 188);
-    expect(RecipePhoto.picturedRecipes.length, 187);
+    expect(ids.length, 208);
+    expect(RecipePhoto.picturedRecipes.length, 207);
     expect(RecipePhoto.picturedRecipes.difference(ids), isEmpty);
 
     for (final id in RecipePhoto.picturedRecipes) {
