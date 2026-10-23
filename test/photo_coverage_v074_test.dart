@@ -13,7 +13,7 @@ void main() {
     final ids = recipes.map((x) => (x as Map<String, dynamic>)['id']).toSet();
     expect(recipes.length, 148);
     expect(photos.length, 16);
-    expect(RecipePhoto.picturedRecipes.length, 187);
+    expect(RecipePhoto.picturedRecipes.length, 207);
     expect(RecipePhoto.assetFor('eg_duqqa_alex'),
       'assets/photos/eg_duqqa_alex.webp');
     final signatures = <String>{};
