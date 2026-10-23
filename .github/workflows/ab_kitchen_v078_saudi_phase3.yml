@@ -1,0 +1,144 @@
+name: AB Kitchen V0.7.8 Saudi phase 3 - Release validation
+on:
+  push:
+    branches: [feature/v078-saudi-phase3-20-recipes]
+    paths:
+      - '.github/workflows/ab_kitchen_v078_saudi_phase3.yml'
+      - 'assets/data/saudi_phase3_recipes.json'
+      - 'assets/data/saudi_phase3_illustrations_audit.json'
+      - 'assets/photos/sa_*.jpg'
+      - 'lib/data/recipe_repository.dart'
+      - 'lib/widgets/recipe_photo.dart'
+      - 'test/saudi_phase3_test.dart'
+      - 'tools/generate_saudi_phase3_images.py'
+      - 'pubspec.yaml'
+      - 'tools/preflight.py'
+      - 'tools/verify_v074_release.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate and safely commit 20 original offline dish illustrations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check 'Pillow>=10,<13'
+          python tools/generate_saudi_phase3_images.py
+          python - <<'PY'
+          import json, pathlib
+          data=json.loads(pathlib.Path('assets/data/saudi_phase3_recipes.json').read_text(encoding='utf-8'))
+          assert len(data)==20
+          for recipe in data:
+              path=pathlib.Path('assets/photos')/(recipe['id']+'.jpg')
+              assert path.is_file() and path.stat().st_size>20000,path
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/photos/sa_*.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets(v078): twenty original halal Saudi dish illustrations'
+            git push origin HEAD:feature/v078-saudi-phase3-20-recipes
+          fi
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate matching Android platform
+        run: flutter create --project-name ab_kitchen --org com.absoftware --platforms=android .
+      - name: Remove ONLY generated Flutter template widget test
+        run: |
+          if [ -f test/widget_test.dart ] && grep -Fq 'MyApp' test/widget_test.dart; then rm test/widget_test.dart; fi
+      - name: Resolve pinned dependencies and validate original recipe preservation
+        run: |
+          flutter clean
+          flutter pub get
+          python tools/preflight.py
+      - name: Preserve approved launcher icon
+        run: dart run flutter_launcher_icons -f flutter_launcher_icons_android.yaml
+      - name: Analyze and test all existing and new recipes
+        run: |
+          flutter analyze
+          flutter test
+      - name: Build Release ABIs
+        run: flutter build apk --release --split-per-abi
+      - name: Check APK contents and 208 recipes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/verify_v074_release.py build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/app-x86_64-release.apk
+          TOOLS="$ANDROID_HOME/build-tools/$(ls -1 "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
+          for APK in build/app/outputs/flutter-apk/app-{arm64-v8a,x86_64}-release.apk; do
+            "$TOOLS/apksigner" verify --verbose "$APK"
+            "$TOOLS/aapt" dump badging "$APK" | grep -E "^package: name='com.absoftware.ab_kitchen' versionCode='[0-9]+' versionName='0.7.8'"
+          done
+      - name: Enable Android 35 emulator hardware virtualization
+        run: |
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+      - name: Test startup twice with 208 recipes and no native JNI failures
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-boot-timeout: 900
+          script: bash tools/ci_v078_android_emulator.sh
+      - name: Stage successful Release test APK and report
+        run: |
+          mkdir -p deliverables
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk deliverables/AB_Kitchen_V078_ARM64_RELEASE_TEST_ONLY.apk
+          python - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          p=Path('deliverables/AB_Kitchen_V078_ARM64_RELEASE_TEST_ONLY.apk')
+          result={
+              'version':'0.7.8+15',
+              'total_recipes':208,
+              'saudi_recipes':65,
+              'new_saudi_recipes':20,
+              'offline_webp_images':168,
+              'offline_jpeg_images':43,
+              'android_release_test':'PASS, Android 35 two boots',
+              'real_phone_test':'NOT TESTED',
+              'signature':'CI temporary test key: DO NOT DISTRIBUTE; re-sign locally using canonical private production key',
+              'canonical_certificate_sha256':'adabc03b93b62a960e573c5c99102776d8c725a1bc039ce2b3b0cf59d1aa5fe0',
+              'apk_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+          }
+          Path('deliverables/AB_Kitchen_V078_TEST_VERIFICATION.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+          PY
+      - name: Create complete Safe Source without private signing keys
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess, zipfile, pathlib
+          out=pathlib.Path('deliverables/AB_Kitchen_V078_SAFE_SOURCE.zip')
+          files=[pathlib.Path(x.decode()) for x in subprocess.check_output(['git','ls-files','-z']).split(bytes([0])) if x]
+          platform=[p for p in pathlib.Path('android').rglob('*') if p.is_file()]
+          skip=('.git/','.gradle/','.dart_tool/','build/','deliverables/','android/local.properties','android/key.properties')
+          with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+            for p in sorted(set(files+platform)):
+              name=p.as_posix()
+              if not p.is_file() or any(s in name for s in skip) or p.suffix.lower() in ('.jks','.p12','.keystore','.key'): continue
+              z.write(p,name)
+          with zipfile.ZipFile(out) as z:
+            assert z.testzip() is None
+            assert 'assets/data/saudi_phase2_recipes.json' in z.namelist()
+            assert 'assets/data/saudi_phase3_recipes.json' in z.namelist()
+            assert all('assets/photos/'+r['id']+'.jpg' in z.namelist() for r in __import__('json').loads(z.read('assets/data/saudi_phase2_recipes.json')))
+            assert all('assets/photos/'+r['id']+'.jpg' in z.namelist() for r in __import__('json').loads(z.read('assets/data/saudi_phase3_recipes.json')))
+          print('Safe Source complete')
+          PY
+      - name: Deliver tested APK for private original-key signing
+        uses: actions/upload-artifact@v4
+        with:
+          name: AB-Kitchen-V078-Saudi20-Release-Test
+          path: deliverables/*
+          if-no-files-found: error
+          retention-days: 90
