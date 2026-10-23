@@ -38,6 +38,7 @@ class RecipePhoto extends StatelessWidget {
     // Saudi phase 1 — 20 independently authored, offline WebP photographs.
     // Saudi phase 2: 20 standalone offline JPEG illustrations.
     'sa_daghabees','sa_mersa','sa_mufallaq_shrimp','sa_asidah','sa_millet_soup','sa_habb_soup','sa_arboud_bread','sa_qishd','sa_masabeeb','sa_mashghoutha','sa_mathloutha','sa_shaatha','sa_mahshoush','sa_maifa_bread','sa_tasabee','sa_mafalit','sa_mardhoufa','sa_fahsa','sa_moqalqal','sa_khameer_red',
+    'sa_harees','sa_mandi_lamb','sa_mahmous_qatif','sa_timman_hail','sa_mansaf_tabuk','sa_muhammar_barnyush','sa_matban_fish','sa_futaytah_north','sa_khumayah_north','sa_mahmousa_north','sa_thareed_lamb','sa_muaraq_madinah','sa_shadkh_rajlah','sa_mathaan_bread','sa_mammoosh_east','sa_dabyazah','sa_oqaili_cake','sa_khanfaroush','sa_khabeesa','sa_sago',
     'sa_marqooq','sa_qursan','sa_matazeez','sa_haneeth','sa_madini_rice','sa_hasawi_rice','sa_sayadiyah_tabuk','sa_maghsh_jazan','sa_ruqsh_najran','sa_mlaihiyya','sa_bakeelah_jawf','sa_muqanah_bahah','sa_kubaibat_hail','sa_kleija_qassim','sa_maqshush','sa_areeka','sa_haneeni','sa_balila_hijazi','sa_masoob','sa_tamees',
     'sy_fatteh','sy_kibbeh','sy_muhammara','sy_shishbarak',
     'sy_hariseh','tr_menemen',
@@ -85,13 +86,16 @@ class RecipePhoto extends StatelessWidget {
     'sa_daghabees','sa_mersa','sa_mufallaq_shrimp','sa_asidah','sa_millet_soup','sa_habb_soup','sa_arboud_bread','sa_qishd','sa_masabeeb','sa_mashghoutha','sa_mathloutha','sa_shaatha','sa_mahshoush','sa_maifa_bread','sa_tasabee','sa_mafalit','sa_mardhoufa','sa_fahsa','sa_moqalqal','sa_khameer_red'
   };
 
+  // Twenty original offline illustrations (not photographs) of the V078 dishes.
+  static const saudiPhase3Jpg = <String>{'sa_harees','sa_mandi_lamb','sa_mahmous_qatif','sa_timman_hail','sa_mansaf_tabuk','sa_muhammar_barnyush','sa_matban_fish','sa_futaytah_north','sa_khumayah_north','sa_mahmousa_north','sa_thareed_lamb','sa_muaraq_madinah','sa_shadkh_rajlah','sa_mathaan_bread','sa_mammoosh_east','sa_dabyazah','sa_oqaili_cake','sa_khanfaroush','sa_khabeesa','sa_sago'};
+
   // Backward-compatible alias used by existing V0.7.1 photo coverage tests.
   static const saudiPhase2JpegIds = saudiPhase2Jpg;
 
   static String? assetFor(String id, {bool hero = false}) {
     if (!picturedRecipes.contains(id)) return null;
     if (id == 'eg_koshari' && hero) return 'assets/photos/eg_koshari_hero.webp';
-    if (saudiPhase2Jpg.contains(id)) return 'assets/photos/$id.jpg';
+    if (saudiPhase2Jpg.contains(id) || saudiPhase3Jpg.contains(id)) return 'assets/photos/$id.jpg';
     return 'assets/photos/$id.webp';
   }
 
@@ -115,7 +119,7 @@ class RecipePhoto extends StatelessWidget {
                 ],
               ]))
           : Image.asset(path, fit: BoxFit.cover, filterQuality: FilterQuality.medium,
-              semanticLabel: 'صورة توضيحية واقعية المظهر لطبق ${recipe.name}',
+              semanticLabel: 'صورة توضيحية لطبق ${recipe.name}',
               errorBuilder: (_, __, ___) => ColoredBox(
                 color: KitchenBrand.roseCream,
                 child: Center(child: Text(recipe.emoji,
