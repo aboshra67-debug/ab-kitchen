@@ -120,6 +120,17 @@ jobs:
             assert all('assets/photos/'+r['id']+'.jpg' in z.namelist() for r in __import__('json').loads(z.read('assets/data/saudi_phase3_recipes.json')))
           print('Safe Source complete')
           PY
+      - name: Export public Android signing utilities for private local signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$ANDROID_HOME/build-tools"
+          VER="$(ls -1 "$ROOT" | sort -V | tail -1)"
+          mkdir -p deliverables/android_signing_tools
+          cp "$ROOT/$VER/lib/apksigner.jar" deliverables/android_signing_tools/
+          cp "$ROOT/$VER/zipalign" deliverables/android_signing_tools/
+          chmod +x deliverables/android_signing_tools/zipalign
+          java -cp deliverables/android_signing_tools/apksigner.jar com.android.apksigner.ApkSignerTool --version
       - name: Deliver tested APK for private original-key signing
         uses: actions/upload-artifact@v4
         with:
