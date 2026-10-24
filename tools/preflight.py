@@ -43,13 +43,14 @@ for expected in (
 ):
     assert (root / expected).is_file(), expected
 pubspec = (root / 'pubspec.yaml').read_text(encoding='utf-8')
-assert 'version: 0.7.8+15' in pubspec
+assert 'version: 0.7.9+16' in pubspec
 assert 'assets/photos/' in pubspec
 for photo in (root/'assets/photos').glob('*.webp'):
     assert photo.stat().st_size > 3000, str(photo)
 assert len(list((root/'assets/photos').glob('*.webp'))) == 168
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase3)
+assert (root/'assets/photos/eg_fino_bread.jpg').is_file(), 'Missing Egyptian fino image'
 # Phase 3 images are original generated illustrations. Earlier photos are retained.
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)

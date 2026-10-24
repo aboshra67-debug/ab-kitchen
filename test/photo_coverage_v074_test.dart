@@ -13,7 +13,7 @@ void main() {
     final ids = recipes.map((x) => (x as Map<String, dynamic>)['id']).toSet();
     expect(recipes.length, 148);
     expect(photos.length, 16);
-    expect(RecipePhoto.picturedRecipes.length, 207);
+    expect(RecipePhoto.picturedRecipes.length, 208);
     expect(RecipePhoto.assetFor('eg_duqqa_alex'),
       'assets/photos/eg_duqqa_alex.webp');
     final signatures = <String>{};
@@ -27,6 +27,7 @@ void main() {
       signatures.add(bytes.buffer.asUint8List().take(256).join(','));
     }
     expect(signatures.length, photos.length);
-    expect(RecipePhoto.assetFor('eg_fino_bread'), isNull);
+    expect(RecipePhoto.assetFor('eg_fino_bread'), 'assets/photos/eg_fino_bread.jpg');
+    expect((await rootBundle.load('assets/photos/eg_fino_bread.jpg')).lengthInBytes, greaterThan(10000));
   });
 }

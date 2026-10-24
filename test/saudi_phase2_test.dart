@@ -13,7 +13,7 @@ void main() {
     expect(recipes.where((r) => r.country == 'sa').length, 65);
     expect(raw.length, 20);
     expect(RecipePhoto.saudiPhase2Jpg.length, 20);
-    expect(RecipePhoto.picturedRecipes.length, 207);
+    expect(RecipePhoto.picturedRecipes.length, 208);
     final names = <String>{};
     for (final item in raw) {
       final data = item as Map<String, dynamic>;

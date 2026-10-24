@@ -16,6 +16,7 @@ photos = sorted((root / 'assets/photos').glob('*.webp')) + sorted((root / 'asset
 assert len(recipes) == 208
 assert len({r['id'] for r in recipes}) == 208
 assert len(list((root / 'assets/photos').glob('*.webp'))) == 168
+assert (root / 'assets/photos/eg_fino_bread.jpg').is_file(), 'Fino JPEG missing'
 assert all((root / 'assets/photos' / (r['id'] + '.jpg')).is_file() for r in phase2 + phase3)
 lock = (root / 'pubspec.lock').read_text(encoding='utf-8')
 m = re.search(r'^  shared_preferences_android:\n(?:(?: {4,}.*)\n)*?    version: "([^"]+)"', lock, re.M)

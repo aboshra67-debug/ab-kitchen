@@ -1,0 +1,20 @@
+{
+  "version": "0.7.9",
+  "versionCode": 16,
+  "recipes_total": 208,
+  "recipes_saudi": 65,
+  "updated_saudi_photo_ids": [
+    "sa_mammoosh_east",
+    "sa_dabyazah",
+    "sa_oqaili_cake",
+    "sa_khanfaroush",
+    "sa_futaytah_north",
+    "sa_shadkh_rajlah",
+    "sa_mahmous_qatif",
+    "sa_khabeesa"
+  ],
+  "new_egyptian_photo": "eg_fino_bread.jpg",
+  "image_provenance": "New illustrative images generated with Adobe Firefly AI, not photographs of actual cooked plates",
+  "preservation": "All existing 208 recipe records and non-target photo assets retained",
+  "signing": "Production signing happens offline after CI; no private key or password uploaded"
+}

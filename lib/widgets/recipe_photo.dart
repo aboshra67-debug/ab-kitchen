@@ -14,6 +14,7 @@ class RecipePhoto extends StatelessWidget {
   final double borderRadius;
 
   static const picturedRecipes = <String>{
+    'eg_fino_bread', // Bundled Egyptian fino roll photo
     'eg_eggplant_pickled', // V0.7.4 individually matched illustration
     'eg_yogurt_cucumber', // V0.7.4 individually matched illustration
     'eg_pickled_turnip', // V0.7.4 individually matched illustration
@@ -95,7 +96,7 @@ class RecipePhoto extends StatelessWidget {
   static String? assetFor(String id, {bool hero = false}) {
     if (!picturedRecipes.contains(id)) return null;
     if (id == 'eg_koshari' && hero) return 'assets/photos/eg_koshari_hero.webp';
-    if (saudiPhase2Jpg.contains(id) || saudiPhase3Jpg.contains(id)) return 'assets/photos/$id.jpg';
+    if (id == 'eg_fino_bread' || saudiPhase2Jpg.contains(id) || saudiPhase3Jpg.contains(id)) return 'assets/photos/$id.jpg';
     return 'assets/photos/$id.webp';
   }
 

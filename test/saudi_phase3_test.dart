@@ -14,7 +14,7 @@ void main() {
     expect(raw.length, 20);
     expect(recipes.map((r) => r.id).toSet().length, 208);
     expect(RecipePhoto.saudiPhase3Jpg.length, 20);
-    expect(RecipePhoto.picturedRecipes.length, 207);
+    expect(RecipePhoto.picturedRecipes.length, 208);
     final names = <String>{};
     for (final item in raw) {
       final data = item as Map<String, dynamic>;

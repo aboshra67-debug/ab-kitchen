@@ -12,7 +12,7 @@ void main() {
     expect(recipes.length, 208);
     expect(recipes.where((r) => r.country == 'sa').length, 65);
     expect(audit.length, 20);
-    expect(RecipePhoto.picturedRecipes.length, 207);
+    expect(RecipePhoto.picturedRecipes.length, 208);
     final unique = <String>{};
     for (final a in audit) {
       final id = a['recipe_id'] as String;
