@@ -15,7 +15,7 @@ void main() {
 
     for (final id in RecipePhoto.picturedRecipes) {
       final path = RecipePhoto.assetFor(id);
-      expect(path, (id == 'eg_fino_bread' || (id.startsWith('sa_') && (RecipePhoto.saudiPhase2JpegIds.contains(id) || RecipePhoto.saudiPhase3Jpg.contains(id) || RecipePhoto.syrianPhase1Jpg.contains(id)))) ? 'assets/photos/$id.jpg' : 'assets/photos/$id.webp', reason: 'Wrong recipe image for $id');
+      expect(path, (id == 'eg_fino_bread' || RecipePhoto.saudiPhase2JpegIds.contains(id) || RecipePhoto.saudiPhase3Jpg.contains(id) || RecipePhoto.syrianPhase1Jpg.contains(id)) ? 'assets/photos/$id.jpg' : 'assets/photos/$id.webp', reason: 'Wrong recipe image for $id');
       final img = await rootBundle.load(path!);
       expect(img.lengthInBytes, greaterThan(3000),
           reason: 'Missing or suspiciously small offline photo: $id');
