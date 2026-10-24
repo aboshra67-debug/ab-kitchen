@@ -1,7 +1,7 @@
 name: ab_kitchen
 description: AB Kitchen - Interactive world recipes and home cooking assistant.
 publish_to: none
-version: 0.7.9+16
+version: 0.7.10+17
 
 environment:
   sdk: '>=3.4.0 <4.0.0'

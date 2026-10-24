@@ -1,0 +1,69 @@
+{
+  "version": "0.7.10",
+  "version_code": 17,
+  "base_release": "0.7.9+16",
+  "total_recipes": 208,
+  "saudi_recipes": 65,
+  "updated_images": [
+    {
+      "id": "sa_mathaan_bread",
+      "asset": "assets/photos/sa_mathaan_bread.jpg",
+      "git_blob_sha": "01b77868a4fb073de59ed8c79fef1efceff9bf89"
+    },
+    {
+      "id": "sa_harees",
+      "asset": "assets/photos/sa_harees.jpg",
+      "git_blob_sha": "c0ca4e271b888afdd91f73ce9230889666934928"
+    },
+    {
+      "id": "sa_mandi_lamb",
+      "asset": "assets/photos/sa_mandi_lamb.jpg",
+      "git_blob_sha": "8fe88d64b84754ee962964b5a5c5e2c667942811"
+    },
+    {
+      "id": "sa_timman_hail",
+      "asset": "assets/photos/sa_timman_hail.jpg",
+      "git_blob_sha": "5559c93344b53db83078f089e9086fec754f9c82"
+    },
+    {
+      "id": "sa_mansaf_tabuk",
+      "asset": "assets/photos/sa_mansaf_tabuk.jpg",
+      "git_blob_sha": "68b0062c648b8ef201aa26102daace5e439c0f65"
+    },
+    {
+      "id": "sa_muhammar_barnyush",
+      "asset": "assets/photos/sa_muhammar_barnyush.jpg",
+      "git_blob_sha": "78defa94cf940a53694a71b1f61cb06d5db55aba"
+    },
+    {
+      "id": "sa_matban_fish",
+      "asset": "assets/photos/sa_matban_fish.jpg",
+      "git_blob_sha": "3c6df683af9c55575c18ee0b322ff079e63157ac"
+    },
+    {
+      "id": "sa_khumayah_north",
+      "asset": "assets/photos/sa_khumayah_north.jpg",
+      "git_blob_sha": "011d5e213b6194a2d600a488bd6cb71cba8d3bac"
+    },
+    {
+      "id": "sa_mahmousa_north",
+      "asset": "assets/photos/sa_mahmousa_north.jpg",
+      "git_blob_sha": "26f9b481fa5bc5ee853af29c646888e428dbafe1"
+    },
+    {
+      "id": "sa_thareed_lamb",
+      "asset": "assets/photos/sa_thareed_lamb.jpg",
+      "git_blob_sha": "484451328c6beff3a3c9af59258ea6653dee64c7"
+    },
+    {
+      "id": "sa_muaraq_madinah",
+      "asset": "assets/photos/sa_muaraq_madinah.jpg",
+      "git_blob_sha": "463f27ac755da9cf29d44aa1b079437c2a387265"
+    }
+  ],
+  "asset_style": "Independent photorealistic AI-generated culinary depictions; not photographs of actual cooked dishes.",
+  "manual_visual_review": "All 11 outputs reviewed for visible ingredients and non-duplication.",
+  "preserved": "Unchanged 208 recipe records and their IDs, all non-target photo assets, data keys, features, and package.",
+  "new_signing_key": false,
+  "signing": "The user production key remains offline; GitHub CI creates test-signed APK only."
+}
