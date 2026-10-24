@@ -23,7 +23,7 @@ void main() {
   ];
   test('Eleven Saudi corrections are unique standalone offline JPEGs', () async {
     final recipes = await RecipeRepository.load();
-    expect(recipes.length, 208);
+    expect(recipes.length, 228);
     expect(recipes.where((r) => r.country == 'sa').length, 65);
     final allImages = <Uint8List>[];
     for (final id in ids) {
