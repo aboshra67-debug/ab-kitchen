@@ -3,7 +3,7 @@ on:
   push:
     branches: [feature/v080-syria-phase1-safe]
     paths:
-      - '.github/workflows/ab_kitchen_v0710_saudi_real_photos.yml'
+      - '.github/workflows/ab_kitchen_v080_syria_phase1.yml'
       - 'assets/data/saudi_phase3_recipes.json'
       - 'assets/data/syrian_phase1_recipes.json'
       - 'assets/photos/sy_*.jpg'
