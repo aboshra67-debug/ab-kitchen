@@ -9,11 +9,11 @@ void main() {
   test('Saudi phase 2 has 20 distinct recipes and individual offline JPEGs', () async {
     final recipes = await RecipeRepository.load();
     final raw = jsonDecode(await rootBundle.loadString('assets/data/saudi_phase2_recipes.json')) as List<dynamic>;
-    expect(recipes.length, 208);
+    expect(recipes.length, 228);
     expect(recipes.where((r) => r.country == 'sa').length, 65);
     expect(raw.length, 20);
     expect(RecipePhoto.saudiPhase2Jpg.length, 20);
-    expect(RecipePhoto.picturedRecipes.length, 208);
+    expect(RecipePhoto.picturedRecipes.length, 228);
     final names = <String>{};
     for (final item in raw) {
       final data = item as Map<String, dynamic>;
