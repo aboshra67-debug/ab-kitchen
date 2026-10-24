@@ -9,12 +9,12 @@ void main() {
   test('Saudi phase 3: exactly 20 unique halal recipes with own bundled images', () async {
     final recipes = await RecipeRepository.load();
     final raw = jsonDecode(await rootBundle.loadString('assets/data/saudi_phase3_recipes.json')) as List<dynamic>;
-    expect(recipes.length, 208);
+    expect(recipes.length, 228);
     expect(recipes.where((r) => r.country == 'sa').length, 65);
     expect(raw.length, 20);
-    expect(recipes.map((r) => r.id).toSet().length, 208);
+    expect(recipes.map((r) => r.id).toSet().length, 228);
     expect(RecipePhoto.saudiPhase3Jpg.length, 20);
-    expect(RecipePhoto.picturedRecipes.length, 208);
+    expect(RecipePhoto.picturedRecipes.length, 228);
     final names = <String>{};
     for (final item in raw) {
       final data = item as Map<String, dynamic>;
