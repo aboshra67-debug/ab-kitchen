@@ -9,6 +9,7 @@ on:
       - 'assets/photos/sy_*.jpg'
       - 'assets/photos/sa_sago.jpg'
       - 'test/syrian_phase1_test.dart'
+      - 'tools/ci_v078_android_emulator.sh'
       - 'assets/data/saudi_phase3_illustrations_audit.json'
       - 'assets/photos/sa_*.jpg'
       - 'assets/photos/eg_fino_bread.jpg'
