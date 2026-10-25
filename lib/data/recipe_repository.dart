@@ -17,6 +17,8 @@ class RecipeRepository {
     final syrian = jsonDecode(syrianRaw) as List<dynamic>;
     final syrianPhase2Raw = await rootBundle.loadString('assets/data/syrian_phase2_recipes.json');
     final syrianPhase2 = jsonDecode(syrianPhase2Raw) as List<dynamic>;
+    final syrianPhase3Raw = await rootBundle.loadString('assets/data/syrian_phase3_recipes.json');
+    final syrianPhase3 = jsonDecode(syrianPhase3Raw) as List<dynamic>;
     final all = <Recipe>[
       ...base.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
       ...saudi.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
@@ -24,6 +26,7 @@ class RecipeRepository {
       ...phase3.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
       ...syrian.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
       ...syrianPhase2.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
+      ...syrianPhase3.map((e) => Recipe.fromJson(e as Map<String, dynamic>)),
     ];
     assert(all.length == all.map((r) => r.id).toSet().length,
       'Duplicate recipe ID across catalogs');

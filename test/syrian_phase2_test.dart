@@ -9,11 +9,11 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   test('Syria phase2 adds 20 verified entries and distinct bundled JPEGs', () async {
     final recipes = await RecipeRepository.load();
-    expect(recipes.length, 248);
-    expect(recipes.map((r) => r.id).toSet().length, 248);
-    expect(recipes.where((r) => r.country == 'sy').length, 45);
+    expect(recipes.length, 268);
+    expect(recipes.map((r) => r.id).toSet().length, 268);
+    expect(recipes.where((r) => r.country == 'sy').length, 65);
     expect(recipes.where((r) => r.country == 'sa').length, 65);
-    expect(RecipePhoto.picturedRecipes.length, 248);
+    expect(RecipePhoto.picturedRecipes.length, 268);
     expect(RecipePhoto.syrianPhase1Jpg.length, 20);
     expect(RecipePhoto.syrianPhase2Jpg.length, 20);
     final raw = jsonDecode(await rootBundle.loadString('assets/data/syrian_phase2_recipes.json')) as List<dynamic>;

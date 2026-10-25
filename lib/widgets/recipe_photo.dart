@@ -41,6 +41,8 @@ class RecipePhoto extends StatelessWidget {
     'sa_daghabees','sa_mersa','sa_mufallaq_shrimp','sa_asidah','sa_millet_soup','sa_habb_soup','sa_arboud_bread','sa_qishd','sa_masabeeb','sa_mashghoutha','sa_mathloutha','sa_shaatha','sa_mahshoush','sa_maifa_bread','sa_tasabee','sa_mafalit','sa_mardhoufa','sa_fahsa','sa_moqalqal','sa_khameer_red',
     'sa_harees','sa_mandi_lamb','sa_mahmous_qatif','sa_timman_hail','sa_mansaf_tabuk','sa_muhammar_barnyush','sa_matban_fish','sa_futaytah_north','sa_khumayah_north','sa_mahmousa_north','sa_thareed_lamb','sa_muaraq_madinah','sa_shadkh_rajlah','sa_mathaan_bread','sa_mammoosh_east','sa_dabyazah','sa_oqaili_cake','sa_khanfaroush','sa_khabeesa','sa_sago',
     'sa_marqooq','sa_qursan','sa_matazeez','sa_haneeth','sa_madini_rice','sa_hasawi_rice','sa_sayadiyah_tabuk','sa_maghsh_jazan','sa_ruqsh_najran','sa_mlaihiyya','sa_bakeelah_jawf','sa_muqanah_bahah','sa_kubaibat_hail','sa_kleija_qassim','sa_maqshush','sa_areeka','sa_haneeni','sa_balila_hijazi','sa_masoob','sa_tamees',
+    // Syria phase 3: individual recipe-matched offline photos.
+    'sy_samaka_harra','sy_fish_kibbeh','sy_kbeibat_chard','sy_rashouf','sy_artichoke_lamb','sy_bashmashkat','sy_mishmishiya','sy_pumpkin_yogurt','sy_khobeizeh_oil','sy_raghida_kishk','sy_bulgur_chickpeas','sy_muqatta_hauran','sy_makmoura_hauran','sy_zankal_meat','sy_tannour_euphrates','sy_falafel_homs','sy_lazzaqiyat_hauran','sy_shuaibiyat_ashta','sy_halawat_riz_hama','sy_mutabbaqa_jolan',
     // Syria phase 2: twenty individual offline food images, no fallback reuse.
     'sy_kibbeh_grilled_halabi','sy_kibbeh_mabrouma','sy_kibbeh_summakiya','sy_kibbeh_pumpkin','sy_kibbeh_fried','sy_kibbeh_kishk','sy_ouzi_parcels','sy_freekeh_lamb_shanks','sy_mujaddara_bulgur','sy_kebab_banjan','sy_chicken_freekeh_stuffed','sy_manakish_zaatar','sy_shanklish_salad','sy_moutabal_beet','sy_cheese_fatayer','sy_mamouniyeh','sy_osh_bulbul','sy_znoud_alsit','sy_madlouka','sy_ballourieh',
     // Syria phase 1: twenty individual offline food photos.
@@ -98,13 +100,15 @@ class RecipePhoto extends StatelessWidget {
 
   static const syrianPhase2Jpg = <String>{'sy_kibbeh_grilled_halabi','sy_kibbeh_mabrouma','sy_kibbeh_summakiya','sy_kibbeh_pumpkin','sy_kibbeh_fried','sy_kibbeh_kishk','sy_ouzi_parcels','sy_freekeh_lamb_shanks','sy_mujaddara_bulgur','sy_kebab_banjan','sy_chicken_freekeh_stuffed','sy_manakish_zaatar','sy_shanklish_salad','sy_moutabal_beet','sy_cheese_fatayer','sy_mamouniyeh','sy_osh_bulbul','sy_znoud_alsit','sy_madlouka','sy_ballourieh'};
 
+  static const syrianPhase3Jpg = <String>{'sy_samaka_harra','sy_fish_kibbeh','sy_kbeibat_chard','sy_rashouf','sy_artichoke_lamb','sy_bashmashkat','sy_mishmishiya','sy_pumpkin_yogurt','sy_khobeizeh_oil','sy_raghida_kishk','sy_bulgur_chickpeas','sy_muqatta_hauran','sy_makmoura_hauran','sy_zankal_meat','sy_tannour_euphrates','sy_falafel_homs','sy_lazzaqiyat_hauran','sy_shuaibiyat_ashta','sy_halawat_riz_hama','sy_mutabbaqa_jolan'};
+
   // Backward-compatible alias used by existing V0.7.1 photo coverage tests.
   static const saudiPhase2JpegIds = saudiPhase2Jpg;
 
   static String? assetFor(String id, {bool hero = false}) {
     if (!picturedRecipes.contains(id)) return null;
     if (id == 'eg_koshari' && hero) return 'assets/photos/eg_koshari_hero.webp';
-    if (id == 'eg_fino_bread' || saudiPhase2Jpg.contains(id) || saudiPhase3Jpg.contains(id) || syrianPhase1Jpg.contains(id) || syrianPhase2Jpg.contains(id)) return 'assets/photos/$id.jpg';
+    if (id == 'eg_fino_bread' || saudiPhase2Jpg.contains(id) || saudiPhase3Jpg.contains(id) || syrianPhase1Jpg.contains(id) || syrianPhase2Jpg.contains(id) || syrianPhase3Jpg.contains(id)) return 'assets/photos/$id.jpg';
     return 'assets/photos/$id.webp';
   }
 

@@ -1,7 +1,7 @@
 name: ab_kitchen
 description: AB Kitchen - Interactive world recipes and home cooking assistant.
 publish_to: none
-version: 0.8.1+19
+version: 0.8.2+20
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -33,6 +33,7 @@ flutter:
     - assets/data/saudi_phase3_recipes.json
     - assets/data/syrian_phase1_recipes.json
     - assets/data/syrian_phase2_recipes.json
+    - assets/data/syrian_phase3_recipes.json
     - assets/data/saudi_phase3_illustrations_audit.json
     - assets/data/licensed_photo_credits.json
     - assets/branding/ab_kitchen_logo.jpg

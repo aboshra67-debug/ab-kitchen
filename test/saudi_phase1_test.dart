@@ -9,10 +9,10 @@ void main() {
   test('Saudi phase 1 adds exactly 20 regional, distinct, offline pictured dishes', () async {
     final recipes = await RecipeRepository.load();
     final audit = (jsonDecode(await rootBundle.loadString('assets/data/saudi_phase1_photo_audit.json')) as List<dynamic>);
-    expect(recipes.length, 248);
+    expect(recipes.length, 268);
     expect(recipes.where((r) => r.country == 'sa').length, 65);
     expect(audit.length, 20);
-    expect(RecipePhoto.picturedRecipes.length, 248);
+    expect(RecipePhoto.picturedRecipes.length, 268);
     final unique = <String>{};
     for (final a in audit) {
       final id = a['recipe_id'] as String;
