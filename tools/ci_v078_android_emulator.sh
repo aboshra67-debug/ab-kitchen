@@ -11,14 +11,14 @@ for boot in 1 2; do
   adb shell am start -W -n "$PACKAGE/.MainActivity"
   READY=0
   for _ in $(seq 1 75); do
-    if adb logcat -d | grep -Fq 'AB_KITCHEN_STARTUP_READY recipes=228'; then
+    if adb logcat -d | grep -Fq 'AB_KITCHEN_STARTUP_READY recipes=248'; then
       READY=1
       break
     fi
     sleep 2
   done
   if [ "$READY" -ne 1 ]; then
-    echo "::error::Android release startup $boot did not load preferences and 228 recipes"
+    echo "::error::Android release startup $boot did not load preferences and 248 recipes"
     adb logcat -d | grep -E 'NoSuchMethodError|PlatformException|AB_KITCHEN|E/flutter| E flutter' | tail -80 || true
     exit 1
   fi
@@ -30,6 +30,6 @@ for boot in 1 2; do
     echo "::error::Android process quit after startup $boot"
     exit 1
   fi
-  adb exec-out screencap -p > "deliverables/AB_Kitchen_V080_emulator_boot_${boot}.png"
-  echo "PASS: release boot $boot, SharedPreferences ready, 228 recipes loaded"
+  adb exec-out screencap -p > "deliverables/AB_Kitchen_V081_emulator_boot_${boot}.png"
+  echo "PASS: release boot $boot, SharedPreferences ready, 248 recipes loaded"
 done

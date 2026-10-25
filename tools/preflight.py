@@ -14,7 +14,10 @@ recipes = original + saudi_phase1 + saudi_phase2 + saudi_phase3
 syrian_phase1 = json.loads((root / 'assets/data/syrian_phase1_recipes.json').read_text(encoding='utf-8'))
 assert len(syrian_phase1) == 20
 recipes += syrian_phase1
-assert isinstance(recipes, list) and len(recipes) == 228
+syrian_phase2 = json.loads((root / 'assets/data/syrian_phase2_recipes.json').read_text(encoding='utf-8'))
+assert len(syrian_phase2) == 20
+recipes += syrian_phase2
+assert isinstance(recipes, list) and len(recipes) == 248
 ids = [r['id'] for r in recipes]
 assert len(ids) == len(set(ids))
 assert sum(r.get('collection') == 'blaban_inspired' for r in recipes) == 14
@@ -25,7 +28,7 @@ assert len({r['name'].strip() for r in recipes if r['country'] == 'eg'}) == 123
 assert all(len(r.get('topping_ids', [])) >= 4 for r in recipes if r.get('collection') == 'blaban_inspired')
 assert {'eg', 'sa', 'sy'}.issubset({r['country'] for r in recipes})
 assert len({r['country'] for r in recipes}) == 8
-assert sum(r['country'] == 'sy' for r in recipes) == 25
+assert sum(r['country'] == 'sy' for r in recipes) == 45
 for recipe in recipes:
     assert recipe['servings'] > 0 and recipe['minutes'] > 0
     assert len(recipe['steps']) >= 3
@@ -47,14 +50,14 @@ for expected in (
 ):
     assert (root / expected).is_file(), expected
 pubspec = (root / 'pubspec.yaml').read_text(encoding='utf-8')
-assert 'version: 0.8.0+18' in pubspec
+assert 'version: 0.8.1+19' in pubspec
 assert 'assets/photos/' in pubspec
 for photo in (root/'assets/photos').glob('*.webp'):
     assert photo.stat().st_size > 3000, str(photo)
 assert len(list((root/'assets/photos').glob('*.webp'))) == 168
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase2)
 assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in saudi_phase3)
-assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in syrian_phase1)
+assert all((root/'assets/photos'/(r['id']+'.jpg')).is_file() for r in syrian_phase1 + syrian_phase2)
 assert (root/'assets/photos/sa_sago.jpg').stat().st_size > 60000
 assert (root/'assets/photos/eg_fino_bread.jpg').is_file(), 'Missing Egyptian fino image'
 # Phase 3 images are original generated illustrations. Earlier photos are retained.

@@ -10,13 +10,13 @@ void main() {
   test('Syrian phase 1 contains 20 unique halal recipes with separate offline JPEGs', () async {
     final recipes = await RecipeRepository.load();
     final raw = jsonDecode(await rootBundle.loadString('assets/data/syrian_phase1_recipes.json')) as List<dynamic>;
-    expect(recipes.length, 228);
-    expect(recipes.where((r) => r.country == 'sy').length, 25);
+    expect(recipes.length, 248);
+    expect(recipes.where((r) => r.country == 'sy').length, 45);
     expect(recipes.where((r) => r.country == 'sa').length, 65);
-    expect(recipes.map((r) => r.id).toSet().length, 228);
+    expect(recipes.map((r) => r.id).toSet().length, 248);
     expect(raw.length, 20);
     expect(RecipePhoto.syrianPhase1Jpg.length, 20);
-    expect(RecipePhoto.picturedRecipes.length, 228);
+    expect(RecipePhoto.picturedRecipes.length, 248);
     final names = <String>{};
     final photoData = <List<int>>[];
     for (final item in raw) {
